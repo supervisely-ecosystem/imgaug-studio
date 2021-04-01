@@ -52,7 +52,7 @@ def main():
     # imgaug_example()
 
     # # iaa.Fliplr
-    #func_doc = iaa.Rotate.__doc__
+    func_doc = iaa.Rotate.__doc__
     #print(func_doc)
 
     from augs import augs_modules
@@ -63,16 +63,20 @@ def main():
             method_info = inspect.signature(method)
             x = str(method_info)
 
+            method_doc_url = f"https://imgaug.readthedocs.io/en/latest/source/api_augmenters_{module_name}.html#imgaug.augmenters.{module_name}.{method.__name__}"
             method_py = ""
             for idx, param in enumerate(method_info.parameters.values()):
                 formatted = str(param)
                 if 'deprecated' in formatted or 'seed=None' in formatted or 'name=None' in formatted:
                     continue
                 method_py += formatted + ", "
+
+            print(method_doc_url)
             print(f"\t iaa.{method.__name__}({method_py[:-2]})")
 
     #x = imgaug.augmenters.arithmetic
     #res = inspect.getmembers(x)
 
+#https://albumentations-demo.herokuapp.com/
 if __name__ == "__main__":
     main()
