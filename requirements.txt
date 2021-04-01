@@ -4,6 +4,7 @@ imagecorruptions==1.1.2
 albumentations==0.5.2
 mmcv==1.2.7
 # mmcv-full???
-mmsegmentation==0.11.0
+#mmsegmentation==0.11.0
+mmcls==0.10.0
 torch==1.8.1
 torchvision==0.9.1
