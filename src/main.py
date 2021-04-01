@@ -1,6 +1,8 @@
 import os
 import numpy as np
+import inspect
 import supervisely_lib as sly
+import json
 
 
 #from mmseg.datasets.pipelines import Compose
@@ -29,7 +31,7 @@ def mmcv_example():
     x = 10
     x += 1
 
-
+import imgaug
 import imgaug.augmenters as iaa
 from imgaug.augmentables.segmaps import SegmentationMapsOnImage
 def imgaug_example():
@@ -44,11 +46,55 @@ def imgaug_example():
     sly.image.write("res.jpg", res[0])
 
 
-
 def main():
-    sly.fs.silent_remove("res.jpg")
-    imgaug_example()
+    global x, y, z
+    # sly.fs.silent_remove("res.jpg")
+    # imgaug_example()
 
+    # # iaa.Fliplr
+    # func_doc = iaa.Fliplr.__doc__
+    # method_info = inspect.signature(iaa.Fliplr)
+    # func_args = method_info.parameters
+    # print(json.dumps(func_args, indent=4))
+
+    #from imgaug.augmenters.arithmetic import *
+    # from imgaug.augmenters.artistic import *
+    # from imgaug.augmenters.blend import *
+    # from imgaug.augmenters.blur import *
+    # from imgaug.augmenters.collections import *
+    # from imgaug.augmenters.color import *
+    # from imgaug.augmenters.contrast import *
+    # from imgaug.augmenters.convolutional import *
+    # from imgaug.augmenters.debug import *
+    # from imgaug.augmenters.edges import *
+    # from imgaug.augmenters.flip import *
+    # from imgaug.augmenters.geometric import *
+    # import imgaug.augmenters.imgcorruptlike  # use as iaa.imgcorrupt.<Augmenter>
+    # from imgaug.augmenters.meta import *
+    # import imgaug.augmenters.pillike  # use via: iaa.pillike.*
+    # from imgaug.augmenters.pooling import *
+    # from imgaug.augmenters.segmentation import *
+    # from imgaug.augmenters.size import *
+    # from imgaug.augmenters.weather import *
+
+    from augs import augs_modules
+
+    for module_name, methods in augs_modules.items():
+        print(module_name)
+        for method in methods:
+            method_info = inspect.signature(method)
+            x = str(method_info)
+
+            method_py = ""
+            for idx, param in enumerate(method_info.parameters.values()):
+                formatted = str(param)
+                if 'deprecated' in formatted or 'seed=None' in formatted or 'name=None' in formatted:
+                    continue
+                method_py += formatted + ", "
+            print(f"\t iaa.{method.__name__}({method_py[:-2]})")
+
+    #x = imgaug.augmenters.arithmetic
+    #res = inspect.getmembers(x)
 
 if __name__ == "__main__":
     main()
