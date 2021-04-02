@@ -86,11 +86,12 @@ def main():
                     params_config.append(param_info)
 
             print(method_doc_url)
-            print(f"\t iaa.{method.__name__}({method_py[:-2]})")
+            method_py_final = f"iaa.{method.__name__}({method_py[:-2]})"
+            print(method_py_final)
 
             module_augs[method.__name__] = {
                 "durl": method_doc_url,
-                "py": method_py[:-2],
+                "py": method_py_final,
                 "params": params_config
             }
 
@@ -98,6 +99,9 @@ def main():
 
     sly.json.dump_json_file(augs_config, "augs_auto.json")
 
+# add probability to every augmentation
+# add shuffle flag to entire pipeline
+# auto modify py field
 # https://github.com/IliaLarchenko/albumentations-demo
 if __name__ == "__main__":
     main()

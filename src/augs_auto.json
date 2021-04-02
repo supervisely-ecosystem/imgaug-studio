@@ -2,7 +2,7 @@
     "arithmetic": {
         "Add": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Add",
-            "py": "value=(-20, 20), per_channel=False",
+            "py": "iaa.Add(value=(-20, 20), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -23,7 +23,7 @@
         },
         "AddElementwise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.AddElementwise",
-            "py": "value=(-20, 20), per_channel=False",
+            "py": "iaa.AddElementwise(value=(-20, 20), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -44,7 +44,7 @@
         },
         "AdditiveGaussianNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.AdditiveGaussianNoise",
-            "py": "loc=0, scale=(0, 15), per_channel=False",
+            "py": "iaa.AdditiveGaussianNoise(loc=0, scale=(0, 15), per_channel=False)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -72,7 +72,7 @@
         },
         "AdditiveLaplaceNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.AdditiveLaplaceNoise",
-            "py": "loc=0, scale=(0, 15), per_channel=False",
+            "py": "iaa.AdditiveLaplaceNoise(loc=0, scale=(0, 15), per_channel=False)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -100,7 +100,7 @@
         },
         "AdditivePoissonNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.AdditivePoissonNoise",
-            "py": "lam=(0.0, 15.0), per_channel=False",
+            "py": "iaa.AdditivePoissonNoise(lam=(0.0, 15.0), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -121,7 +121,7 @@
         },
         "Multiply": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Multiply",
-            "py": "mul=(0.8, 1.2), per_channel=False",
+            "py": "iaa.Multiply(mul=(0.8, 1.2), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -142,7 +142,7 @@
         },
         "MultiplyElementwise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.MultiplyElementwise",
-            "py": "mul=(0.8, 1.2), per_channel=False",
+            "py": "iaa.MultiplyElementwise(mul=(0.8, 1.2), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -163,7 +163,7 @@
         },
         "Cutout": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Cutout",
-            "py": "nb_iterations=1, position='uniform', size=0.2, squared=True, fill_mode='constant', cval=128, fill_per_channel=False",
+            "py": "iaa.Cutout(nb_iterations=1, position='uniform', size=0.2, squared=True, fill_mode='constant', cval=128, fill_per_channel=False)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -216,7 +216,7 @@
         },
         "Dropout": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Dropout",
-            "py": "p=(0.0, 0.05), per_channel=False",
+            "py": "iaa.Dropout(p=(0.0, 0.05), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -237,7 +237,7 @@
         },
         "CoarseDropout": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.CoarseDropout",
-            "py": "p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3",
+            "py": "iaa.CoarseDropout(p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -279,7 +279,7 @@
         },
         "Dropout2d": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Dropout2d",
-            "py": "p=0.1, nb_keep_channels=1",
+            "py": "iaa.Dropout2d(p=0.1, nb_keep_channels=1)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -299,7 +299,7 @@
         },
         "TotalDropout": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.TotalDropout",
-            "py": "p=1",
+            "py": "iaa.TotalDropout(p=1)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -312,7 +312,7 @@
         },
         "ReplaceElementwise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.ReplaceElementwise",
-            "py": "mask, replacement, per_channel=False",
+            "py": "iaa.ReplaceElementwise(mask, replacement, per_channel=False)",
             "params": [
                 {
                     "type": "el-checkbox",
@@ -323,7 +323,7 @@
         },
         "ImpulseNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.ImpulseNoise",
-            "py": "p=(0.0, 0.03)",
+            "py": "iaa.ImpulseNoise(p=(0.0, 0.03))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -339,7 +339,7 @@
         },
         "SaltAndPepper": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.SaltAndPepper",
-            "py": "p=(0.0, 0.03), per_channel=False",
+            "py": "iaa.SaltAndPepper(p=(0.0, 0.03), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -360,7 +360,7 @@
         },
         "CoarseSaltAndPepper": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.CoarseSaltAndPepper",
-            "py": "p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3",
+            "py": "iaa.CoarseSaltAndPepper(p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -402,7 +402,7 @@
         },
         "Salt": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Salt",
-            "py": "p=(0.0, 0.03), per_channel=False",
+            "py": "iaa.Salt(p=(0.0, 0.03), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -423,7 +423,7 @@
         },
         "CoarseSalt": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.CoarseSalt",
-            "py": "p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3",
+            "py": "iaa.CoarseSalt(p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -465,7 +465,7 @@
         },
         "Pepper": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Pepper",
-            "py": "p=(0.0, 0.05), per_channel=False",
+            "py": "iaa.Pepper(p=(0.0, 0.05), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -486,7 +486,7 @@
         },
         "CoarsePepper": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.CoarsePepper",
-            "py": "p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3",
+            "py": "iaa.CoarsePepper(p=(0.02, 0.1), size_px=None, size_percent=None, per_channel=False, min_size=3)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -528,7 +528,7 @@
         },
         "Invert": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Invert",
-            "py": "p=1, per_channel=False, min_value=None, max_value=None, threshold=None, invert_above_threshold=0.5",
+            "py": "iaa.Invert(p=1, per_channel=False, min_value=None, max_value=None, threshold=None, invert_above_threshold=0.5)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -574,7 +574,7 @@
         },
         "Solarize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Solarize",
-            "py": "p=1, per_channel=False, min_value=None, max_value=None, threshold=(64, 192), invert_above_threshold=True",
+            "py": "iaa.Solarize(p=1, per_channel=False, min_value=None, max_value=None, threshold=(64, 192), invert_above_threshold=True)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -621,7 +621,7 @@
         },
         "ContrastNormalization": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.ContrastNormalization",
-            "py": "alpha=1.0, per_channel=False",
+            "py": "iaa.ContrastNormalization(alpha=1.0, per_channel=False)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -639,7 +639,7 @@
         },
         "JpegCompression": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.JpegCompression",
-            "py": "compression=(0, 100)",
+            "py": "iaa.JpegCompression(compression=(0, 100))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -657,7 +657,7 @@
     "blur": {
         "GaussianBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_blur.html#imgaug.augmenters.blur.GaussianBlur",
-            "py": "sigma=(0.0, 3.0)",
+            "py": "iaa.GaussianBlur(sigma=(0.0, 3.0))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -673,7 +673,7 @@
         },
         "AverageBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_blur.html#imgaug.augmenters.blur.AverageBlur",
-            "py": "k=(1, 7)",
+            "py": "iaa.AverageBlur(k=(1, 7))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -689,7 +689,7 @@
         },
         "MedianBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_blur.html#imgaug.augmenters.blur.MedianBlur",
-            "py": "k=(1, 7)",
+            "py": "iaa.MedianBlur(k=(1, 7))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -705,7 +705,7 @@
         },
         "BilateralBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_blur.html#imgaug.augmenters.blur.BilateralBlur",
-            "py": "d=(1, 9), sigma_color=(10, 250), sigma_space=(10, 250)",
+            "py": "iaa.BilateralBlur(d=(1, 9), sigma_color=(10, 250), sigma_space=(10, 250))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -741,7 +741,7 @@
         },
         "MotionBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_blur.html#imgaug.augmenters.blur.MotionBlur",
-            "py": "k=(3, 7), angle=(0, 360), direction=(-1.0, 1.0), order=1",
+            "py": "iaa.MotionBlur(k=(3, 7), angle=(0, 360), direction=(-1.0, 1.0), order=1)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -784,7 +784,7 @@
         },
         "MeanShiftBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_blur.html#imgaug.augmenters.blur.MeanShiftBlur",
-            "py": "spatial_radius=(5.0, 40.0), color_radius=(5.0, 40.0)",
+            "py": "iaa.MeanShiftBlur(spatial_radius=(5.0, 40.0), color_radius=(5.0, 40.0))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -812,7 +812,7 @@
     "color": {
         "WithColorspace": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.WithColorspace",
-            "py": "to_colorspace, from_colorspace='RGB', children=None",
+            "py": "iaa.WithColorspace(to_colorspace, from_colorspace='RGB', children=None)",
             "params": [
                 {
                     "type": "el-select",
@@ -833,7 +833,7 @@
         },
         "WithBrightnessChannels": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.WithBrightnessChannels",
-            "py": "children=None, to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB'",
+            "py": "iaa.WithBrightnessChannels(children=None, to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -874,7 +874,7 @@
         },
         "MultiplyAndAddToBrightness": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.MultiplyAndAddToBrightness",
-            "py": "mul=(0.7, 1.3), add=(-30, 30), to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB', random_order=True",
+            "py": "iaa.MultiplyAndAddToBrightness(mul=(0.7, 1.3), add=(-30, 30), to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB', random_order=True)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -933,7 +933,7 @@
         },
         "MultiplyBrightness": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.MultiplyBrightness",
-            "py": "mul=(0.7, 1.3), to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB'",
+            "py": "iaa.MultiplyBrightness(mul=(0.7, 1.3), to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -977,7 +977,7 @@
         },
         "AddToBrightness": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.AddToBrightness",
-            "py": "add=(-30, 30), to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB'",
+            "py": "iaa.AddToBrightness(add=(-30, 30), to_colorspace=['YCrCb', 'HSV', 'HLS', 'Lab', 'Luv', 'YUV'], from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1021,7 +1021,7 @@
         },
         "WithHueAndSaturation": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.WithHueAndSaturation",
-            "py": "children=None, from_colorspace='RGB'",
+            "py": "iaa.WithHueAndSaturation(children=None, from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1042,7 +1042,7 @@
         },
         "MultiplyHueAndSaturation": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.MultiplyHueAndSaturation",
-            "py": "mul=None, mul_hue=None, mul_saturation=None, per_channel=False, from_colorspace='RGB'",
+            "py": "iaa.MultiplyHueAndSaturation(mul=None, mul_hue=None, mul_saturation=None, per_channel=False, from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1082,7 +1082,7 @@
         },
         "MultiplyHue": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.MultiplyHue",
-            "py": "mul=(-3.0, 3.0), from_colorspace='RGB'",
+            "py": "iaa.MultiplyHue(mul=(-3.0, 3.0), from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1106,7 +1106,7 @@
         },
         "MultiplySaturation": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.MultiplySaturation",
-            "py": "mul=(0.0, 3.0), from_colorspace='RGB'",
+            "py": "iaa.MultiplySaturation(mul=(0.0, 3.0), from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1130,7 +1130,7 @@
         },
         "RemoveSaturation": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.RemoveSaturation",
-            "py": "mul=1, from_colorspace='RGB'",
+            "py": "iaa.RemoveSaturation(mul=1, from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1151,7 +1151,7 @@
         },
         "AddToHueAndSaturation": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.AddToHueAndSaturation",
-            "py": "value=None, value_hue=None, value_saturation=None, per_channel=False, from_colorspace='RGB'",
+            "py": "iaa.AddToHueAndSaturation(value=None, value_hue=None, value_saturation=None, per_channel=False, from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1191,7 +1191,7 @@
         },
         "AddToHue": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.AddToHue",
-            "py": "value=(-255, 255), from_colorspace='RGB'",
+            "py": "iaa.AddToHue(value=(-255, 255), from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1215,7 +1215,7 @@
         },
         "AddToSaturation": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.AddToSaturation",
-            "py": "value=(-75, 75), from_colorspace='RGB'",
+            "py": "iaa.AddToSaturation(value=(-75, 75), from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1239,7 +1239,7 @@
         },
         "ChangeColorspace": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.ChangeColorspace",
-            "py": "to_colorspace, from_colorspace='RGB', alpha=1.0",
+            "py": "iaa.ChangeColorspace(to_colorspace, from_colorspace='RGB', alpha=1.0)",
             "params": [
                 {
                     "type": "el-select",
@@ -1260,7 +1260,7 @@
         },
         "Grayscale": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.Grayscale",
-            "py": "alpha=1, from_colorspace='RGB'",
+            "py": "iaa.Grayscale(alpha=1, from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1281,7 +1281,7 @@
         },
         "ChangeColorTemperature": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.ChangeColorTemperature",
-            "py": "kelvin=(1000, 11000), from_colorspace='RGB'",
+            "py": "iaa.ChangeColorTemperature(kelvin=(1000, 11000), from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1305,7 +1305,7 @@
         },
         "KMeansColorQuantization": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.KMeansColorQuantization",
-            "py": "n_colors=(2, 16), from_colorspace='RGB', to_colorspace=['RGB', 'Lab'], max_size=128, interpolation='linear'",
+            "py": "iaa.KMeansColorQuantization(n_colors=(2, 16), from_colorspace='RGB', to_colorspace=['RGB', 'Lab'], max_size=128, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1356,7 +1356,7 @@
         },
         "UniformColorQuantization": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.UniformColorQuantization",
-            "py": "n_colors=(2, 16), from_colorspace='RGB', to_colorspace=None, max_size=None, interpolation='linear'",
+            "py": "iaa.UniformColorQuantization(n_colors=(2, 16), from_colorspace='RGB', to_colorspace=None, max_size=None, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1402,7 +1402,7 @@
         },
         "Posterize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_color.html#imgaug.augmenters.color.Posterize",
-            "py": "nb_bits=(1, 8), from_colorspace='RGB', to_colorspace=None, max_size=None, interpolation='linear'",
+            "py": "iaa.Posterize(nb_bits=(1, 8), from_colorspace='RGB', to_colorspace=None, max_size=None, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1450,7 +1450,7 @@
     "contrast": {
         "GammaContrast": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.GammaContrast",
-            "py": "gamma=(0.7, 1.7), per_channel=False",
+            "py": "iaa.GammaContrast(gamma=(0.7, 1.7), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1471,7 +1471,7 @@
         },
         "SigmoidContrast": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.SigmoidContrast",
-            "py": "gain=(5, 6), cutoff=(0.3, 0.6), per_channel=False",
+            "py": "iaa.SigmoidContrast(gain=(5, 6), cutoff=(0.3, 0.6), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1502,7 +1502,7 @@
         },
         "LogContrast": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.LogContrast",
-            "py": "gain=(0.4, 1.6), per_channel=False",
+            "py": "iaa.LogContrast(gain=(0.4, 1.6), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1523,7 +1523,7 @@
         },
         "LinearContrast": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.LinearContrast",
-            "py": "alpha=(0.6, 1.4), per_channel=False",
+            "py": "iaa.LinearContrast(alpha=(0.6, 1.4), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1544,12 +1544,12 @@
         },
         "AllChannelsHistogramEqualization": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.AllChannelsHistogramEqualization",
-            "py": "",
+            "py": "iaa.AllChannelsHistogramEqualization()",
             "params": []
         },
         "HistogramEqualization": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.HistogramEqualization",
-            "py": "from_colorspace='RGB', to_colorspace='Lab'",
+            "py": "iaa.HistogramEqualization(from_colorspace='RGB', to_colorspace='Lab')",
             "params": [
                 {
                     "type": "el-select",
@@ -1571,7 +1571,7 @@
         },
         "AllChannelsCLAHE": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.AllChannelsCLAHE",
-            "py": "clip_limit=(0.1, 8), tile_grid_size_px=(3, 12), tile_grid_size_px_min=3, per_channel=False",
+            "py": "iaa.AllChannelsCLAHE(clip_limit=(0.1, 8), tile_grid_size_px=(3, 12), tile_grid_size_px_min=3, per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1609,7 +1609,7 @@
         },
         "CLAHE": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_contrast.html#imgaug.augmenters.contrast.CLAHE",
-            "py": "clip_limit=(0.1, 8), tile_grid_size_px=(3, 12), tile_grid_size_px_min=3, from_colorspace='RGB', to_colorspace='Lab'",
+            "py": "iaa.CLAHE(clip_limit=(0.1, 8), tile_grid_size_px=(3, 12), tile_grid_size_px_min=3, from_colorspace='RGB', to_colorspace='Lab')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1660,7 +1660,7 @@
     "convolutional": {
         "Convolve": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_convolutional.html#imgaug.augmenters.convolutional.Convolve",
-            "py": "matrix=None",
+            "py": "iaa.Convolve(matrix=None)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1673,7 +1673,7 @@
         },
         "Sharpen": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_convolutional.html#imgaug.augmenters.convolutional.Sharpen",
-            "py": "alpha=(0.0, 0.2), lightness=(0.8, 1.2)",
+            "py": "iaa.Sharpen(alpha=(0.0, 0.2), lightness=(0.8, 1.2))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1699,7 +1699,7 @@
         },
         "Emboss": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_convolutional.html#imgaug.augmenters.convolutional.Emboss",
-            "py": "alpha=(0.0, 1.0), strength=(0.25, 1.0)",
+            "py": "iaa.Emboss(alpha=(0.0, 1.0), strength=(0.25, 1.0))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1725,7 +1725,7 @@
         },
         "EdgeDetect": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_convolutional.html#imgaug.augmenters.convolutional.EdgeDetect",
-            "py": "alpha=(0.0, 0.75)",
+            "py": "iaa.EdgeDetect(alpha=(0.0, 0.75))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1741,7 +1741,7 @@
         },
         "DirectedEdgeDetect": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_convolutional.html#imgaug.augmenters.convolutional.DirectedEdgeDetect",
-            "py": "alpha=(0.0, 0.75), direction=(0.0, 1.0)",
+            "py": "iaa.DirectedEdgeDetect(alpha=(0.0, 0.75), direction=(0.0, 1.0))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1769,7 +1769,7 @@
     "flip": {
         "Fliplr": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_flip.html#imgaug.augmenters.flip.Fliplr",
-            "py": "p=1",
+            "py": "iaa.Fliplr(p=1)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1782,7 +1782,7 @@
         },
         "Flipud": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_flip.html#imgaug.augmenters.flip.Flipud",
-            "py": "p=1",
+            "py": "iaa.Flipud(p=1)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1797,7 +1797,7 @@
     "geometric": {
         "Affine": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.Affine",
-            "py": "scale=None, translate_percent=None, translate_px=None, rotate=None, shear=None, order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.Affine(scale=None, translate_percent=None, translate_px=None, rotate=None, shear=None, order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -1873,7 +1873,7 @@
         },
         "ScaleX": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.ScaleX",
-            "py": "scale=(0.5, 1.5), order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.ScaleX(scale=(0.5, 1.5), order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1924,7 +1924,7 @@
         },
         "ScaleY": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.ScaleY",
-            "py": "scale=(0.5, 1.5), order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.ScaleY(scale=(0.5, 1.5), order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -1975,7 +1975,7 @@
         },
         "TranslateX": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.TranslateX",
-            "py": "percent=None, px=None, order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.TranslateX(percent=None, px=None, order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -2030,7 +2030,7 @@
         },
         "TranslateY": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.TranslateY",
-            "py": "percent=None, px=None, order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.TranslateY(percent=None, px=None, order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -2085,7 +2085,7 @@
         },
         "Rotate": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.Rotate",
-            "py": "rotate=(-30, 30), order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.Rotate(rotate=(-30, 30), order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2136,7 +2136,7 @@
         },
         "ShearX": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.ShearX",
-            "py": "shear=(-30, 30), order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.ShearX(shear=(-30, 30), order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2187,7 +2187,7 @@
         },
         "ShearY": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.ShearY",
-            "py": "shear=(-30, 30), order=1, cval=0, mode='constant', fit_output=False, backend='auto'",
+            "py": "iaa.ShearY(shear=(-30, 30), order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2238,7 +2238,7 @@
         },
         "AffineCv2": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.AffineCv2",
-            "py": "scale=1.0, translate_percent=None, translate_px=None, rotate=0.0, shear=0.0, order=1, cval=0, mode=0",
+            "py": "iaa.AffineCv2(scale=1.0, translate_percent=None, translate_px=None, rotate=0.0, shear=0.0, order=1, cval=0, mode=0)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -2300,7 +2300,7 @@
         },
         "PiecewiseAffine": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.PiecewiseAffine",
-            "py": "scale=(0.0, 0.04), nb_rows=(2, 4), nb_cols=(2, 4), order=1, cval=0, mode='constant', absolute_scale=False, polygon_recoverer=None",
+            "py": "iaa.PiecewiseAffine(scale=(0.0, 0.04), nb_rows=(2, 4), nb_cols=(2, 4), order=1, cval=0, mode='constant', absolute_scale=False, polygon_recoverer=None)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2370,7 +2370,7 @@
         },
         "PerspectiveTransform": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.PerspectiveTransform",
-            "py": "scale=(0.0, 0.06), cval=0, mode='constant', keep_size=True, fit_output=False, polygon_recoverer='auto'",
+            "py": "iaa.PerspectiveTransform(scale=(0.0, 0.06), cval=0, mode='constant', keep_size=True, fit_output=False, polygon_recoverer='auto')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2419,7 +2419,7 @@
         },
         "ElasticTransformation": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.ElasticTransformation",
-            "py": "alpha=(0.0, 40.0), sigma=(4.0, 8.0), order=3, cval=0, mode='constant', polygon_recoverer='auto'",
+            "py": "iaa.ElasticTransformation(alpha=(0.0, 40.0), sigma=(4.0, 8.0), order=3, cval=0, mode='constant', polygon_recoverer='auto')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2475,7 +2475,7 @@
         },
         "Rot90": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.Rot90",
-            "py": "k=1, keep_size=True",
+            "py": "iaa.Rot90(k=1, keep_size=True)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -2493,12 +2493,12 @@
         },
         "WithPolarWarping": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.WithPolarWarping",
-            "py": "children",
+            "py": "iaa.WithPolarWarping(children)",
             "params": []
         },
         "Jigsaw": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.Jigsaw",
-            "py": "nb_rows=(3, 10), nb_cols=(3, 10), max_steps=1, allow_pad=True",
+            "py": "iaa.Jigsaw(nb_rows=(3, 10), nb_cols=(3, 10), max_steps=1, allow_pad=True)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2538,7 +2538,7 @@
     "imgcorruptlike": {
         "GaussianNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.GaussianNoise",
-            "py": "severity=(1, 5)",
+            "py": "iaa.GaussianNoise(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2554,7 +2554,7 @@
         },
         "ShotNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.ShotNoise",
-            "py": "severity=(1, 5)",
+            "py": "iaa.ShotNoise(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2570,7 +2570,7 @@
         },
         "ImpulseNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.ImpulseNoise",
-            "py": "severity=(1, 5)",
+            "py": "iaa.ImpulseNoise(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2586,7 +2586,7 @@
         },
         "SpeckleNoise": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.SpeckleNoise",
-            "py": "severity=(1, 5)",
+            "py": "iaa.SpeckleNoise(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2602,7 +2602,7 @@
         },
         "GaussianBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.GaussianBlur",
-            "py": "severity=(1, 5)",
+            "py": "iaa.GaussianBlur(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2618,7 +2618,7 @@
         },
         "GlassBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.GlassBlur",
-            "py": "severity=(1, 5)",
+            "py": "iaa.GlassBlur(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2634,7 +2634,7 @@
         },
         "DefocusBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.DefocusBlur",
-            "py": "severity=(1, 5)",
+            "py": "iaa.DefocusBlur(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2650,7 +2650,7 @@
         },
         "MotionBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.MotionBlur",
-            "py": "severity=(1, 5)",
+            "py": "iaa.MotionBlur(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2666,7 +2666,7 @@
         },
         "ZoomBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.ZoomBlur",
-            "py": "severity=(1, 5)",
+            "py": "iaa.ZoomBlur(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2682,7 +2682,7 @@
         },
         "Fog": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Fog",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Fog(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2698,7 +2698,7 @@
         },
         "Frost": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Frost",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Frost(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2714,7 +2714,7 @@
         },
         "Snow": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Snow",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Snow(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2730,7 +2730,7 @@
         },
         "Spatter": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Spatter",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Spatter(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2746,7 +2746,7 @@
         },
         "Contrast": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Contrast",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Contrast(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2762,7 +2762,7 @@
         },
         "Brightness": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Brightness",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Brightness(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2778,7 +2778,7 @@
         },
         "Saturate": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Saturate",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Saturate(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2794,7 +2794,7 @@
         },
         "JpegCompression": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.JpegCompression",
-            "py": "severity=(1, 5)",
+            "py": "iaa.JpegCompression(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2810,7 +2810,7 @@
         },
         "Pixelate": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.Pixelate",
-            "py": "severity=(1, 5)",
+            "py": "iaa.Pixelate(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2826,7 +2826,7 @@
         },
         "ElasticTransform": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.ElasticTransform",
-            "py": "severity=(1, 5)",
+            "py": "iaa.ElasticTransform(severity=(1, 5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -2841,137 +2841,10 @@
             ]
         }
     },
-    "meta": {
-        "Sequential": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.Sequential",
-            "py": "children=None, random_order=False",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "children"
-                },
-                {
-                    "type": "el-checkbox",
-                    "default": false,
-                    "name": "random_order"
-                }
-            ]
-        },
-        "SomeOf": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.SomeOf",
-            "py": "n=None, children=None, random_order=False",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "n"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "children"
-                },
-                {
-                    "type": "el-checkbox",
-                    "default": false,
-                    "name": "random_order"
-                }
-            ]
-        },
-        "OneOf": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.OneOf",
-            "py": "children",
-            "params": []
-        },
-        "Sometimes": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.Sometimes",
-            "py": "p=0.5, then_list=None, else_list=None",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 0.5,
-                    "min": 0,
-                    "max": 100,
-                    "name": "p"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "then_list"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "else_list"
-                }
-            ]
-        },
-        "WithChannels": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.WithChannels",
-            "py": "channels=None, children=None",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "channels"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "children"
-                }
-            ]
-        },
-        "Identity": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.Identity",
-            "py": "",
-            "params": []
-        },
-        "Noop": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.Noop",
-            "py": "",
-            "params": []
-        },
-        "ChannelShuffle": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.ChannelShuffle",
-            "py": "p=1.0, channels=None",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 1.0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "p"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "name": "channels"
-                }
-            ]
-        }
-    },
     "pillike": {
         "Solarize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.Solarize",
-            "py": "p=1.0, threshold=128",
+            "py": "iaa.Solarize(p=1.0, threshold=128)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -2991,7 +2864,7 @@
         },
         "Posterize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.Posterize",
-            "py": "nb_bits=(1, 8), from_colorspace='RGB', to_colorspace=None, max_size=None, interpolation='linear'",
+            "py": "iaa.Posterize(nb_bits=(1, 8), from_colorspace='RGB', to_colorspace=None, max_size=None, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3037,12 +2910,12 @@
         },
         "Equalize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.Equalize",
-            "py": "",
+            "py": "iaa.Equalize()",
             "params": []
         },
         "Autocontrast": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.Autocontrast",
-            "py": "cutoff=(0, 20), per_channel=False",
+            "py": "iaa.Autocontrast(cutoff=(0, 20), per_channel=False)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3063,7 +2936,7 @@
         },
         "EnhanceColor": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.EnhanceColor",
-            "py": "factor=(0.0, 3.0)",
+            "py": "iaa.EnhanceColor(factor=(0.0, 3.0))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3079,7 +2952,7 @@
         },
         "EnhanceContrast": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.EnhanceContrast",
-            "py": "factor=(0.5, 1.5)",
+            "py": "iaa.EnhanceContrast(factor=(0.5, 1.5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3095,7 +2968,7 @@
         },
         "EnhanceBrightness": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.EnhanceBrightness",
-            "py": "factor=(0.5, 1.5)",
+            "py": "iaa.EnhanceBrightness(factor=(0.5, 1.5))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3111,7 +2984,7 @@
         },
         "EnhanceSharpness": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.EnhanceSharpness",
-            "py": "factor=(0.0, 2.0)",
+            "py": "iaa.EnhanceSharpness(factor=(0.0, 2.0))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3127,57 +3000,57 @@
         },
         "FilterBlur": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterBlur",
-            "py": "",
+            "py": "iaa.FilterBlur()",
             "params": []
         },
         "FilterSmooth": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterSmooth",
-            "py": "",
+            "py": "iaa.FilterSmooth()",
             "params": []
         },
         "FilterSmoothMore": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterSmoothMore",
-            "py": "",
+            "py": "iaa.FilterSmoothMore()",
             "params": []
         },
         "FilterEdgeEnhance": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterEdgeEnhance",
-            "py": "",
+            "py": "iaa.FilterEdgeEnhance()",
             "params": []
         },
         "FilterEdgeEnhanceMore": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterEdgeEnhanceMore",
-            "py": "",
+            "py": "iaa.FilterEdgeEnhanceMore()",
             "params": []
         },
         "FilterFindEdges": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterFindEdges",
-            "py": "",
+            "py": "iaa.FilterFindEdges()",
             "params": []
         },
         "FilterContour": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterContour",
-            "py": "",
+            "py": "iaa.FilterContour()",
             "params": []
         },
         "FilterEmboss": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterEmboss",
-            "py": "",
+            "py": "iaa.FilterEmboss()",
             "params": []
         },
         "FilterSharpen": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterSharpen",
-            "py": "",
+            "py": "iaa.FilterSharpen()",
             "params": []
         },
         "FilterDetail": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterDetail",
-            "py": "",
+            "py": "iaa.FilterDetail()",
             "params": []
         },
         "Affine": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.Affine",
-            "py": "scale=1.0, translate_percent=None, translate_px=None, rotate=0.0, shear=0.0, fillcolor=0, center=(0.5, 0.5)",
+            "py": "iaa.Affine(scale=1.0, translate_percent=None, translate_px=None, rotate=0.0, shear=0.0, fillcolor=0, center=(0.5, 0.5))",
             "params": [
                 {
                     "type": "el-input-number",
@@ -3237,7 +3110,7 @@
     "pooling": {
         "AveragePooling": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.AveragePooling",
-            "py": "kernel_size=(1, 5), keep_size=True",
+            "py": "iaa.AveragePooling(kernel_size=(1, 5), keep_size=True)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3258,7 +3131,7 @@
         },
         "MaxPooling": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.MaxPooling",
-            "py": "kernel_size=(1, 5), keep_size=True",
+            "py": "iaa.MaxPooling(kernel_size=(1, 5), keep_size=True)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3279,7 +3152,7 @@
         },
         "MinPooling": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.MinPooling",
-            "py": "kernel_size=(1, 5), keep_size=True",
+            "py": "iaa.MinPooling(kernel_size=(1, 5), keep_size=True)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3300,7 +3173,7 @@
         },
         "MedianPooling": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.MedianPooling",
-            "py": "kernel_size=(1, 5), keep_size=True",
+            "py": "iaa.MedianPooling(kernel_size=(1, 5), keep_size=True)",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3323,7 +3196,7 @@
     "segmentation": {
         "Superpixels": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_segmentation.html#imgaug.augmenters.segmentation.Superpixels",
-            "py": "p_replace=(0.5, 1.0), n_segments=(50, 120), max_size=128, interpolation='linear'",
+            "py": "iaa.Superpixels(p_replace=(0.5, 1.0), n_segments=(50, 120), max_size=128, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3364,7 +3237,7 @@
         },
         "Voronoi": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_segmentation.html#imgaug.augmenters.segmentation.Voronoi",
-            "py": "points_sampler, p_replace=1.0, max_size=128, interpolation='linear'",
+            "py": "iaa.Voronoi(points_sampler, p_replace=1.0, max_size=128, interpolation='linear')",
             "params": [
                 {
                     "type": "el-input-number",
@@ -3392,7 +3265,7 @@
         },
         "UniformVoronoi": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_segmentation.html#imgaug.augmenters.segmentation.UniformVoronoi",
-            "py": "n_points=(50, 500), p_replace=(0.5, 1.0), max_size=128, interpolation='linear'",
+            "py": "iaa.UniformVoronoi(n_points=(50, 500), p_replace=(0.5, 1.0), max_size=128, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3433,7 +3306,7 @@
         },
         "RegularGridVoronoi": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_segmentation.html#imgaug.augmenters.segmentation.RegularGridVoronoi",
-            "py": "n_rows=(10, 30), n_cols=(10, 30), p_drop_points=(0.0, 0.5), p_replace=(0.5, 1.0), max_size=128, interpolation='linear'",
+            "py": "iaa.RegularGridVoronoi(n_rows=(10, 30), n_cols=(10, 30), p_drop_points=(0.0, 0.5), p_replace=(0.5, 1.0), max_size=128, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3494,7 +3367,7 @@
         },
         "RelativeRegularGridVoronoi": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_segmentation.html#imgaug.augmenters.segmentation.RelativeRegularGridVoronoi",
-            "py": "n_rows_frac=(0.05, 0.15), n_cols_frac=(0.05, 0.15), p_drop_points=(0.0, 0.5), p_replace=(0.5, 1.0), max_size=None, interpolation='linear'",
+            "py": "iaa.RelativeRegularGridVoronoi(n_rows_frac=(0.05, 0.15), n_cols_frac=(0.05, 0.15), p_drop_points=(0.0, 0.5), p_replace=(0.5, 1.0), max_size=None, interpolation='linear')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -3557,7 +3430,7 @@
     "size": {
         "Resize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.Resize",
-            "py": "size, interpolation='cubic'",
+            "py": "iaa.Resize(size, interpolation='cubic')",
             "params": [
                 {
                     "type": "el-select",
@@ -3571,7 +3444,7 @@
         },
         "CropAndPad": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropAndPad",
-            "py": "px=None, percent=None, pad_mode='constant', pad_cval=0, keep_size=True, sample_independently=True",
+            "py": "iaa.CropAndPad(px=None, percent=None, pad_mode='constant', pad_cval=0, keep_size=True, sample_independently=True)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -3616,7 +3489,7 @@
         },
         "Crop": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.Crop",
-            "py": "px=None, percent=None, keep_size=True, sample_independently=True",
+            "py": "iaa.Crop(px=None, percent=None, keep_size=True, sample_independently=True)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -3646,7 +3519,7 @@
         },
         "Pad": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.Pad",
-            "py": "px=None, percent=None, pad_mode='constant', pad_cval=0, keep_size=True, sample_independently=True",
+            "py": "iaa.Pad(px=None, percent=None, pad_mode='constant', pad_cval=0, keep_size=True, sample_independently=True)",
             "params": [
                 {
                     "type": "el-input-number",
@@ -3691,7 +3564,7 @@
         },
         "PadToFixedSize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToFixedSize",
-            "py": "width, height, pad_mode='constant', pad_cval=0, position='uniform'",
+            "py": "iaa.PadToFixedSize(width, height, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3720,7 +3593,7 @@
         },
         "CenterPadToFixedSize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterPadToFixedSize",
-            "py": "width, height, pad_mode='constant', pad_cval=0",
+            "py": "iaa.CenterPadToFixedSize(width, height, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
                     "type": "el-select",
@@ -3741,7 +3614,7 @@
         },
         "CropToFixedSize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropToFixedSize",
-            "py": "width, height, position='uniform'",
+            "py": "iaa.CropToFixedSize(width, height, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3755,12 +3628,12 @@
         },
         "CenterCropToFixedSize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToFixedSize",
-            "py": "width, height",
+            "py": "iaa.CenterCropToFixedSize(width, height)",
             "params": []
         },
         "CropToMultiplesOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropToMultiplesOf",
-            "py": "width_multiple, height_multiple, position='uniform'",
+            "py": "iaa.CropToMultiplesOf(width_multiple, height_multiple, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3774,12 +3647,12 @@
         },
         "CenterCropToMultiplesOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToMultiplesOf",
-            "py": "width_multiple, height_multiple",
+            "py": "iaa.CenterCropToMultiplesOf(width_multiple, height_multiple)",
             "params": []
         },
         "PadToMultiplesOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToMultiplesOf",
-            "py": "width_multiple, height_multiple, pad_mode='constant', pad_cval=0, position='uniform'",
+            "py": "iaa.PadToMultiplesOf(width_multiple, height_multiple, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3808,7 +3681,7 @@
         },
         "CenterPadToMultiplesOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterPadToMultiplesOf",
-            "py": "width_multiple, height_multiple, pad_mode='constant', pad_cval=0",
+            "py": "iaa.CenterPadToMultiplesOf(width_multiple, height_multiple, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
                     "type": "el-select",
@@ -3829,7 +3702,7 @@
         },
         "CropToPowersOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropToPowersOf",
-            "py": "width_base, height_base, position='uniform'",
+            "py": "iaa.CropToPowersOf(width_base, height_base, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3843,12 +3716,12 @@
         },
         "CenterCropToPowersOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToPowersOf",
-            "py": "width_base, height_base",
+            "py": "iaa.CenterCropToPowersOf(width_base, height_base)",
             "params": []
         },
         "PadToPowersOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToPowersOf",
-            "py": "width_base, height_base, pad_mode='constant', pad_cval=0, position='uniform'",
+            "py": "iaa.PadToPowersOf(width_base, height_base, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3877,7 +3750,7 @@
         },
         "CenterPadToPowersOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterPadToPowersOf",
-            "py": "width_base, height_base, pad_mode='constant', pad_cval=0",
+            "py": "iaa.CenterPadToPowersOf(width_base, height_base, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
                     "type": "el-select",
@@ -3898,7 +3771,7 @@
         },
         "CropToAspectRatio": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropToAspectRatio",
-            "py": "aspect_ratio, position='uniform'",
+            "py": "iaa.CropToAspectRatio(aspect_ratio, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3912,12 +3785,12 @@
         },
         "CenterCropToAspectRatio": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToAspectRatio",
-            "py": "aspect_ratio",
+            "py": "iaa.CenterCropToAspectRatio(aspect_ratio)",
             "params": []
         },
         "PadToAspectRatio": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToAspectRatio",
-            "py": "aspect_ratio, pad_mode='constant', pad_cval=0, position='uniform'",
+            "py": "iaa.PadToAspectRatio(aspect_ratio, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3946,7 +3819,7 @@
         },
         "CenterPadToAspectRatio": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterPadToAspectRatio",
-            "py": "aspect_ratio, pad_mode='constant', pad_cval=0",
+            "py": "iaa.CenterPadToAspectRatio(aspect_ratio, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
                     "type": "el-select",
@@ -3967,7 +3840,7 @@
         },
         "CropToSquare": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropToSquare",
-            "py": "position='uniform'",
+            "py": "iaa.CropToSquare(position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -3981,12 +3854,12 @@
         },
         "CenterCropToSquare": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToSquare",
-            "py": "",
+            "py": "iaa.CenterCropToSquare()",
             "params": []
         },
         "PadToSquare": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToSquare",
-            "py": "pad_mode='constant', pad_cval=0, position='uniform'",
+            "py": "iaa.PadToSquare(pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
                     "type": "el-select",
@@ -4015,7 +3888,7 @@
         },
         "CenterPadToSquare": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterPadToSquare",
-            "py": "pad_mode='constant', pad_cval=0",
+            "py": "iaa.CenterPadToSquare(pad_mode='constant', pad_cval=0)",
             "params": [
                 {
                     "type": "el-select",
@@ -4036,7 +3909,7 @@
         },
         "KeepSizeByResize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.KeepSizeByResize",
-            "py": "children, interpolation='cubic', interpolation_heatmaps='SAME_AS_IMAGES', interpolation_segmaps='nearest'",
+            "py": "iaa.KeepSizeByResize(children, interpolation='cubic', interpolation_heatmaps='SAME_AS_IMAGES', interpolation_segmaps='nearest')",
             "params": [
                 {
                     "type": "el-select",
@@ -4068,7 +3941,7 @@
     "weather": {
         "FastSnowyLandscape": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.FastSnowyLandscape",
-            "py": "lightness_threshold=(100, 255), lightness_multiplier=(1.0, 4.0), from_colorspace='RGB'",
+            "py": "iaa.FastSnowyLandscape(lightness_threshold=(100, 255), lightness_multiplier=(1.0, 4.0), from_colorspace='RGB')",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -4102,22 +3975,22 @@
         },
         "CloudLayer": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.CloudLayer",
-            "py": "intensity_mean, intensity_freq_exponent, intensity_coarse_scale, alpha_min, alpha_multiplier, alpha_size_px_max, alpha_freq_exponent, sparsity, density_multiplier",
+            "py": "iaa.CloudLayer(intensity_mean, intensity_freq_exponent, intensity_coarse_scale, alpha_min, alpha_multiplier, alpha_size_px_max, alpha_freq_exponent, sparsity, density_multiplier)",
             "params": []
         },
         "Clouds": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.Clouds",
-            "py": "",
+            "py": "iaa.Clouds()",
             "params": []
         },
         "Fog": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.Fog",
-            "py": "",
+            "py": "iaa.Fog()",
             "params": []
         },
         "SnowflakesLayer": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.SnowflakesLayer",
-            "py": "density, density_uniformity, flake_size, flake_size_uniformity, angle, speed, blur_sigma_fraction, blur_sigma_limits=(0.5, 3.75)",
+            "py": "iaa.SnowflakesLayer(density, density_uniformity, flake_size, flake_size_uniformity, angle, speed, blur_sigma_fraction, blur_sigma_limits=(0.5, 3.75))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -4133,7 +4006,7 @@
         },
         "Snowflakes": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.Snowflakes",
-            "py": "density=(0.005, 0.075), density_uniformity=(0.3, 0.9), flake_size=(0.2, 0.7), flake_size_uniformity=(0.4, 0.8), angle=(-30, 30), speed=(0.007, 0.03)",
+            "py": "iaa.Snowflakes(density=(0.005, 0.075), density_uniformity=(0.3, 0.9), flake_size=(0.2, 0.7), flake_size_uniformity=(0.4, 0.8), angle=(-30, 30), speed=(0.007, 0.03))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -4199,7 +4072,7 @@
         },
         "RainLayer": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.RainLayer",
-            "py": "density, density_uniformity, drop_size, drop_size_uniformity, angle, speed, blur_sigma_fraction, blur_sigma_limits=(0.5, 3.75)",
+            "py": "iaa.RainLayer(density, density_uniformity, drop_size, drop_size_uniformity, angle, speed, blur_sigma_fraction, blur_sigma_limits=(0.5, 3.75))",
             "params": [
                 {
                     "type": "el-slider-range",
@@ -4215,7 +4088,7 @@
         },
         "Rain": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_weather.html#imgaug.augmenters.weather.Rain",
-            "py": "nb_iterations=(1, 3), drop_size=(0.01, 0.02), speed=(0.04, 0.2)",
+            "py": "iaa.Rain(nb_iterations=(1, 3), drop_size=(0.01, 0.02), speed=(0.04, 0.2))",
             "params": [
                 {
                     "type": "el-slider-range",
