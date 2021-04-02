@@ -25,7 +25,11 @@
                 </el-select>
             </sly-field>
 
-            <sly-field title="Params" description="Aug arguments with default settings">
+            <sly-field v-if="state.aug" title="Params" description="Aug arguments with default settings">
+                <div v-for="v, k in data.config[state.category][state.aug]" :key="k">
+                    <pre>{{k}}</pre>
+                    <pre>{{v}}</pre>
+                </div>
             </sly-field>
 
 

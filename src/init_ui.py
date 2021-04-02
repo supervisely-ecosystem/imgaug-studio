@@ -15,7 +15,6 @@ def init_augs_configs(data: dict, state: dict):
     state["category"] = data["categories"][0]
 
     state["aug"] = None
-
     augs_list = {}
     for category, augs in augs_configs.items():
         augs_list[category] = list(augs.keys())

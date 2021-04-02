@@ -39,6 +39,7 @@ def main():
     app.run(data=data, state=state)
 
 
+# define minimum version
 # add probability to every augmentation
 # add shuffle flag to entire pipeline
 # auto modify py field
