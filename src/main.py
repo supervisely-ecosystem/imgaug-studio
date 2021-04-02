@@ -3,10 +3,12 @@ import numpy as np
 import inspect
 import supervisely_lib as sly
 import json
-
 import imgaug
 import imgaug.augmenters as iaa
 from imgaug.augmentables.segmaps import SegmentationMapsOnImage
+from augs import augs_modules
+
+
 def imgaug_example():
     pipeline = [
         iaa.imgcorruptlike.GaussianBlur(severity=(1, 5)),
@@ -20,16 +22,9 @@ def imgaug_example():
 
 
 def main():
-    # sly.fs.silent_remove("res.jpg")
-    # imgaug_example()
-
-    # # iaa.Fliplr
-    #func_doc = iaa.Rotate.__doc__
-    #print(func_doc)
-
-    from augs import augs_modules
-
+    augs_config = {}
     for module_name, methods in augs_modules.items():
+        augs_config[module_name] = {}
         print(module_name)
         for method in methods:
             method_info = inspect.signature(method)
