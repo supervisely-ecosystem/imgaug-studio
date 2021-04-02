@@ -1,0 +1,34 @@
+{
+  "ScaleX": [
+    {
+      "name": "scale",
+      "type": "el-slider-range",
+      "default": [0.5, 1.5],
+      "min": 0,
+      "max": 5
+    },
+    {
+      "name": "order",
+      "type": "el-input-number",
+      "default": 1,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "mode",
+      "type": "el-input",
+      "default": "constant"
+    },
+    {
+      "name": "fit_output",
+      "type": "el-switch",
+      "default": false
+    },
+    {
+      "name": "mode",
+      "type": "el-select",
+      "default": "constant",
+      "options": ["constant", "edge", "symmetric"]
+    }
+  ]
+}

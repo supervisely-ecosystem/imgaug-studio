@@ -82,3 +82,4 @@ def main():
 # https://github.com/IliaLarchenko/albumentations-demo
 if __name__ == "__main__":
     main()
+
