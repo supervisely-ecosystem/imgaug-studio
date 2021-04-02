@@ -47,12 +47,11 @@ def imgaug_example():
 
 
 def main():
-    global x, y, z
     # sly.fs.silent_remove("res.jpg")
     # imgaug_example()
 
     # # iaa.Fliplr
-    func_doc = iaa.Rotate.__doc__
+    #func_doc = iaa.Rotate.__doc__
     #print(func_doc)
 
     from augs import augs_modules
@@ -74,12 +73,14 @@ def main():
             print(method_doc_url)
             print(f"\t iaa.{method.__name__}({method_py[:-2]})")
 
-    #x = imgaug.augmenters.arithmetic
-    #res = inspect.getmembers(x)
+
+
 
 # https://albumentations-demo.herokuapp.com/
 # https://towardsdatascience.com/explore-image-augmentations-using-a-convenient-tool-a199b4ac8214
 # https://github.com/IliaLarchenko/albumentations-demo
+# https://stackoverflow.com/questions/22212470/parsing-function-docstring-in-sphinx-autodoc-format
+# формат параметров
 if __name__ == "__main__":
     main()
 
