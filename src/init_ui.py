@@ -29,14 +29,4 @@ def init_augs_configs(data: dict, state: dict):
 
     data["augs"] = augs_list
     data["config"] = augs_configs
-
-    data["docstring"] = ""
-    state["py"] = """
-for category, augs in augs_configs.items():
-    augs_list[category] = list(augs.keys())
-    state["augVModels"][category] = {}
-    for aug_name, info in augs.items():
-        state["augVModels"][category][aug_name] = {}
-        for param in info["params"]:
-            state["augVModels"][category][aug_name][param["name"]] = param["default"]
-    """
+    state["previewCount"] = 1
