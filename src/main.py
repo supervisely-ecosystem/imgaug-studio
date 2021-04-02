@@ -38,10 +38,8 @@ def main():
 
     app.run(data=data, state=state)
 
-# markdown replace ``
-# >>>
-# wrap line width
-# remove tabs
+# create sequence format
+# add doc html
 # refresh preview python code + images
 # define minimum version
 # add probability to every augmentation

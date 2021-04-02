@@ -14,69 +14,80 @@
         }
     </sly-style>
     <div class="fflex mt15" style="align-items: stretch">
-        <sly-card class="mr15"
-                  title="Settings"
-                  subtitle="Find and configure augmentation"
-                  style="min-width: 310px; max-width: 310px;">
-            <sly-field title="" description="Input project">
-                <a slot="title" target="_blank"
-                   :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
-                    images)</a>
-                <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
-            </sly-field>
+        <div>
+            <sly-card class="mr15"
+                      title="Test"
+                      subtitle="Test"
+                      style="min-width: 310px; max-width: 310px;">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+            </sly-card>
+            <sly-card class="mr15"
+                      title="Settings"
+                      subtitle="Find and configure augmentation"
+                      style="min-width: 310px; max-width: 310px;">
+                <sly-field title="" description="Input project">
+                    <a slot="title" target="_blank"
+                       :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
+                        images)</a>
+                    <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
+                </sly-field>
 
-            <sly-field title="Augmenter Category" description="Choose augmentation category">
-                <el-select v-model="state.category" placeholder="Select category">
-                    <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
-                </el-select>
-            </sly-field>
+                <sly-field title="Augmenter Category" description="Choose augmentation category">
+                    <el-select v-model="state.category" placeholder="Select category">
+                        <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
+                    </el-select>
+                </sly-field>
 
-            <sly-field title="Transformation" description="Choose augmentation function">
-                <el-select :value="state.aug" @input="
+                <sly-field title="Transformation" description="Choose augmentation function">
+                    <el-select :value="state.aug" @input="
                     (val) => {
                         state.aug = val;
                         command('refresh_aug');
                     }
                     ">
-                    <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
-                               :value="item"></el-option>
-                </el-select>
-            </sly-field>
-
-            <div v-if="state.aug">
-                <sly-field title="Params" description="Configure current augmentation">
-                    <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">
-                        <sly-field :title="item.name" class="auto-field">
-                            <div v-if="item.type === 'el-slider-range'" class="fflex">
-                                <el-slider class="ml15" size="small"
-                                           style="margin-right: 20px; flex: 1;"
-                                           v-model="state.augVModels[state.category][state.aug][item.name]" range
-                                           :min="item.min" :max="item.max" :step="item.step || 1">
-                                </el-slider>
-                                <span>{{state.augVModels[state.category][state.aug][item.name]}}</span>
-                            </div>
-                            <el-checkbox v-if="item.type === 'el-checkbox'"
-                                         v-model="state.augVModels[state.category][state.aug][item.name]">Enable
-                            </el-checkbox>
-                            <el-input-number v-if="item.type === 'el-input-number'" size="small"
-                                             v-model="state.augVModels[state.category][state.aug][item.name]"
-                                             :min="1" :max="10" :step="item.step || 1">
-                            </el-input-number>
-                            <el-select v-if="item.type === 'el-select'" size="small"
-                                       v-model="state.augVModels[state.category][state.aug][item.name]">
-                                <el-option v-for="val in item.options" :key="val" :label="val" :value="val"></el-option>
-                            </el-select>
-                        </sly-field>
-                    </div>
+                        <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
+                                   :value="item"></el-option>
+                    </el-select>
                 </sly-field>
+
                 <div v-if="state.aug">
-                    <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
-                    <a :href="data.config[state.category][state.aug].durl" target="_blank">
-                        Official documentation <i class="zmdi zmdi-open-in-new"></i>
-                    </a>
+                    <sly-field title="Params" description="Configure current augmentation">
+                        <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">
+                            <sly-field :title="item.name" class="auto-field">
+                                <div v-if="item.type === 'el-slider-range'" class="fflex">
+                                    <el-slider class="ml15" size="small"
+                                               style="margin-right: 20px; flex: 1;"
+                                               v-model="state.augVModels[state.category][state.aug][item.name]" range
+                                               :min="item.min" :max="item.max" :step="item.step || 1">
+                                    </el-slider>
+                                    <span>{{state.augVModels[state.category][state.aug][item.name]}}</span>
+                                </div>
+                                <el-checkbox v-if="item.type === 'el-checkbox'"
+                                             v-model="state.augVModels[state.category][state.aug][item.name]">Enable
+                                </el-checkbox>
+                                <el-input-number v-if="item.type === 'el-input-number'" size="small"
+                                                 v-model="state.augVModels[state.category][state.aug][item.name]"
+                                                 :min="1" :max="10" :step="item.step || 1">
+                                </el-input-number>
+                                <el-select v-if="item.type === 'el-select'" size="small"
+                                           v-model="state.augVModels[state.category][state.aug][item.name]">
+                                    <el-option v-for="val in item.options" :key="val" :label="val"
+                                               :value="val"></el-option>
+                                </el-select>
+                            </sly-field>
+                        </div>
+                    </sly-field>
+                    <div v-if="state.aug">
+                        <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
+                        <a :href="data.config[state.category][state.aug].durl" target="_blank">
+                            Official documentation <i class="zmdi zmdi-open-in-new"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </sly-card>
+            </sly-card>
+        </div>
         <sly-card title="Preview current transformation"
                   subtitle="Preview python code and aug result on random image"
                   style="width: 100%">
