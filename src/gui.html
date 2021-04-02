@@ -21,14 +21,21 @@
 
             <sly-field title="Transformation" description="Select one of the category augs">
                 <el-select v-model="state.aug">
-                    <el-option v-for="item in data.augs[state.category]" :key="item" :label="item" :value="item"></el-option>
+                    <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
+                               :value="item"></el-option>
                 </el-select>
             </sly-field>
 
             <sly-field v-if="state.aug" title="Params" description="Aug arguments with default settings">
-                <div v-for="v, k in data.config[state.category][state.aug]" :key="k">
-                    <pre>{{k}}</pre>
-                    <pre>{{v}}</pre>
+                <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">
+                    <sly-field :title="item.name">
+                        <div>{{state.augVModels[state.category][state.aug]}}</div>
+                        <el-slider class="ml10 mr10"
+                                   v-if="item.type === 'el-slider-range'"
+                                   v-model="state.augVModels[state.category][state.aug]" range
+                                   :min="item.min" :max="item.max">
+                        </el-slider>
+                    </sly-field>
                 </div>
             </sly-field>
 

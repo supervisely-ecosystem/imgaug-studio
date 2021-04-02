@@ -15,9 +15,17 @@ def init_augs_configs(data: dict, state: dict):
     state["category"] = data["categories"][0]
 
     state["aug"] = None
+
+    state["augVModels"] = {}
+
     augs_list = {}
     for category, augs in augs_configs.items():
         augs_list[category] = list(augs.keys())
-    data["augs"] = augs_list
+        state["augVModels"][category] = {}
+        for aug_name, info in augs.items():
+            state["augVModels"][category][aug_name] = {}
+            for param in info["params"]:
+                state["augVModels"][category][aug_name][param["name"]] = param["default"]
 
+    data["augs"] = augs_list
     data["config"] = augs_configs
