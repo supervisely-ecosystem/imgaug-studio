@@ -38,40 +38,32 @@
             </sly-field>
 
             <div v-if="state.aug">
-                <sly-field class="mt15" title="Params" description="Aug arguments with default settings">
-                    <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">
-                        <div class="mt10">
-                            <!--                            <div>-->
-                            <!--                                <b style="color: green">{{item.name}}</b> =-->
-                            <!--                                <span style="color: blue">{{state.augVModels[state.category][state.aug][item.name]}}</span>-->
-                            <!--                            </div>-->
-                            <div>{{item.name}}</div>
-                            <div v-if="item.type === 'el-slider-range'" class="fflex">
-                                <el-slider class="ml15"
-                                           style="margin-right: 20px; flex: 1;"
-                                           v-model="state.augVModels[state.category][state.aug][item.name]" range
-                                           :min="item.min" :max="item.max" :step="item.step || 1">
-                                </el-slider>
-                                <span>{{state.augVModels[state.category][state.aug][item.name]}}</span>
-                            </div>
-
-                            <el-checkbox v-if="item.type === 'el-checkbox'"
-                                         class="mt10"
-                                         v-model="state.augVModels[state.category][state.aug][item.name]">Enable
-                            </el-checkbox>
-                            <el-input-number v-if="item.type === 'el-input-number'"
-                                             v-model="state.augVModels[state.category][state.aug][item.name]"
-                                             :min="1" :max="10" :step="item.step || 1">
-                            </el-input-number>
+                <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">
+                    <sly-field :title="item.name">
+                        <div v-if="item.type === 'el-slider-range'" class="fflex">
+                            <el-slider class="ml15" size="small"
+                                       style="margin-right: 20px; flex: 1;"
+                                       v-model="state.augVModels[state.category][state.aug][item.name]" range
+                                       :min="item.min" :max="item.max" :step="item.step || 1">
+                            </el-slider>
+                            <span>{{state.augVModels[state.category][state.aug][item.name]}}</span>
                         </div>
-
-                        <!--                        el-input-number-->
-                    </div>
-                </sly-field>
-                <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
-                <a :href="data.config[state.category][state.aug].durl" target="_blank">
-                    Official documentation <i class="zmdi zmdi-open-in-new"></i>
-                </a>
+                        <el-checkbox v-if="item.type === 'el-checkbox'"
+                                     class="mt10"
+                                     v-model="state.augVModels[state.category][state.aug][item.name]">Enable
+                        </el-checkbox>
+                        <el-input-number v-if="item.type === 'el-input-number'" size="small"
+                                         v-model="state.augVModels[state.category][state.aug][item.name]"
+                                         :min="1" :max="10" :step="item.step || 1">
+                        </el-input-number>
+                    </sly-field>
+                </div>
+                <div v-if="state.aug">
+                    <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
+                    <a :href="data.config[state.category][state.aug].durl" target="_blank">
+                        Official documentation <i class="zmdi zmdi-open-in-new"></i>
+                    </a>
+                </div>
             </div>
         </sly-card>
         <sly-card title="Preview current transformation"
