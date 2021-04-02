@@ -29,6 +29,18 @@ def imgaug_example():
     sly.image.write("res.jpg", res[0])
 
 
+@app.callback("preview")
+@sly.timeit
+def preview(api: sly.Api, task_id, context, state, app_logger):
+    print(123)
+    fields = [
+        {"field": "data.progressPreview", "payload": "123"},
+        {"field": "data.progressPreviewTotal", "payload": 23},
+    ]
+    api.task.set_fields(task_id, fields)
+    pass
+
+
 def main():
     data = {}
     state = {}
