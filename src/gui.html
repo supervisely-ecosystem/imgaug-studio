@@ -28,7 +28,12 @@
             </sly-field>
 
             <sly-field title="Transformation" description="Select one of the category augs">
-                <el-select v-model="state.aug">
+                <el-select :value="state.aug" @input="
+                    (val) => {
+                        state.aug = val;
+                        command('refresh_aug');
+                    }
+                    ">
                     <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
                                :value="item"></el-option>
                 </el-select>
@@ -54,9 +59,8 @@
         <el-tabs type="border-card" style="width: 100%">
             <el-tab-pane label="Preview">
                 <sly-field v-if="state.aug" title="Python code">
-                    <sly-copy-to-clipboard v-if="state.aug"
-                                           :data="data.config[state.category][state.aug].py">
-                        <sly-editor v-model="data.config[state.category][state.aug].py"
+                    <sly-copy-to-clipboard :data="state.py">
+                        <sly-editor v-model="state.py"
                                     :options="{
                                     mode: 'ace/mode/python',
                                     showGutter: false,
@@ -67,11 +71,26 @@
                         </sly-editor>
                     </sly-copy-to-clipboard>
                 </sly-field>
+<!--                <sly-field v-if="state.aug" title="Python code">-->
+<!--                    <sly-copy-to-clipboard v-if="state.aug"-->
+<!--                                           :data="data.config[state.category][state.aug].py">-->
+<!--                        <sly-editor v-model="data.config[state.category][state.aug].py"-->
+<!--                                    :options="{-->
+<!--                                    mode: 'ace/mode/python',-->
+<!--                                    showGutter: false,-->
+<!--                                    readOnly: true,-->
+<!--                                    maxLines: 10,-->
+<!--                                    highlightActiveLine: false-->
+<!--                                 }">-->
+<!--                        </sly-editor>-->
+<!--                    </sly-copy-to-clipboard>-->
+<!--                </sly-field>-->
             </el-tab-pane>
-            <el-tab-pane label="Documentation">
-                <div>Documentation</div>
-                <sly-markdown :data="data.docstring"></sly-markdown>
-            </el-tab-pane>
+<!--            <el-tab-pane label="Documentation">-->
+<!--                <div>Documentation</div>-->
+<!--&lt;!&ndash;                <pre>{{data.docstring}}</pre>&ndash;&gt;-->
+<!--                <sly-markdown :data="data.docstring"></sly-markdown>-->
+<!--            </el-tab-pane>-->
         </el-tabs>
         <!--        <sly-card title="Preview Sele"-->
         <!--                  subtitle="Visualize sliding windows on random image as video"-->
