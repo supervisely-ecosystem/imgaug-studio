@@ -8,4 +8,4 @@ imagecorruptions==1.1.2
 #mmcls==0.10.0
 #torch==1.8.1
 #torchvision==0.9.1
-docstring-parser==0.7.3
+#docstring-parser==0.7.3

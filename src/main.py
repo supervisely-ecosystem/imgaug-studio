@@ -3,6 +3,7 @@ import numpy as np
 import inspect
 import supervisely_lib as sly
 import json
+#from docstring_parser import parse as doc_parse
 
 
 #from mmseg.datasets.pipelines import Compose
@@ -59,19 +60,27 @@ def main():
     for module_name, methods in augs_modules.items():
         print(module_name)
         for method in methods:
+
+
+
+
             method_info = inspect.signature(method)
             x = str(method_info)
 
             method_doc_url = f"https://imgaug.readthedocs.io/en/latest/source/api_augmenters_{module_name}.html#imgaug.augmenters.{module_name}.{method.__name__}"
             method_py = ""
-            for idx, param in enumerate(method_info.parameters.values()):
+            for param in method_info.parameters.values():
                 formatted = str(param)
                 if 'deprecated' in formatted or 'seed=None' in formatted or 'name=None' in formatted:
                     continue
                 method_py += formatted + ", "
-
             print(method_doc_url)
             print(f"\t iaa.{method.__name__}({method_py[:-2]})")
+
+            # dp = doc_parse(method.__doc__)
+            # param_desc = {item.arg_name: item.description.replace('\n', '.').replace('\r', '') for item in dp.params}
+            # for param in method_info.parameters.values():
+            #     print(f"\t\t {param.name} - {param_desc[param.name]}")
 
 
 
