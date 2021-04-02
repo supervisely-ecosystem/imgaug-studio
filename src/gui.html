@@ -1,0 +1,39 @@
+<div id="sliding-window">
+    <sly-card title="Input Project" subtitle="Original data remains unchanged, new project will be created">
+        <sly-field title="" description="Input Data">
+            <a slot="title" target="_blank"
+               :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
+                images)</a>
+            <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
+        </sly-field>
+    </sly-card>
+
+    <div class="fflex mt15" style="align-items: stretch">
+        <sly-card class="mr15"
+                  title="Settings"
+                  subtitle="Configure sliding windows parameters"
+                  style="min-width: 310px; max-width: 310px;">
+            <sly-field title="Augmenter Category" description="All augs are grouped into categories">
+                <el-select v-model="state.category" placeholder="Select category">
+                    <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
+                </el-select>
+            </sly-field>
+
+            <sly-field title="Transformation" description="Select one of the category augs">
+                <el-select v-model="state.aug">
+                    <el-option v-for="item in data.augs[state.category]" :key="item" :label="item" :value="item"></el-option>
+                </el-select>
+            </sly-field>
+
+            <sly-field title="Params" description="Aug arguments with default settings">
+            </sly-field>
+
+
+        </sly-card>
+        <sly-card title="Random Preview"
+                  subtitle="Visualize sliding windows on random image as video"
+                  style="width: 100%">
+            <div>123</div>
+        </sly-card>
+    </div>
+</div>
