@@ -23,7 +23,7 @@
     },
     {
       "name": "fit_output",
-      "type": "el-switch",
+      "type": "el-checkbox",
       "default": false
     },
     {
