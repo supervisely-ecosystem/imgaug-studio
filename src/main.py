@@ -77,6 +77,8 @@ def main():
     #x = imgaug.augmenters.arithmetic
     #res = inspect.getmembers(x)
 
-#https://albumentations-demo.herokuapp.com/
+# https://albumentations-demo.herokuapp.com/
+# https://towardsdatascience.com/explore-image-augmentations-using-a-convenient-tool-a199b4ac8214
+# https://github.com/IliaLarchenko/albumentations-demo
 if __name__ == "__main__":
     main()
