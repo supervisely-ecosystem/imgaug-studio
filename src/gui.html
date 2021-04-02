@@ -40,8 +40,7 @@
             </sly-field>
 
             <div v-if="state.aug">
-<!--                <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>-->
-                <sly-field title="Params" description="Aug arguments with default settings">
+                <sly-field class="mt15" title="Params" description="Aug arguments with default settings">
                     <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">
                         <div class="mt10">
                             <b style="color: green">{{item.name}}</b> =
@@ -54,6 +53,10 @@
                         </el-slider>
                     </div>
                 </sly-field>
+                <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
+                <a :href="data.config[state.category][state.aug].durl" target="_blank">
+                    Official documentation <i class="zmdi zmdi-open-in-new"></i>
+                </a>
             </div>
         </sly-card>
         <sly-card title="Preview current transformation"
@@ -71,12 +74,6 @@
                         <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i> Preview
                     </el-button>
                 </div>
-            </div>
-            <div v-if="state.aug">
-                <b>Official documentation:</b>
-                <a :href="data.config[state.category][state.aug].durl" target="_blank">
-                    link <i class="zmdi zmdi-open-in-new"></i>
-                </a>
             </div>
             <sly-field v-if="state.aug" title="Python code">
                 <sly-copy-to-clipboard v-if="state.aug"

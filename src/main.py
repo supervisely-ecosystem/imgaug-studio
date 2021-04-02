@@ -41,7 +41,6 @@ def main():
 # markdown replace ``
 # >>>
 # wrap line width
-
 # remove tabs
 # refresh preview python code + images
 # define minimum version
