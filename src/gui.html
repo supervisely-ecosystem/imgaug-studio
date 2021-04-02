@@ -1,13 +1,4 @@
 <div id="augs-research">
-    <sly-card title="Input Project" subtitle="Original data remains unchanged, new project will be created">
-        <sly-field title="" description="Input Data">
-            <a slot="title" target="_blank"
-               :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
-                images)</a>
-            <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
-        </sly-field>
-    </sly-card>
-
     <sly-style>
         #augs-research .sly-copy-to-clipboard-widget {
         background: #eeffcc;
@@ -19,15 +10,22 @@
     <div class="fflex mt15" style="align-items: stretch">
         <sly-card class="mr15"
                   title="Settings"
-                  subtitle="Configure sliding windows parameters"
+                  subtitle="Find and configure augmentation"
                   style="min-width: 310px; max-width: 310px;">
-            <sly-field title="Augmenter Category" description="All augs are grouped into categories">
+            <sly-field title="" description="Input project">
+                <a slot="title" target="_blank"
+                   :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
+                    images)</a>
+                <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
+            </sly-field>
+
+            <sly-field title="Augmenter Category">
                 <el-select v-model="state.category" placeholder="Select category">
                     <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
                 </el-select>
             </sly-field>
 
-            <sly-field title="Transformation" description="Select one of the category augs">
+            <sly-field title="Transformation">
                 <el-select :value="state.aug" @input="
                     (val) => {
                         state.aug = val;
@@ -43,14 +41,31 @@
                 <sly-field class="mt15" title="Params" description="Aug arguments with default settings">
                     <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">
                         <div class="mt10">
-                            <b style="color: green">{{item.name}}</b> =
-                            <span style="color: blue">{{state.augVModels[state.category][state.aug][item.name]}}</span>
+                            <!--                            <div>-->
+                            <!--                                <b style="color: green">{{item.name}}</b> =-->
+                            <!--                                <span style="color: blue">{{state.augVModels[state.category][state.aug][item.name]}}</span>-->
+                            <!--                            </div>-->
+                            <div>{{item.name}}</div>
+                            <div v-if="item.type === 'el-slider-range'" class="fflex">
+                                <el-slider class="ml15"
+                                           style="margin-right: 20px; flex: 1;"
+                                           v-model="state.augVModels[state.category][state.aug][item.name]" range
+                                           :min="item.min" :max="item.max" :step="item.step || 1">
+                                </el-slider>
+                                <span>{{state.augVModels[state.category][state.aug][item.name]}}</span>
+                            </div>
+
+                            <el-checkbox v-if="item.type === 'el-checkbox'"
+                                         class="mt10"
+                                         v-model="state.augVModels[state.category][state.aug][item.name]">Enable
+                            </el-checkbox>
+                            <el-input-number v-if="item.type === 'el-input-number'"
+                                             v-model="state.augVModels[state.category][state.aug][item.name]"
+                                             :min="1" :max="10" :step="item.step || 1">
+                            </el-input-number>
                         </div>
-                        <el-slider class="ml10 mr10"
-                                   v-if="item.type === 'el-slider-range'"
-                                   v-model="state.augVModels[state.category][state.aug][item.name]" range
-                                   :min="item.min" :max="item.max">
-                        </el-slider>
+
+                        <!--                        el-input-number-->
                     </div>
                 </sly-field>
                 <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
