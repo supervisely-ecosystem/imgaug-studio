@@ -1,5 +1,6 @@
 import inspect
-from augs import augs_modules
+import supervisely_lib as sly
+from allowed_augs import augs_modules
 
 
 def get_param_type(default=None):
@@ -44,6 +45,7 @@ def get_param_type(default=None):
     if default == inspect._empty:
         return {}
     raise NotImplementedError("Unsupported value type")
+
 
 def gen_auto_config():
     augs_config = {}

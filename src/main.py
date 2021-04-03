@@ -4,6 +4,8 @@ import imgaug.augmenters as iaa
 
 import init_ui as ui
 from init_ui import augs_configs
+from cache import get_random_image
+import aug_utils
 
 app: sly.AppService = sly.AppService()
 
@@ -17,19 +19,6 @@ if project_info is None:
 
 meta = sly.ProjectMeta.from_json(app.public_api.project.get_meta(project_id))
 pipeline = []
-
-
-def imgaug_example():
-    pass
-    # pipeline = [
-    #     iaa.imgcorruptlike.GaussianBlur(severity=(1, 5)),
-    #     iaa.Fliplr(p=1),
-    #     iaa.Sometimes(0.8, iaa.PadToFixedSize(width=1000, height=1000))
-    # ]
-    # augs = iaa.Sequential(pipeline, random_order=False)
-    # img_rgb = sly.image.read("cat.jpg")
-    # res = augs(images=[img_rgb])
-    # sly.image.write("res.jpg", res[0])
 
 
 @app.callback("preview")
@@ -48,15 +37,17 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
             param_value = tuple(param_value)
         final_params[param_info["pname"]] = param_value
 
-    aug_f = getattr(iaa, aug_name)
-    aug_f(**final_params)
+    img_info, img = get_random_image(api)
 
-    fields = [
-        {"field": "data.progressPreview", "payload": "123"},
-        {"field": "data.progressPreviewTotal", "payload": 23},
-    ]
-    api.task.set_fields(task_id, fields)
-    pass
+    aug = aug_utils.build(aug_name, final_params)
+    res_img = aug_utils.apply(img, aug)
+
+    # fields = [
+    #     {"field": "data.progressPreview", "payload": "123"},
+    #     {"field": "data.progressPreviewTotal", "payload": 23},
+    # ]
+    # api.task.set_fields(task_id, fields)
+    # pass
 
 
 def do(x, y=7):
@@ -77,12 +68,14 @@ def main():
     data = {}
     state = {}
 
+    cache_images(app.public_api, project_id)
     ui.init_input_project(app.public_api, data, project_info)
     ui.init_pipeline(data, state)
     ui.init_augs_configs(data, state)
 
     app.run(data=data, state=state)
 
+# @TODO: random_order flag
 # https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 # Cutout invalid arguments
 # create sequence format
