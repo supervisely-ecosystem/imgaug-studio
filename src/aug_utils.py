@@ -28,6 +28,7 @@ def normalize_params(params: dict):
             res[name] = value
     return res
 
+
 def generate_python_pypeline(names, params, random_order=False):
     template = """
     import imgaug.augmenters as iaa
@@ -43,7 +44,7 @@ def generate_python(name, default_params, params):
     for item in default_params:
         name = item["pname"]
         value = params[name]
-        pstr += "{name}={value}, "
+        pstr += f"{name}={value}, "
     method_py_final = f"iaa.{name}({pstr[:-2]})"
     return method_py_final
 

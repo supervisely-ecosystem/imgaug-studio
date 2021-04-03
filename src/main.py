@@ -35,7 +35,6 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     params = aug_utils.normalize_params(state["augVModels"][category_name][aug_name])
     py_example = aug_utils.generate_python(aug_name, default_params, params)
 
-
     aug = aug_utils.build(aug_name, params)
 
     preview_labels = []
@@ -72,6 +71,7 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     fields = [
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.previewLoading", "payload": False},
+        {"field": "data.previewPy", "payload": py_example},
     ]
     api.task.set_fields(task_id, fields)
 

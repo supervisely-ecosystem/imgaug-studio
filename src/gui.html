@@ -15,7 +15,7 @@
     </sly-style>
 
     <sly-card class="mr15"
-              title="Your custom augs pipeline"
+              title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
 <!--        <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">-->
     </sly-card>
@@ -113,10 +113,15 @@
                     </el-button>
                 </div>
             </div>
-            <sly-field v-if="state.aug" title="Python code">
+
+            <div v-if="!data.previewPy && !state.previewLoading && !state.aug">
+                Press Preview button to show python code and visualize image examples
+            </div>
+
+            <sly-field v-if="data.previewPy" title="Python code">
                 <sly-copy-to-clipboard v-if="state.aug"
-                                       :data="data.config[state.category][state.aug].py">
-                    <sly-editor v-model="data.config[state.category][state.aug].py"
+                                       :data="data.previewPy">
+                    <sly-editor v-model="data.previewPy"
                                 :options="{
                                     mode: 'ace/mode/python',
                                     showGutter: false,
@@ -127,16 +132,13 @@
                     </sly-editor>
                 </sly-copy-to-clipboard>
             </sly-field>
-            <sly-field title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
-            <sly-grid-gallery
-                    v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading"
-                    :content="data.gallery.content"
-                    :options="data.gallery.options"
-                    :preview-options="data.gallery.previewOptions"/>
-            <div v-show="Object.keys(data.gallery.content.annotations).length === 0 && !state.previewLoading">
-                Gallery is empty, press Preview button to visualize examples
-            </div>
-
+            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading"
+                    title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
+                <sly-grid-gallery
+                        :content="data.gallery.content"
+                        :options="data.gallery.options"
+                        :preview-options="data.gallery.previewOptions"/>
+            </sly-field>
         </sly-card>
     </div>
 </div>
