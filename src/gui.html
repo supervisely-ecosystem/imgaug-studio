@@ -26,7 +26,9 @@
 
     <sly-card title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
-        <div v-if="data.pipeline.length === 0">No augmentations in pipeline</div>
+        <div v-if="data.pipeline.length === 0">
+            No augmentations in pipeline
+        </div>
         <div v-if="data.pipeline.length > 0">
             <table>
                 <tbody>
@@ -50,6 +52,9 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="fflex" style="float: right;">
+            <el-button type="success"><i class="zmdi zmdi-playlist-plus mr5"></i>Add</el-button>
         </div>
     </sly-card>
 
