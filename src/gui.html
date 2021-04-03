@@ -31,6 +31,9 @@
             <table>
                 <tbody>
                 <tr v-for="(pyLine, index) in data.pipeline">
+                    <td style="min-width: 30px; color: gray">
+                        # {{index}}
+                    </td>
                     <td style="width: 100%;">
                         <sly-copy-to-clipboard :data="pyLine">
                             <sly-editor v-model="pyLine" :options="data.pyViewOptions"></sly-editor>
