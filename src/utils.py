@@ -62,7 +62,7 @@ def gen_auto_config():
                 method_py += formatted + ", "
                 param_info = get_param_type(param.default)
                 if len(param_info) != 0:
-                    param_info["name"] = param.name
+                    param_info["__name__"] = param.name
                     params_config.append(param_info)
 
             print(method_doc_url)

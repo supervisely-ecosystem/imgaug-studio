@@ -12,12 +12,12 @@
                     ],
                     "min": -100,
                     "max": 100,
-                    "name": "value"
+                    "__name__": "value"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -33,12 +33,12 @@
                     ],
                     "min": -100,
                     "max": 100,
-                    "name": "value"
+                    "__name__": "value"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -54,12 +54,12 @@
                     ],
                     "min": 0,
                     "max": 255,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -75,12 +75,12 @@
                     ],
                     "min": 0,
                     "max": 255,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -96,12 +96,12 @@
                     ],
                     "min": 0,
                     "max": 50,
-                    "name": "lam"
+                    "__name__": "lam"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -117,13 +117,13 @@
                     ],
                     "min": 0.1,
                     "max": 1.5,
-                    "name": "mul",
+                    "__name__": "mul",
                     "step": 0.1
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -139,13 +139,13 @@
                     ],
                     "min": 0.1,
                     "max": 1.5,
-                    "name": "mul",
+                    "__name__": "mul",
                     "step": 0.1
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -161,20 +161,20 @@
                     ],
                     "min": 1,
                     "max": 100,
-                    "name": "nb_iterations"
+                    "__name__": "nb_iterations"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0.2,
                     "min": 0,
                     "max": 1,
-                    "name": "size",
+                    "__name__": "size",
                     "step": 0.1
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "squared"
+                    "__name__": "squared"
                 },
                 {
                     "type": "el-select",
@@ -182,19 +182,19 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "fill_mode"
+                    "__name__": "fill_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
                     "max": 255,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fill_per_channel"
+                    "__name__": "fill_per_channel"
                 }
             ]
         },
@@ -210,13 +210,13 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -232,7 +232,7 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
@@ -243,13 +243,13 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "size_percent",
+                    "__name__": "size_percent",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -262,7 +262,7 @@
                     "default": 0.1,
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.1
                 },
                 {
@@ -270,7 +270,7 @@
                     "default": 1,
                     "min": 0,
                     "max": 3,
-                    "name": "nb_keep_channels"
+                    "__name__": "nb_keep_channels"
                 }
             ]
         },
@@ -286,7 +286,7 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 }
             ]
@@ -303,13 +303,13 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -325,7 +325,7 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
@@ -333,13 +333,13 @@
                     "default": 0.1,
                     "min": 0,
                     "max": 1,
-                    "name": "size_percent",
+                    "__name__": "size_percent",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -355,13 +355,13 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -377,7 +377,7 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
@@ -385,20 +385,20 @@
                     "default": 0.1,
                     "min": 0,
                     "max": 1,
-                    "name": "size_percent",
+                    "__name__": "size_percent",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 },
                 {
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
                     "max": 100,
-                    "name": "min_size"
+                    "__name__": "min_size"
                 }
             ]
         },
@@ -414,13 +414,13 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -436,7 +436,7 @@
                     ],
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
@@ -444,20 +444,20 @@
                     "default": 0.1,
                     "min": 0,
                     "max": 1,
-                    "name": "size_percent",
+                    "__name__": "size_percent",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 },
                 {
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
                     "max": 100,
-                    "name": "min_size"
+                    "__name__": "min_size"
                 }
             ]
         },
@@ -470,20 +470,20 @@
                     "default": 0.1,
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "min_value"
+                    "__name__": "min_value"
                 }
             ]
         },
@@ -496,13 +496,13 @@
                     "default": 0.1,
                     "min": 0,
                     "max": 1,
-                    "name": "p",
+                    "__name__": "p",
                     "step": 0.01
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 },
                 {
                     "type": "el-slider-range",
@@ -512,7 +512,7 @@
                     ],
                     "min": 0,
                     "max": 255,
-                    "name": "threshold"
+                    "__name__": "threshold"
                 }
             ]
         },
@@ -528,7 +528,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "compression"
+                    "__name__": "compression"
                 }
             ]
         }
@@ -546,7 +546,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "sigma"
+                    "__name__": "sigma"
                 }
             ]
         },
@@ -562,7 +562,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "k"
+                    "__name__": "k"
                 }
             ]
         },
@@ -578,7 +578,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "k"
+                    "__name__": "k"
                 }
             ]
         },
@@ -594,7 +594,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "d"
+                    "__name__": "d"
                 },
                 {
                     "type": "el-slider-range",
@@ -604,7 +604,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "sigma_color"
+                    "__name__": "sigma_color"
                 },
                 {
                     "type": "el-slider-range",
@@ -614,7 +614,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "sigma_space"
+                    "__name__": "sigma_space"
                 }
             ]
         },
@@ -630,7 +630,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "k"
+                    "__name__": "k"
                 },
                 {
                     "type": "el-slider-range",
@@ -640,7 +640,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "angle"
+                    "__name__": "angle"
                 },
                 {
                     "type": "el-slider-range",
@@ -650,14 +650,14 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "direction"
+                    "__name__": "direction"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 }
             ]
         },
@@ -673,7 +673,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "spatial_radius"
+                    "__name__": "spatial_radius"
                 },
                 {
                     "type": "el-slider-range",
@@ -683,7 +683,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "color_radius"
+                    "__name__": "color_radius"
                 }
             ]
         }
@@ -699,14 +699,14 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "children"
+                    "__name__": "children"
                 }
             ]
         },
@@ -719,7 +719,7 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "children"
+                    "__name__": "children"
                 },
                 {
                     "type": "el-select",
@@ -739,7 +739,7 @@
                         "Luv",
                         "YUV"
                     ],
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-select",
@@ -747,7 +747,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -763,7 +763,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "mul"
+                    "__name__": "mul"
                 },
                 {
                     "type": "el-slider-range",
@@ -773,7 +773,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "add"
+                    "__name__": "add"
                 },
                 {
                     "type": "el-select",
@@ -793,7 +793,7 @@
                         "Luv",
                         "YUV"
                     ],
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-select",
@@ -801,12 +801,12 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "random_order"
+                    "__name__": "random_order"
                 }
             ]
         },
@@ -822,7 +822,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "mul"
+                    "__name__": "mul"
                 },
                 {
                     "type": "el-select",
@@ -842,7 +842,7 @@
                         "Luv",
                         "YUV"
                     ],
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-select",
@@ -850,7 +850,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -866,7 +866,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "add"
+                    "__name__": "add"
                 },
                 {
                     "type": "el-select",
@@ -886,7 +886,7 @@
                         "Luv",
                         "YUV"
                     ],
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-select",
@@ -894,7 +894,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -907,7 +907,7 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "children"
+                    "__name__": "children"
                 },
                 {
                     "type": "el-select",
@@ -915,7 +915,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -928,26 +928,26 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "mul"
+                    "__name__": "mul"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "mul_hue"
+                    "__name__": "mul_hue"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "mul_saturation"
+                    "__name__": "mul_saturation"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 },
                 {
                     "type": "el-select",
@@ -955,7 +955,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -971,7 +971,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "mul"
+                    "__name__": "mul"
                 },
                 {
                     "type": "el-select",
@@ -979,7 +979,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -995,7 +995,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "mul"
+                    "__name__": "mul"
                 },
                 {
                     "type": "el-select",
@@ -1003,7 +1003,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -1016,7 +1016,7 @@
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "mul"
+                    "__name__": "mul"
                 },
                 {
                     "type": "el-select",
@@ -1024,7 +1024,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -1037,26 +1037,26 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "value"
+                    "__name__": "value"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "value_hue"
+                    "__name__": "value_hue"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "value_saturation"
+                    "__name__": "value_saturation"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 },
                 {
                     "type": "el-select",
@@ -1064,7 +1064,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -1080,7 +1080,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "value"
+                    "__name__": "value"
                 },
                 {
                     "type": "el-select",
@@ -1088,7 +1088,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -1104,7 +1104,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "value"
+                    "__name__": "value"
                 },
                 {
                     "type": "el-select",
@@ -1112,7 +1112,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -1126,14 +1126,14 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1.0,
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 }
             ]
         },
@@ -1146,7 +1146,7 @@
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 },
                 {
                     "type": "el-select",
@@ -1154,7 +1154,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -1170,7 +1170,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "kelvin"
+                    "__name__": "kelvin"
                 },
                 {
                     "type": "el-select",
@@ -1178,7 +1178,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -1194,7 +1194,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_colors"
+                    "__name__": "n_colors"
                 },
                 {
                     "type": "el-select",
@@ -1202,7 +1202,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-select",
@@ -1214,14 +1214,14 @@
                         "RGB",
                         "Lab"
                     ],
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -1229,7 +1229,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -1245,7 +1245,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_colors"
+                    "__name__": "n_colors"
                 },
                 {
                     "type": "el-select",
@@ -1253,21 +1253,21 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -1275,7 +1275,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -1291,7 +1291,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "nb_bits"
+                    "__name__": "nb_bits"
                 },
                 {
                     "type": "el-select",
@@ -1299,21 +1299,21 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -1321,7 +1321,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         }
@@ -1339,12 +1339,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "gamma"
+                    "__name__": "gamma"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -1360,7 +1360,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "gain"
+                    "__name__": "gain"
                 },
                 {
                     "type": "el-slider-range",
@@ -1370,12 +1370,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "cutoff"
+                    "__name__": "cutoff"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -1391,12 +1391,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "gain"
+                    "__name__": "gain"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -1412,12 +1412,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -1436,7 +1436,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-select",
@@ -1444,7 +1444,7 @@
                     "options": [
                         "Lab"
                     ],
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 }
             ]
         },
@@ -1460,7 +1460,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "clip_limit"
+                    "__name__": "clip_limit"
                 },
                 {
                     "type": "el-slider-range",
@@ -1470,19 +1470,19 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "tile_grid_size_px"
+                    "__name__": "tile_grid_size_px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
                     "max": 100,
-                    "name": "tile_grid_size_px_min"
+                    "__name__": "tile_grid_size_px_min"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -1498,7 +1498,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "clip_limit"
+                    "__name__": "clip_limit"
                 },
                 {
                     "type": "el-slider-range",
@@ -1508,14 +1508,14 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "tile_grid_size_px"
+                    "__name__": "tile_grid_size_px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
                     "max": 100,
-                    "name": "tile_grid_size_px_min"
+                    "__name__": "tile_grid_size_px_min"
                 },
                 {
                     "type": "el-select",
@@ -1523,7 +1523,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-select",
@@ -1531,7 +1531,7 @@
                     "options": [
                         "Lab"
                     ],
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 }
             ]
         }
@@ -1546,7 +1546,7 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "matrix"
+                    "__name__": "matrix"
                 }
             ]
         },
@@ -1562,7 +1562,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 },
                 {
                     "type": "el-slider-range",
@@ -1572,7 +1572,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "lightness"
+                    "__name__": "lightness"
                 }
             ]
         },
@@ -1588,7 +1588,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 },
                 {
                     "type": "el-slider-range",
@@ -1598,7 +1598,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "strength"
+                    "__name__": "strength"
                 }
             ]
         },
@@ -1614,7 +1614,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 }
             ]
         },
@@ -1630,7 +1630,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 },
                 {
                     "type": "el-slider-range",
@@ -1640,7 +1640,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "direction"
+                    "__name__": "direction"
                 }
             ]
         }
@@ -1655,7 +1655,7 @@
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "p"
+                    "__name__": "p"
                 }
             ]
         },
@@ -1668,7 +1668,7 @@
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "p"
+                    "__name__": "p"
                 }
             ]
         }
@@ -1683,49 +1683,49 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "translate_percent"
+                    "__name__": "translate_percent"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "translate_px"
+                    "__name__": "translate_px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "rotate"
+                    "__name__": "rotate"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "shear"
+                    "__name__": "shear"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -1733,12 +1733,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -1746,7 +1746,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -1762,21 +1762,21 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -1784,12 +1784,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -1797,7 +1797,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -1813,21 +1813,21 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -1835,12 +1835,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -1848,7 +1848,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -1861,28 +1861,28 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "percent"
+                    "__name__": "percent"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "px"
+                    "__name__": "px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -1890,12 +1890,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -1903,7 +1903,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -1916,28 +1916,28 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "percent"
+                    "__name__": "percent"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "px"
+                    "__name__": "px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -1945,12 +1945,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -1958,7 +1958,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -1974,21 +1974,21 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "rotate"
+                    "__name__": "rotate"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -1996,12 +1996,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -2009,7 +2009,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -2025,21 +2025,21 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "shear"
+                    "__name__": "shear"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -2047,12 +2047,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -2060,7 +2060,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -2076,21 +2076,21 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "shear"
+                    "__name__": "shear"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -2098,12 +2098,12 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -2111,7 +2111,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "backend"
+                    "__name__": "backend"
                 }
             ]
         },
@@ -2124,56 +2124,56 @@
                     "default": 1.0,
                     "min": 0,
                     "max": 100,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "translate_percent"
+                    "__name__": "translate_percent"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "translate_px"
+                    "__name__": "translate_px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0.0,
                     "min": 0,
                     "max": 100,
-                    "name": "rotate"
+                    "__name__": "rotate"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0.0,
                     "min": 0,
                     "max": 100,
-                    "name": "shear"
+                    "__name__": "shear"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "mode"
+                    "__name__": "mode"
                 }
             ]
         },
@@ -2189,7 +2189,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-slider-range",
@@ -2199,7 +2199,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "nb_rows"
+                    "__name__": "nb_rows"
                 },
                 {
                     "type": "el-slider-range",
@@ -2209,21 +2209,21 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "nb_cols"
+                    "__name__": "nb_cols"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -2231,19 +2231,19 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "absolute_scale"
+                    "__name__": "absolute_scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "polygon_recoverer"
+                    "__name__": "polygon_recoverer"
                 }
             ]
         },
@@ -2259,14 +2259,14 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -2274,17 +2274,17 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "fit_output"
+                    "__name__": "fit_output"
                 },
                 {
                     "type": "el-select",
@@ -2292,7 +2292,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "polygon_recoverer"
+                    "__name__": "polygon_recoverer"
                 }
             ]
         },
@@ -2308,7 +2308,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "alpha"
+                    "__name__": "alpha"
                 },
                 {
                     "type": "el-slider-range",
@@ -2318,21 +2318,21 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "sigma"
+                    "__name__": "sigma"
                 },
                 {
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
                     "max": 100,
-                    "name": "order"
+                    "__name__": "order"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "cval"
+                    "__name__": "cval"
                 },
                 {
                     "type": "el-select",
@@ -2340,7 +2340,7 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "mode"
+                    "__name__": "mode"
                 },
                 {
                     "type": "el-select",
@@ -2348,7 +2348,7 @@
                     "options": [
                         "auto"
                     ],
-                    "name": "polygon_recoverer"
+                    "__name__": "polygon_recoverer"
                 }
             ]
         },
@@ -2361,12 +2361,12 @@
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "k"
+                    "__name__": "k"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 }
             ]
         },
@@ -2387,7 +2387,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "nb_rows"
+                    "__name__": "nb_rows"
                 },
                 {
                     "type": "el-slider-range",
@@ -2397,19 +2397,19 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "nb_cols"
+                    "__name__": "nb_cols"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
                     "max": 100,
-                    "name": "max_steps"
+                    "__name__": "max_steps"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "allow_pad"
+                    "__name__": "allow_pad"
                 }
             ]
         }
@@ -2427,7 +2427,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2443,7 +2443,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2459,7 +2459,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2475,7 +2475,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2491,7 +2491,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2507,7 +2507,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2523,7 +2523,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2539,7 +2539,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2555,7 +2555,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2571,7 +2571,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2587,7 +2587,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2603,7 +2603,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2619,7 +2619,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2635,7 +2635,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2651,7 +2651,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2667,7 +2667,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2683,7 +2683,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2699,7 +2699,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         },
@@ -2715,7 +2715,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "severity"
+                    "__name__": "severity"
                 }
             ]
         }
@@ -2730,14 +2730,14 @@
                     "default": 1.0,
                     "min": 0,
                     "max": 100,
-                    "name": "p"
+                    "__name__": "p"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
                     "max": 100,
-                    "name": "threshold"
+                    "__name__": "threshold"
                 }
             ]
         },
@@ -2753,7 +2753,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "nb_bits"
+                    "__name__": "nb_bits"
                 },
                 {
                     "type": "el-select",
@@ -2761,21 +2761,21 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "to_colorspace"
+                    "__name__": "to_colorspace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -2783,7 +2783,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -2804,12 +2804,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "cutoff"
+                    "__name__": "cutoff"
                 },
                 {
                     "type": "el-checkbox",
                     "default": false,
-                    "name": "per_channel"
+                    "__name__": "per_channel"
                 }
             ]
         },
@@ -2825,7 +2825,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "factor"
+                    "__name__": "factor"
                 }
             ]
         },
@@ -2841,7 +2841,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "factor"
+                    "__name__": "factor"
                 }
             ]
         },
@@ -2857,7 +2857,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "factor"
+                    "__name__": "factor"
                 }
             ]
         },
@@ -2873,7 +2873,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "factor"
+                    "__name__": "factor"
                 }
             ]
         },
@@ -2936,42 +2936,42 @@
                     "default": 1.0,
                     "min": 0,
                     "max": 100,
-                    "name": "scale"
+                    "__name__": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "translate_percent"
+                    "__name__": "translate_percent"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "translate_px"
+                    "__name__": "translate_px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0.0,
                     "min": 0,
                     "max": 100,
-                    "name": "rotate"
+                    "__name__": "rotate"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0.0,
                     "min": 0,
                     "max": 100,
-                    "name": "shear"
+                    "__name__": "shear"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "fillcolor"
+                    "__name__": "fillcolor"
                 },
                 {
                     "type": "el-slider-range",
@@ -2981,7 +2981,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "center"
+                    "__name__": "center"
                 }
             ]
         }
@@ -2999,12 +2999,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "kernel_size"
+                    "__name__": "kernel_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 }
             ]
         },
@@ -3020,12 +3020,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "kernel_size"
+                    "__name__": "kernel_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 }
             ]
         },
@@ -3041,12 +3041,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "kernel_size"
+                    "__name__": "kernel_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 }
             ]
         },
@@ -3062,12 +3062,12 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "kernel_size"
+                    "__name__": "kernel_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 }
             ]
         }
@@ -3085,7 +3085,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "p_replace"
+                    "__name__": "p_replace"
                 },
                 {
                     "type": "el-slider-range",
@@ -3095,14 +3095,14 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_segments"
+                    "__name__": "n_segments"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -3110,7 +3110,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -3123,14 +3123,14 @@
                     "default": 1.0,
                     "min": 0,
                     "max": 100,
-                    "name": "p_replace"
+                    "__name__": "p_replace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -3138,7 +3138,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -3154,7 +3154,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_points"
+                    "__name__": "n_points"
                 },
                 {
                     "type": "el-slider-range",
@@ -3164,14 +3164,14 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "p_replace"
+                    "__name__": "p_replace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -3179,7 +3179,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -3195,7 +3195,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_rows"
+                    "__name__": "n_rows"
                 },
                 {
                     "type": "el-slider-range",
@@ -3205,7 +3205,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_cols"
+                    "__name__": "n_cols"
                 },
                 {
                     "type": "el-slider-range",
@@ -3215,7 +3215,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "p_drop_points"
+                    "__name__": "p_drop_points"
                 },
                 {
                     "type": "el-slider-range",
@@ -3225,14 +3225,14 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "p_replace"
+                    "__name__": "p_replace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -3240,7 +3240,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -3256,7 +3256,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_rows_frac"
+                    "__name__": "n_rows_frac"
                 },
                 {
                     "type": "el-slider-range",
@@ -3266,7 +3266,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "n_cols_frac"
+                    "__name__": "n_cols_frac"
                 },
                 {
                     "type": "el-slider-range",
@@ -3276,7 +3276,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "p_drop_points"
+                    "__name__": "p_drop_points"
                 },
                 {
                     "type": "el-slider-range",
@@ -3286,14 +3286,14 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "p_replace"
+                    "__name__": "p_replace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "max_size"
+                    "__name__": "max_size"
                 },
                 {
                     "type": "el-select",
@@ -3301,7 +3301,7 @@
                     "options": [
                         "linear"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         }
@@ -3317,7 +3317,7 @@
                     "options": [
                         "cubic"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 }
             ]
         },
@@ -3330,14 +3330,14 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "px"
+                    "__name__": "px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "percent"
+                    "__name__": "percent"
                 },
                 {
                     "type": "el-select",
@@ -3345,24 +3345,24 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "sample_independently"
+                    "__name__": "sample_independently"
                 }
             ]
         },
@@ -3375,24 +3375,24 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "px"
+                    "__name__": "px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "percent"
+                    "__name__": "percent"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "sample_independently"
+                    "__name__": "sample_independently"
                 }
             ]
         },
@@ -3405,14 +3405,14 @@
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "px"
+                    "__name__": "px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "percent"
+                    "__name__": "percent"
                 },
                 {
                     "type": "el-select",
@@ -3420,24 +3420,24 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "keep_size"
+                    "__name__": "keep_size"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
-                    "name": "sample_independently"
+                    "__name__": "sample_independently"
                 }
             ]
         },
@@ -3451,14 +3451,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 },
                 {
                     "type": "el-select",
@@ -3466,7 +3466,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3480,14 +3480,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 }
             ]
         },
@@ -3501,7 +3501,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3520,7 +3520,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3539,14 +3539,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 },
                 {
                     "type": "el-select",
@@ -3554,7 +3554,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3568,14 +3568,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 }
             ]
         },
@@ -3589,7 +3589,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3608,14 +3608,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 },
                 {
                     "type": "el-select",
@@ -3623,7 +3623,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3637,14 +3637,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 }
             ]
         },
@@ -3658,7 +3658,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3677,14 +3677,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 },
                 {
                     "type": "el-select",
@@ -3692,7 +3692,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3706,14 +3706,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 }
             ]
         },
@@ -3727,7 +3727,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3746,14 +3746,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 },
                 {
                     "type": "el-select",
@@ -3761,7 +3761,7 @@
                     "options": [
                         "uniform"
                     ],
-                    "name": "position"
+                    "__name__": "position"
                 }
             ]
         },
@@ -3775,14 +3775,14 @@
                     "options": [
                         "constant"
                     ],
-                    "name": "pad_mode"
+                    "__name__": "pad_mode"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
                     "max": 100,
-                    "name": "pad_cval"
+                    "__name__": "pad_cval"
                 }
             ]
         },
@@ -3796,7 +3796,7 @@
                     "options": [
                         "cubic"
                     ],
-                    "name": "interpolation"
+                    "__name__": "interpolation"
                 },
                 {
                     "type": "el-select",
@@ -3804,7 +3804,7 @@
                     "options": [
                         "SAME_AS_IMAGES"
                     ],
-                    "name": "interpolation_heatmaps"
+                    "__name__": "interpolation_heatmaps"
                 },
                 {
                     "type": "el-select",
@@ -3812,7 +3812,7 @@
                     "options": [
                         "nearest"
                     ],
-                    "name": "interpolation_segmaps"
+                    "__name__": "interpolation_segmaps"
                 }
             ]
         }
@@ -3830,7 +3830,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "lightness_threshold"
+                    "__name__": "lightness_threshold"
                 },
                 {
                     "type": "el-slider-range",
@@ -3840,7 +3840,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "lightness_multiplier"
+                    "__name__": "lightness_multiplier"
                 },
                 {
                     "type": "el-select",
@@ -3848,7 +3848,7 @@
                     "options": [
                         "RGB"
                     ],
-                    "name": "from_colorspace"
+                    "__name__": "from_colorspace"
                 }
             ]
         },
@@ -3879,7 +3879,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "blur_sigma_limits"
+                    "__name__": "blur_sigma_limits"
                 }
             ]
         },
@@ -3895,7 +3895,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "density"
+                    "__name__": "density"
                 },
                 {
                     "type": "el-slider-range",
@@ -3905,7 +3905,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "density_uniformity"
+                    "__name__": "density_uniformity"
                 },
                 {
                     "type": "el-slider-range",
@@ -3915,7 +3915,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "flake_size"
+                    "__name__": "flake_size"
                 },
                 {
                     "type": "el-slider-range",
@@ -3925,7 +3925,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "flake_size_uniformity"
+                    "__name__": "flake_size_uniformity"
                 },
                 {
                     "type": "el-slider-range",
@@ -3935,7 +3935,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "angle"
+                    "__name__": "angle"
                 },
                 {
                     "type": "el-slider-range",
@@ -3945,7 +3945,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "speed"
+                    "__name__": "speed"
                 }
             ]
         },
@@ -3961,7 +3961,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "blur_sigma_limits"
+                    "__name__": "blur_sigma_limits"
                 }
             ]
         },
@@ -3977,7 +3977,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "nb_iterations"
+                    "__name__": "nb_iterations"
                 },
                 {
                     "type": "el-slider-range",
@@ -3987,7 +3987,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "drop_size"
+                    "__name__": "drop_size"
                 },
                 {
                     "type": "el-slider-range",
@@ -3997,7 +3997,7 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "name": "speed"
+                    "__name__": "speed"
                 }
             ]
         }
