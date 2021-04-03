@@ -3,6 +3,7 @@ import supervisely_lib as sly
 import imgaug.augmenters as iaa
 
 import init_ui as ui
+from init_ui import augs_configs
 
 app: sly.AppService = sly.AppService()
 
@@ -32,7 +33,19 @@ def imgaug_example():
 @app.callback("preview")
 @sly.timeit
 def preview(api: sly.Api, task_id, context, state, app_logger):
-    print(123)
+    category_name = state["category"]
+    aug_name = state["aug"]
+
+    aug_info = augs_configs[category_name][aug_name]
+    default_params = augs_configs[category_name][aug_name]["params"]
+
+    final_params = {}
+    for param_info in default_params:
+        param_value = state["augVModels"][category_name][aug_name][param_info["name"]]
+        if type(param_value) is list:
+            param_value = tuple(param_value)
+        final_params[param_info["name"]] = param_value
+
     fields = [
         {"field": "data.progressPreview", "payload": "123"},
         {"field": "data.progressPreviewTotal", "payload": 23},
@@ -46,10 +59,12 @@ def main():
     state = {}
 
     ui.init_input_project(app.public_api, data, project_info)
+    ui.init_pipeline(data, state)
     ui.init_augs_configs(data, state)
 
     app.run(data=data, state=state)
 
+# Cutout invalid arguments
 # create sequence format
 # add doc html
 # refresh preview python code + images

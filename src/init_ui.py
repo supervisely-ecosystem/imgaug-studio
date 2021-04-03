@@ -1,6 +1,8 @@
 import os
 import supervisely_lib as sly
 
+augs_configs = sly.json.load_json_file("augs.json")
+
 
 def init_input_project(api: sly.Api, data: dict, project_info):
     data["projectId"] = project_info.id
@@ -10,7 +12,6 @@ def init_input_project(api: sly.Api, data: dict, project_info):
 
 
 def init_augs_configs(data: dict, state: dict):
-    augs_configs = sly.json.load_json_file("augs.json")
     data["categories"] = list(augs_configs.keys())
     state["category"] = data["categories"][0]
 
@@ -30,3 +31,9 @@ def init_augs_configs(data: dict, state: dict):
     data["augs"] = augs_list
     data["config"] = augs_configs
     state["previewCount"] = 1
+
+
+def init_pipeline(data, state):
+    data["pipeline"] = [
+        "iaa.imgcorruptlike.GaussianBlur(severity=(1, 5))"
+    ]
