@@ -54,7 +54,21 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     pass
 
 
+def do(x, y=7):
+    print("x + y = ", x + y)
+
+
 def main():
+
+    name = "do"
+    params = {
+        "x": 1,
+        "y": 2
+    }
+    method = globals()[name]
+    #method = locals()[name]
+    method(**params)
+
     data = {}
     state = {}
 
@@ -64,6 +78,7 @@ def main():
 
     app.run(data=data, state=state)
 
+# https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 # Cutout invalid arguments
 # create sequence format
 # add doc html
