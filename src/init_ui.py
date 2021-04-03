@@ -16,7 +16,6 @@ def init_augs_configs(data: dict, state: dict):
     state["category"] = data["categories"][0]
 
     state["aug"] = None
-
     state["augVModels"] = {}
 
     augs_list = {}
@@ -35,7 +34,9 @@ def init_augs_configs(data: dict, state: dict):
 
 def init_pipeline(data, state):
     data["pipeline"] = [
-        "iaa.imgcorruptlike.GaussianBlur(severity=(1, 5))"
+        "iaa.imgcorruptlike.GaussianBlur(severity=(1, 1))",
+        "iaa.imgcorruptlike.GaussianBlur(severity=(2, 2))",
+        "iaa.imgcorruptlike.GaussianBlur(severity=(3, 3))",
     ]
 
 
@@ -70,3 +71,10 @@ def init_preview(data, state):
     _, data["gallery"] = get_empty_gallery()
     state["previewLoading"] = False
     data["previewPy"] = None
+    data["pyViewOptions"] = {
+        "mode": 'ace/mode/python',
+        "showGutter": False,
+        "readOnly": True,
+        "maxLines": 10,
+        "highlightActiveLine": False
+    }

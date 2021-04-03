@@ -12,90 +12,108 @@
         border-radius: 4px;
         margin-bottom: 8px;
         }
+
+        #augs-research .action-icon-btn {
+            padding: 0;
+            height: 22px;
+            width: 22px;
+            line-height: 22px;
+            border-radius: 50%;
+            font-size: 11px;
+            text-align: center;
+        }
     </sly-style>
 
-    <sly-card class="mr15"
-              title="Your custom augmentation pipeline"
+    <sly-card title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
-<!--        <div v-for="item in data.config[state.category][state.aug].params" :key="item.name">-->
+        <div v-if="data.pipeline.length === 0">No augmentations in pipeline</div>
+        <div v-if="data.pipeline.length > 0">
+            <table>
+                <tbody>
+                <tr v-for="(pyLine, index) in data.pipeline">
+                    <td style="width: 100%;">
+                        <sly-copy-to-clipboard :data="pyLine">
+                            <sly-editor v-model="pyLine" :options="data.pyViewOptions"></sly-editor>
+                        </sly-copy-to-clipboard>
+                    </td>
+                    <td style="min-width: 130px;">
+                        <el-button size="small" class="action-icon-btn ml10"><i class="zmdi zmdi-long-arrow-up"></i></el-button>
+                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-long-arrow-down"></i></el-button>
+                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-edit"></i></el-button>
+                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-close"></i></el-button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </sly-card>
 
     <div class="fflex mt15" style="align-items: stretch">
-        <div>
-<!--            <sly-card class="mr15"-->
-<!--                      title="Test"-->
-<!--                      subtitle="Test"-->
-<!--                      style="min-width: 310px; max-width: 310px;">-->
-<!--                <div>1</div>-->
-<!--                <div>2</div>-->
-<!--                <div>3</div>-->
-<!--            </sly-card>-->
-            <sly-card class="mr15"
-                      title="Settings"
-                      subtitle="Find and configure augmentation"
-                      style="min-width: 310px; max-width: 310px;">
-                <sly-field title="" description="Input project">
-                    <a slot="title" target="_blank"
-                       :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
-                        images)</a>
-                    <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
-                </sly-field>
+        <sly-card class="mr15"
+                  title="Settings"
+                  subtitle="Find and configure augmentation"
+                  style="min-width: 310px; max-width: 310px;">
+            <sly-field title="" description="Input project">
+                <a slot="title" target="_blank"
+                   :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
+                    images)</a>
+                <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
+            </sly-field>
 
-                <sly-field title="Augmenter Category" description="Choose augmentation category">
-                    <el-select v-model="state.category" placeholder="Select category">
-                        <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
-                    </el-select>
-                </sly-field>
+            <sly-field title="Augmenter Category" description="Choose augmentation category">
+                <el-select v-model="state.category" placeholder="Select category">
+                    <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
+                </el-select>
+            </sly-field>
 
-                <sly-field title="Transformation" description="Choose augmentation function">
-                    <el-select :value="state.aug" @input="
+            <sly-field title="Transformation" description="Choose augmentation function">
+                <el-select :value="state.aug" @input="
                     (val) => {
                         state.aug = val;
                         command('refresh_aug');
                     }
                     ">
-                        <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
-                                   :value="item"></el-option>
-                    </el-select>
-                </sly-field>
+                    <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
+                               :value="item"></el-option>
+                </el-select>
+            </sly-field>
 
-                <div v-if="state.aug">
-                    <sly-field title="Params" description="Configure current augmentation">
-                        <div v-for="item in data.config[state.category][state.aug].params" :key="item.pname">
-                            <sly-field :title="item.pname" class="auto-field">
-                                <div v-if="item.type === 'el-slider-range'" class="fflex">
-                                    <el-slider class="ml15" size="small"
-                                               style="margin-right: 20px; flex: 1;"
-                                               v-model="state.augVModels[state.category][state.aug][item.pname]" range
-                                               :min="item.min" :max="item.max" :step="item.step || 1">
-                                    </el-slider>
-                                    <span>({{state.augVModels[state.category][state.aug][item.pname][0]}},
+            <div v-if="state.aug">
+                <sly-field title="Params" description="Configure current augmentation">
+                    <div v-for="item in data.config[state.category][state.aug].params" :key="item.pname">
+                        <sly-field :title="item.pname" class="auto-field">
+                            <div v-if="item.type === 'el-slider-range'" class="fflex">
+                                <el-slider class="ml15" size="small"
+                                           style="margin-right: 20px; flex: 1;"
+                                           v-model="state.augVModels[state.category][state.aug][item.pname]" range
+                                           :min="item.min" :max="item.max" :step="item.step || 1">
+                                </el-slider>
+                                <span>({{state.augVModels[state.category][state.aug][item.pname][0]}},
                                           {{state.augVModels[state.category][state.aug][item.pname][1]}})</span>
-                                </div>
-                                <el-checkbox v-if="item.type === 'el-checkbox'"
-                                             v-model="state.augVModels[state.category][state.aug][item.pname]">Enable
-                                </el-checkbox>
-                                <el-input-number v-if="item.type === 'el-input-number'" size="small"
-                                                 v-model="state.augVModels[state.category][state.aug][item.pname]"
-                                                 :min="item.min" :max="item.max">
-                                </el-input-number>
-                                <el-select v-if="item.type === 'el-select'" size="small"
-                                           v-model="state.augVModels[state.category][state.aug][item.pname]">
-                                    <el-option v-for="val in item.options" :key="val" :label="val"
-                                               :value="val"></el-option>
-                                </el-select>
-                            </sly-field>
-                        </div>
-                    </sly-field>
-                    <div v-if="state.aug">
-                        <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
-                        <a :href="data.config[state.category][state.aug].durl" target="_blank">
-                            Official documentation <i class="zmdi zmdi-open-in-new"></i>
-                        </a>
+                            </div>
+                            <el-checkbox v-if="item.type === 'el-checkbox'"
+                                         v-model="state.augVModels[state.category][state.aug][item.pname]">Enable
+                            </el-checkbox>
+                            <el-input-number v-if="item.type === 'el-input-number'" size="small"
+                                             v-model="state.augVModels[state.category][state.aug][item.pname]"
+                                             :min="item.min" :max="item.max">
+                            </el-input-number>
+                            <el-select v-if="item.type === 'el-select'" size="small"
+                                       v-model="state.augVModels[state.category][state.aug][item.pname]">
+                                <el-option v-for="val in item.options" :key="val" :label="val"
+                                           :value="val"></el-option>
+                            </el-select>
+                        </sly-field>
                     </div>
+                </sly-field>
+                <div v-if="state.aug">
+                    <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
+                    <a :href="data.config[state.category][state.aug].durl" target="_blank">
+                        Official documentation <i class="zmdi zmdi-open-in-new"></i>
+                    </a>
                 </div>
-            </sly-card>
-        </div>
+            </div>
+        </sly-card>
         <sly-card title="Preview current transformation"
                   subtitle="Preview python code and aug result on random image"
                   style="width: 100%">
@@ -122,18 +140,12 @@
                 <sly-copy-to-clipboard v-if="state.aug"
                                        :data="data.previewPy">
                     <sly-editor v-model="data.previewPy"
-                                :options="{
-                                    mode: 'ace/mode/python',
-                                    showGutter: false,
-                                    readOnly: true,
-                                    maxLines: 10,
-                                    highlightActiveLine: false
-                                 }">
+                                :options="data.pyViewOptions">
                     </sly-editor>
                 </sly-copy-to-clipboard>
             </sly-field>
             <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading"
-                    title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
+                       title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
                 <sly-grid-gallery
                         :content="data.gallery.content"
                         :options="data.gallery.options"

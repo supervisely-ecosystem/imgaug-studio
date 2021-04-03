@@ -49,17 +49,6 @@ def generate_python(name, default_params, params):
     return method_py_final
 
 
-# pipeline = [
-#     iaa.imgcorruptlike.GaussianBlur(severity=(1, 5)),
-#     iaa.Fliplr(p=1),
-#     iaa.Sometimes(0.8, iaa.PadToFixedSize(width=1000, height=1000))
-# ]
-# augs = iaa.Sequential(pipeline, random_order=False)
-# img_rgb = sly.image.read("cat.jpg")
-# res = augs(images=[img_rgb])
-# sly.image.write("res.jpg", res[0])
-
-
 # name = "do"
 # params = {
 #     "x": 1,
