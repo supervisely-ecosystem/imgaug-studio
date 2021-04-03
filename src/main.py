@@ -32,8 +32,10 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
 
     aug_info = augs_configs[category_name][aug_name]
     default_params = augs_configs[category_name][aug_name]["params"]
-
     params = aug_utils.normalize_params(state["augVModels"][category_name][aug_name])
+    py_example = aug_utils.generate_python(aug_name, default_params, params)
+
+
     aug = aug_utils.build(aug_name, params)
 
     preview_labels = []
