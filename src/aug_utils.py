@@ -19,6 +19,16 @@ def apply(img, augs: iaa.Sequential):
     return res[0]
 
 
+def normalize_params(params: dict):
+    res = {}
+    for name, value in params.items():
+        if type(value) is list:
+            res[name] = tuple(value)
+        else:
+            res[name] = value
+    return res
+
+
 # pipeline = [
 #     iaa.imgcorruptlike.GaussianBlur(severity=(1, 5)),
 #     iaa.Fliplr(p=1),
@@ -28,3 +38,13 @@ def apply(img, augs: iaa.Sequential):
 # img_rgb = sly.image.read("cat.jpg")
 # res = augs(images=[img_rgb])
 # sly.image.write("res.jpg", res[0])
+
+
+# name = "do"
+# params = {
+#     "x": 1,
+#     "y": 2
+# }
+# method = globals()[name]
+# #method = locals()[name]
+# method(**params)

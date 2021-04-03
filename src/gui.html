@@ -105,6 +105,7 @@
                     <el-button
                             type="primary"
                             @click="state.previewLoading = true; command('preview')"
+                            :disabled="!state.aug"
                             :loading="state.previewLoading"
                     >
                         <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i> Preview
@@ -125,6 +126,16 @@
                     </sly-editor>
                 </sly-copy-to-clipboard>
             </sly-field>
+            <sly-field title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
+            <sly-grid-gallery
+                    v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading"
+                    :content="data.gallery.content"
+                    :options="data.gallery.options"
+                    :preview-options="data.gallery.previewOptions"/>
+            <div v-show="Object.keys(data.gallery.content.annotations).length === 0 && !state.previewLoading">
+                Gallery is empty, press Preview button to visualize examples
+            </div>
+
         </sly-card>
     </div>
 </div>

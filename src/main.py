@@ -1,10 +1,9 @@
 import os
 import supervisely_lib as sly
-import imgaug.augmenters as iaa
 
 import init_ui as ui
 from init_ui import augs_configs
-from cache import get_random_image
+from cache import get_random_image, cache_images
 import aug_utils
 
 app: sly.AppService = sly.AppService()
@@ -20,6 +19,10 @@ if project_info is None:
 meta = sly.ProjectMeta.from_json(app.public_api.project.get_meta(project_id))
 pipeline = []
 
+vis_dir = os.path.join(app.data_dir, "vis_images")
+sly.fs.mkdir(vis_dir)
+sly.fs.clean_dir(vis_dir)  # convenient for debug
+
 
 @app.callback("preview")
 @sly.timeit
@@ -30,41 +33,48 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     aug_info = augs_configs[category_name][aug_name]
     default_params = augs_configs[category_name][aug_name]["params"]
 
-    final_params = {}
-    for param_info in default_params:
-        param_value = state["augVModels"][category_name][aug_name][param_info["pname"]]
-        if type(param_value) is list:
-            param_value = tuple(param_value)
-        final_params[param_info["pname"]] = param_value
+    params = aug_utils.normalize_params(state["augVModels"][category_name][aug_name])
+    aug = aug_utils.build(aug_name, params)
+
+    preview_labels = []
+    preview_images = []
+    sync_keys = []
 
     img_info, img = get_random_image(api)
-
-    aug = aug_utils.build(aug_name, final_params)
     res_img = aug_utils.apply(img, aug)
+    preview_local_path = os.path.join(vis_dir, f"preview_image_{0}.png")
+    preview_remote_path = os.path.join(f"/imgaug-studio/{task_id}", f"preview_image_{0}.png")
+    sly.image.write(preview_local_path, res_img)
 
-    # fields = [
-    #     {"field": "data.progressPreview", "payload": "123"},
-    #     {"field": "data.progressPreviewTotal", "payload": 23},
-    # ]
-    # api.task.set_fields(task_id, fields)
-    # pass
+    if api.file.exists(team_id, preview_remote_path):
+        api.file.remove(team_id, preview_remote_path)
+    file_info = api.file.upload(team_id, preview_local_path, preview_remote_path)
 
+    sync_keys.append(["0", "1"])
+    preview_labels.extend([[],[]])
+    preview_images.extend([img_info.full_storage_url, file_info.full_storage_url])
 
-def do(x, y=7):
-    print("x + y = ", x + y)
+    CNT_GRID_COLUMNS, gallery = ui.get_empty_gallery()
+    grid_annotations = {}
+    grid_layout = [[] for i in range(CNT_GRID_COLUMNS)]
+    for idx, (image_url, labels) in enumerate(zip(preview_images, preview_labels)):
+        grid_annotations[str(idx)] = {
+            "url": image_url,
+            "figures": labels
+        }
+        grid_layout[idx % CNT_GRID_COLUMNS].append(str(idx))
+    gallery["content"]["layout"] = grid_layout
+    gallery["content"]["annotations"] = grid_annotations
+    gallery["options"]["syncViewsBindings"] = sync_keys
+
+    fields = [
+        {"field": "data.gallery", "payload": gallery},
+        {"field": "state.previewLoading", "payload": False},
+    ]
+    api.task.set_fields(task_id, fields)
 
 
 def main():
-
-    name = "do"
-    params = {
-        "x": 1,
-        "y": 2
-    }
-    method = globals()[name]
-    #method = locals()[name]
-    method(**params)
-
     data = {}
     state = {}
 
@@ -72,6 +82,7 @@ def main():
     ui.init_input_project(app.public_api, data, project_info)
     ui.init_pipeline(data, state)
     ui.init_augs_configs(data, state)
+    ui.init_preview(data, state)
 
     app.run(data=data, state=state)
 

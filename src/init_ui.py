@@ -37,3 +37,35 @@ def init_pipeline(data, state):
     data["pipeline"] = [
         "iaa.imgcorruptlike.GaussianBlur(severity=(1, 5))"
     ]
+
+
+def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
+    CNT_GRID_COLUMNS = 2
+    empty_gallery = {
+        "content": {
+            "projectMeta": sly.ProjectMeta().to_json(),
+            "annotations": {},
+            "layout": [[] for i in range(CNT_GRID_COLUMNS)]
+        },
+        "previewOptions": {
+            "opacity": 0.1,
+            "enableZoom": True,
+            "resizeOnZoom": True,
+            "showOpacityInHeader": True,
+        },
+        "options": {
+            "enableZoom": False,
+            "syncViews": True,
+            "showPreview": False,
+            "selectable": False,
+            "opacity": 0.1,
+            "showOpacityInHeader": True,
+            # "viewHeight": 450
+        }
+    }
+    return CNT_GRID_COLUMNS, empty_gallery
+
+
+def init_preview(data, state):
+    _, data["gallery"] = get_empty_gallery()
+    state["previewLoading"] = False
