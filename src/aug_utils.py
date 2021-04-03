@@ -19,11 +19,17 @@ def apply(img, augs: iaa.Sequential):
     return res[0]
 
 
-def normalize_params(params: dict):
+def normalize_params(default_params: dict, params: dict):
+    ptypes = {p["pname"]: p for p in default_params}
     res = {}
     for name, value in params.items():
         if type(value) is list:
             res[name] = tuple(value)
+        elif ptypes[name]["type"] == 'el-input-number':
+            try:
+                res[name] = float(value)
+            except ValueError as e:
+                res[name] = float(ptypes[name]["default"])
         else:
             res[name] = value
     return res

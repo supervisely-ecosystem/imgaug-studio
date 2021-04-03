@@ -97,10 +97,14 @@
                             <el-checkbox v-if="item.type === 'el-checkbox'"
                                          v-model="state.augVModels[state.category][state.aug][item.pname]">Enable
                             </el-checkbox>
-                            <el-input-number v-if="item.type === 'el-input-number'" size="small"
-                                             v-model="state.augVModels[state.category][state.aug][item.pname]"
-                                             :min="item.min" :max="item.max">
-                            </el-input-number>
+                            <el-input v-if="item.type === 'el-input-number'" size="small"
+                                      v-model="state.augVModels[state.category][state.aug][item.pname]">
+                            </el-input>
+
+<!--                            <el-input-number v-if="item.type === 'el-input-number'" size="small"-->
+<!--                                             v-model="state.augVModels[state.category][state.aug][item.pname]"-->
+<!--                                             :min="item.min" :max="item.max">-->
+<!--                            </el-input-number>-->
                             <el-select v-if="item.type === 'el-select'" size="small"
                                        v-model="state.augVModels[state.category][state.aug][item.pname]">
                                 <el-option v-for="val in item.options" :key="val" :label="val"
