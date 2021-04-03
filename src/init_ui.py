@@ -26,7 +26,7 @@ def init_augs_configs(data: dict, state: dict):
         for aug_name, info in augs.items():
             state["augVModels"][category][aug_name] = {}
             for param in info["params"]:
-                state["augVModels"][category][aug_name][param["name"]] = param["default"]
+                state["augVModels"][category][aug_name][param["pname"]] = param["default"]
 
     data["augs"] = augs_list
     data["config"] = augs_configs

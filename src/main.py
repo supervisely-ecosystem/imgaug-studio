@@ -20,15 +20,16 @@ pipeline = []
 
 
 def imgaug_example():
-    pipeline = [
-        iaa.imgcorruptlike.GaussianBlur(severity=(1, 5)),
-        iaa.Fliplr(p=1),
-        iaa.Sometimes(0.8, iaa.PadToFixedSize(width=1000, height=1000))
-    ]
-    augs = iaa.Sequential(pipeline, random_order=False)
-    img_rgb = sly.image.read("cat.jpg")
-    res = augs(images=[img_rgb])
-    sly.image.write("res.jpg", res[0])
+    pass
+    # pipeline = [
+    #     iaa.imgcorruptlike.GaussianBlur(severity=(1, 5)),
+    #     iaa.Fliplr(p=1),
+    #     iaa.Sometimes(0.8, iaa.PadToFixedSize(width=1000, height=1000))
+    # ]
+    # augs = iaa.Sequential(pipeline, random_order=False)
+    # img_rgb = sly.image.read("cat.jpg")
+    # res = augs(images=[img_rgb])
+    # sly.image.write("res.jpg", res[0])
 
 
 @app.callback("preview")
@@ -42,10 +43,13 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
 
     final_params = {}
     for param_info in default_params:
-        param_value = state["augVModels"][category_name][aug_name][param_info["name"]]
+        param_value = state["augVModels"][category_name][aug_name][param_info["pname"]]
         if type(param_value) is list:
             param_value = tuple(param_value)
-        final_params[param_info["name"]] = param_value
+        final_params[param_info["pname"]] = param_value
+
+    aug_f = getattr(iaa, aug_name)
+    aug_f(**final_params)
 
     fields = [
         {"field": "data.progressPreview", "payload": "123"},
