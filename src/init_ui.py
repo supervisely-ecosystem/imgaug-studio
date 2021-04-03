@@ -54,7 +54,7 @@ def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
             "showOpacityInHeader": True,
         },
         "options": {
-            "enableZoom": False,
+            "enableZoom": True,
             "syncViews": True,
             "showPreview": False,
             "selectable": False,

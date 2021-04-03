@@ -86,6 +86,8 @@ def main():
 
     app.run(data=data, state=state)
 
+# slider->two el-input
+# el-input-number -> el-input
 # @TODO: random_order flag
 # https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
 # Cutout invalid arguments
