@@ -22,14 +22,14 @@
 
     <div class="fflex mt15" style="align-items: stretch">
         <div>
-            <sly-card class="mr15"
-                      title="Test"
-                      subtitle="Test"
-                      style="min-width: 310px; max-width: 310px;">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-            </sly-card>
+<!--            <sly-card class="mr15"-->
+<!--                      title="Test"-->
+<!--                      subtitle="Test"-->
+<!--                      style="min-width: 310px; max-width: 310px;">-->
+<!--                <div>1</div>-->
+<!--                <div>2</div>-->
+<!--                <div>3</div>-->
+<!--            </sly-card>-->
             <sly-card class="mr15"
                       title="Settings"
                       subtitle="Find and configure augmentation"
@@ -76,7 +76,7 @@
                                 </el-checkbox>
                                 <el-input-number v-if="item.type === 'el-input-number'" size="small"
                                                  v-model="state.augVModels[state.category][state.aug][item.pname]"
-                                                 :min="1" :max="10" :step="item.step || 1">
+                                                 :min="item.min" :max="item.max" :step="item.step || 1">
                                 </el-input-number>
                                 <el-select v-if="item.type === 'el-select'" size="small"
                                            v-model="state.augVModels[state.category][state.aug][item.pname]">
