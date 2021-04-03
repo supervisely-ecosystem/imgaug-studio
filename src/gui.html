@@ -14,13 +14,13 @@
         }
 
         #augs-research .action-icon-btn {
-            padding: 0;
-            height: 22px;
-            width: 22px;
-            line-height: 22px;
-            border-radius: 50%;
-            font-size: 11px;
-            text-align: center;
+        padding: 0;
+        height: 22px;
+        width: 22px;
+        line-height: 22px;
+        border-radius: 50%;
+        font-size: 11px;
+        text-align: center;
         }
     </sly-style>
 
@@ -40,8 +40,10 @@
                         </sly-copy-to-clipboard>
                     </td>
                     <td style="min-width: 130px;">
-                        <el-button size="small" class="action-icon-btn ml10"><i class="zmdi zmdi-long-arrow-up"></i></el-button>
-                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-long-arrow-down"></i></el-button>
+                        <el-button size="small" class="action-icon-btn ml10"><i class="zmdi zmdi-long-arrow-up"></i>
+                        </el-button>
+                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-long-arrow-down"></i>
+                        </el-button>
                         <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-edit"></i></el-button>
                         <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-close"></i></el-button>
                     </td>
@@ -94,17 +96,23 @@
                                 <span>({{state.augVModels[state.category][state.aug][item.pname][0]}},
                                           {{state.augVModels[state.category][state.aug][item.pname][1]}})</span>
                             </div>
+                            <div v-if="item.type === 'el-input-range'" class="fflex">
+                                <div class="fflex">
+                                    <el-input size="small"
+                                              v-model="state.augVModels[state.category][state.aug][item.pname][0]">
+                                    </el-input>
+                                    <span class="ml5 mr5">-</span>
+                                    <el-input size="small"
+                                              v-model="state.augVModels[state.category][state.aug][item.pname][1]">
+                                    </el-input>
+                                </div>
+                            </div>
                             <el-checkbox v-if="item.type === 'el-checkbox'"
                                          v-model="state.augVModels[state.category][state.aug][item.pname]">Enable
                             </el-checkbox>
                             <el-input v-if="item.type === 'el-input-number'" size="small"
                                       v-model="state.augVModels[state.category][state.aug][item.pname]">
                             </el-input>
-
-<!--                            <el-input-number v-if="item.type === 'el-input-number'" size="small"-->
-<!--                                             v-model="state.augVModels[state.category][state.aug][item.pname]"-->
-<!--                                             :min="item.min" :max="item.max">-->
-<!--                            </el-input-number>-->
                             <el-select v-if="item.type === 'el-select'" size="small"
                                        v-model="state.augVModels[state.category][state.aug][item.pname]">
                                 <el-option v-for="val in item.options" :key="val" :label="val"

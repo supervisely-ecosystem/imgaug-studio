@@ -154,7 +154,7 @@
             "py": "iaa.Cutout(nb_iterations=1, position='uniform', size=0.2, squared=True, fill_mode='constant', cval=128, fill_per_channel=False)",
             "params": [
                 {
-                    "type": "el-slider-range",
+                    "type": "el-input-range",
                     "default": [
                         1,
                         5
