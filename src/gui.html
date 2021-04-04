@@ -26,6 +26,13 @@
 
     <sly-card title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
+        <sly-field title="" description="Input project">
+            <a slot="title" target="_blank"
+               :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
+                images)</a>
+            <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
+        </sly-field>
+
         <div v-if="data.pipeline.length === 0">
             No augmentations in pipeline
         </div>
@@ -53,22 +60,31 @@
                 </tbody>
             </table>
         </div>
-        <div class="fflex" style="float: right;">
-            <el-button type="success"><i class="zmdi zmdi-playlist-plus mr5"></i>Add</el-button>
+        <div class="fflex mt10">
+            <!--            style="float: right;-->
+            <el-button
+                    :disabled="state.addMode === true"
+                    type="success"
+                    @click="state.addMode = true;">
+                <i class="zmdi zmdi-playlist-plus mr5"></i>Add
+            </el-button>
+            <el-button
+                    style="margin-left: 5px;"
+                    :disabled="state.addMode === true || data.pipeline.length === 0"
+                    type="primary"
+                    @click="command('preview_pipeline')">
+                <i class="zmdi zmdi-slideshow mr5"></i>Preview pipeline
+            </el-button>
         </div>
     </sly-card>
 
     <div class="fflex mt15" style="align-items: stretch">
-        <sly-card class="mr15"
+        <sly-card v-if="state.addMode === true"
+                  class="mr15"
                   title="Settings"
                   subtitle="Find and configure augmentation"
                   style="min-width: 310px; max-width: 310px;">
-            <sly-field title="" description="Input project">
-                <a slot="title" target="_blank"
-                   :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
-                    images)</a>
-                <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
-            </sly-field>
+
 
             <sly-field title="Augmenter Category" description="Choose augmentation category">
                 <el-select v-model="state.category" placeholder="Select category">
