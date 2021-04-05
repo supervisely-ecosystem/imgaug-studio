@@ -79,3 +79,4 @@ def init_preview(data, state):
         "maxLines": 10,
         "highlightActiveLine": False
     }
+
