@@ -52,7 +52,7 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     file_info = api.file.upload(team_id, preview_local_path, preview_remote_path)
 
     sync_keys.append(["0", "1"])
-    preview_labels.extend([[],[]])
+    preview_labels.extend([[], []])
     preview_images.extend([img_info.full_storage_url, file_info.full_storage_url])
 
     CNT_GRID_COLUMNS, gallery = ui.get_empty_gallery()
@@ -88,6 +88,7 @@ def main():
 
     app.run(data=data, state=state)
 
+
 # slider->two el-input
 # el-input-number -> el-input
 # @TODO: random_order flag
@@ -109,3 +110,13 @@ def main():
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 
+# {
+#     "type": "el-input-range",
+#     "default": [
+#         1,
+#         5
+#     ],
+#     "min": 0,
+#     "max": 10000,
+#     "pname": "nb_iterations"
+# },

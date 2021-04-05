@@ -123,6 +123,21 @@
                                 <span>({{state.augVModels[state.category][state.aug][item.pname][0]}},
                                           {{state.augVModels[state.category][state.aug][item.pname][1]}})</span>
                             </div>
+                            <div v-if="item.type === 'el-input-number-range'" class="fflex">
+                                <div class="fflex">
+                                    <el-input-number
+                                            size="small"
+                                            :min="item.min" :max="item.max" :step="item.step || 1" :debounce="1000"
+                                            v-model="state.augVModels[state.category][state.aug][item.pname][0]">
+                                    </el-input-number>
+                                    <span class="ml5 mr5">-</span>
+                                    <el-input-number
+                                            size="small"
+                                            :min="item.min" :max="item.max" :step="item.step || 1" :debounce="1000"
+                                            v-model="state.augVModels[state.category][state.aug][item.pname][1]">
+                                    </el-input-number>
+                                </div>
+                            </div>
                             <div v-if="item.type === 'el-input-range'" class="fflex">
                                 <div class="fflex">
                                     <el-input size="small"
@@ -137,7 +152,10 @@
                             <el-checkbox v-if="item.type === 'el-checkbox'"
                                          v-model="state.augVModels[state.category][state.aug][item.pname]">Enable
                             </el-checkbox>
-                            <el-input v-if="item.type === 'el-input-number'" size="small"
+                            <el-input v-if="item.type === 'el-input-number'"
+                                      size="small"
+                                      :min="item.min" :max="item.max" :step="item.step || 1"
+                                      :debounce="1000"
                                       v-model="state.augVModels[state.category][state.aug][item.pname]">
                             </el-input>
                             <el-select v-if="item.type === 'el-select'" size="small"
