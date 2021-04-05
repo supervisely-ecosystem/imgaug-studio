@@ -35,6 +35,13 @@ def normalize_params(default_params: dict, params: dict):
                 res[name] = tuple([int(value[0]), int(value[1])])
             except ValueError as e:
                 res[name] = tuple(ptypes[name]["default"])
+        elif ptypes[name]["type"] == 'el-input-number-range':
+            try:
+                res[name] = [int(value[0]), int(value[1])]
+                res[name].sort()
+                res[name] = tuple(res[name])
+            except ValueError as e:
+                res[name] = tuple(ptypes[name]["default"])
         else:
             res[name] = value
     return res
