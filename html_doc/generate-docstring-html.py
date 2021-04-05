@@ -7,14 +7,18 @@ def pretty_py_html(text, output, html_name="index"):
     # Sphinx conf.py
     conf = """import os
 import sys
+
 sys.path.insert(0, os.path.abspath("my_file"))
+
 project = "Python"
 copyright = ""
 author = ""
 extensions = ["sphinx.ext.autodoc", "sphinx_copybutton"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 templates_path = ["_templates"]
+
 html_show_sourcelink = False
+
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     'analytics_anonymize_ip': True,
@@ -30,6 +34,7 @@ html_theme_options = {
     'includehidden': False,
     'titles_only': True
 }
+
 """
     with open("conf.py", "w") as config:
         config.write(conf)
@@ -42,6 +47,7 @@ html_theme_options = {
     # rst
     rst_conf = """modules
 =======
+
 .. toctree::
    :maxdepth: 4
 
@@ -59,14 +65,17 @@ html_theme_options = {
     os.remove("my_script.rst")
     os.remove("conf.py")
 
-    shutil.move("_build/my_script.html", os.path.join(output, html_name + ".html"))
-    shutil.move("_build/_static", os.path.join(output, "_static"))
+    kit_dir = "html_kit"
+    os.mkdir(kit_dir)
+
+    shutil.move("_build/my_script.html", os.path.join(kit_dir, html_name + ".html"))
+    shutil.move("_build/_static", os.path.join(kit_dir, "_static"))
 
     shutil.rmtree('my_file', ignore_errors=True)
     shutil.rmtree('_build', ignore_errors=True)
 
     # HTML Edits
-    with open(html_name + ".html") as f:
+    with open(os.path.join(kit_dir, html_name + ".html")) as f:
         html_content = f.read()
 
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -107,55 +116,47 @@ html_theme_options = {
 
     body_t.append(wrapper)
 
-    with open(html_name + ".html", "w") as file:
+    with open(os.path.join(kit_dir, html_name + ".html"), "w") as file:
         file.write(str(soup))
 
     # Cleaning unnecessary files
-    for file in os.listdir("_static"):
+    for file in os.listdir(os.path.join(kit_dir, "_static")):
         file_path = os.path.join("_static", file)
         req_files = ["clipboard.min.js", "copy-button.svg", "documentation_options.js", "copybutton.js",
                      "copybutton.css", "copybutton_funcs.js", "pygments.css"]
         if os.path.isfile(file_path) and file not in req_files:
             os.remove(file_path)
 
+    # Move to Output folder
+    for src_dir, dirs, files in os.walk(kit_dir):
+        dst_dir = src_dir.replace(kit_dir, output, 1)
+        if not os.path.exists(dst_dir):
+            os.makedirs(dst_dir)
+        for file_ in files:
+            src_file = os.path.join(src_dir, file_)
+            dst_file = os.path.join(dst_dir, file_)
+            if os.path.exists(dst_file):
+                if os.path.samefile(src_file, dst_file):
+                    continue
+                os.remove(dst_file)
+            shutil.move(src_file, dst_dir)
+    shutil.rmtree(kit_dir)
+
 
 py_code = '''
 class InsertDocString:"""
-Annotation for a single image. :class:`Annotation<Annotation>` object is immutable.
-:param img_size: Size of the image (height, width).
-:type img_size: Tuple[int, int] or List[int, int]
-:param labels: List of Label objects.
-:type labels: List[Label]
-:param img_tags: TagCollection object.
-:type img_tags: TagCollection
-:param img_description: Image description.
-:type img_description: str, optional
-:raises: :class:`TypeError`, if image size is not tuple or list
-:Usage example:
-.. code-block:: python
-   # Simple Annotation example
-   height, width = 500, 700
-   ann = sly.Annotation((height, width))
-   # More complex Annotation example
-   # TagCollection
-   meta_lemon = sly.TagMeta('lemon_tag', sly.TagValueType.ANY_STRING)
-   tag_lemon = sly.Tag(meta_lemon, 'Hello')
-   tags = sly.TagCollection([tag_lemon])
-   # ObjClass
-   class_lemon = sly.ObjClass('lemon', sly.Rectangle)
-   # Label
-   label_lemon = sly.Label(sly.Rectangle(100, 100, 200, 200), class_lemon)
-   # Annotation
-   height, width = 300, 400
-   ann = sly.Annotation((height, width), [label_lemon], tags, 'example annotaion')
-   # 'points': {'exterior': [[100, 100], [200, 200]], 'interior': []}
-   # If Label geometry is out of image size bounds, it will be cropped
-   label_lemon = sly.Label(sly.Rectangle(100, 100, 700, 900), class_lemon)
-   height, width = 300, 400
-   ann = sly.Annotation((height, width), [label_lemon], tags, 'example annotaion')
-   # 'points': {'exterior': [[100, 100], [399, 299]], 'interior': []}
+{}
 """
 '''
 
-sly.fs.mkdir("../doc_html")
-pretty_py_html(py_code, "../doc_html", html_name="AAA")
+html_dir = "../html_kit"
+sly.fs.mkdir(html_dir)
+sly.fs.clean_dir(html_dir)
+sly.fs.remove_dir("my_file")
+
+from src.allowed_augs import augs_modules
+
+for module_name, methods in augs_modules.items():
+    for method in methods:
+        docstr = py_code.format(method.__doc__)
+        pretty_py_html(docstr, "../html_kit", html_name=method.__name__)

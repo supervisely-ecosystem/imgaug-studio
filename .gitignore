@@ -3,3 +3,8 @@ secret_debug.env
 venv
 supervisely_lib
 images/*
+src/conf.py
+src/index.rst
+src/my_file/*
+html_kit/*
+src/_build/*
