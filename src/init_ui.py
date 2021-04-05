@@ -34,9 +34,9 @@ def init_augs_configs(data: dict, state: dict):
 
 def init_pipeline(data, state):
     data["pipeline"] = [
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(1, 1))",
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(2, 2))",
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(3, 3))",
+        "iaa.imgcorruptlike.GaussianBlur(severity=(1, 1))",
+        "iaa.imgcorruptlike.GaussianBlur(severity=(2, 2))",
+        "iaa.imgcorruptlike.GaussianBlur(severity=(3, 3))",
     ]
     state["addMode"] = False
 
