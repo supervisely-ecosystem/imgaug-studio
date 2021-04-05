@@ -80,3 +80,6 @@ def init_preview(data, state):
         "highlightActiveLine": False
     }
 
+    #@TODO: delete
+    state["num"] = 5
+    state["fl"] = 0.3

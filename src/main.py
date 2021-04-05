@@ -101,6 +101,11 @@ def main():
 # add shuffle flag to entire pipeline
 # auto modify py field
 # https://github.com/IliaLarchenko/albumentations-demo
+
+
+# int -> huge range
+# float [0, 1]
+# float range [0, 1]
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 
