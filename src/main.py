@@ -86,9 +86,14 @@ def main():
     ui.init_augs_configs(data, state)
     ui.init_preview(data, state)
 
+    #TODO: for debug
+    state["addMode"] = True
+    state["category"] = "Arithmetic"
+    #state["aug"] = "ImpulseNoise"
+
     app.run(data=data, state=state)
 
-
+# restore-default on client
 # slider->two el-input
 # el-input-number -> el-input
 # @TODO: random_order flag
@@ -103,10 +108,6 @@ def main():
 # auto modify py field
 # https://github.com/IliaLarchenko/albumentations-demo
 
-
-# int -> huge range
-# float [0, 1]
-# float range [0, 1]
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 

@@ -1,5 +1,5 @@
 {
-    "arithmetic": {
+    "Arithmetic": {
         "Add": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Add",
             "py": "iaa.Add(value=(-20, 20), per_channel=False)",
@@ -398,7 +398,7 @@
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
-                    "max": 100,
+                    "max": 1000,
                     "pname": "min_size"
                 }
             ]
@@ -457,7 +457,7 @@
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
-                    "max": 100,
+                    "max": 1000,
                     "pname": "min_size"
                 }
             ]
@@ -478,13 +478,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "per_channel"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "min_value"
                 }
             ]
         },
@@ -513,7 +506,8 @@
                     ],
                     "min": 0,
                     "max": 255,
-                    "pname": "threshold"
+                    "pname": "threshold",
+                    "valueType": "int"
                 }
             ]
         },
@@ -529,7 +523,8 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "pname": "compression"
+                    "pname": "compression",
+                    "valueType": "int"
                 }
             ]
         }

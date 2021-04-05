@@ -111,9 +111,13 @@
                                            v-model="state.augVModels[state.category][state.aug][item.pname]" range
                                            :min="item.min" :max="item.max" :step="item.step || 1">
                                 </el-slider>
-                                <span style="width: 70px; text-align: right;">
+                                <span v-if="item.valueType !== 'int'" style="width: 70px; text-align: right;">
                                     ({{state.augVModels[state.category][state.aug][item.pname][0].toFixed(2)}},
                                     {{state.augVModels[state.category][state.aug][item.pname][1].toFixed(2)}})
+                                </span>
+                                <span v-if="item.valueType === 'int'" style="width: 70px; text-align: right;">
+                                    ({{state.augVModels[state.category][state.aug][item.pname][0]}},
+                                    {{state.augVModels[state.category][state.aug][item.pname][1]}})
                                 </span>
                             </div>
                             <div v-if="item.type === 'el-input-number-range'" class="fflex">
