@@ -100,7 +100,7 @@
                 },
                 {
                     "type": "el-checkbox",
-                    "default": false,
+                    "default": true,
                     "pname": "per_channel"
                 }
             ]
