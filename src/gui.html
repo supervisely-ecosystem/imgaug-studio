@@ -164,10 +164,17 @@
                     </div>
                 </sly-field>
                 <div v-if="state.aug">
-                    <el-button type="primary"
-                               @click="command('preview')">
-                        <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i>Preview single augmentation
-                    </el-button>
+                    <div class="fflex mt10">
+                        <el-button type="success" @click="command('add')">
+                            <i class="zmdi zmdi-check"></i>
+                        </el-button>
+                        <el-button type="danger" style="margin-left: 5px;" @click="command('cancel')">
+                            <i class="zmdi zmdi-close"></i>
+                        </el-button>
+                        <el-button style="margin-left: 5px;" @click="command('preview')">
+                            <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i>Preview
+                        </el-button>
+                    </div>
 
                     <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
                     <a :href="data.config[state.category][state.aug].durl" target="_blank">
