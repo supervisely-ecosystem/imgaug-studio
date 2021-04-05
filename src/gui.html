@@ -26,15 +26,6 @@
 
     <sly-card title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
-        <div class="fflex" style="flex-direction: column">
-            <div>{{state.num}}</div>
-            <el-input-number v-model="state.num" :min="-5" :max="100" :debounce="1000"></el-input-number>
-            <div>{{state.fl}}</div>
-            <el-input-number v-model="state.fl" :min="0" :max="1" :step="0.1" :debounce="1000"></el-input-number>
-        </div>
-
-
-
         <sly-field title="" description="Input project">
             <a slot="title" target="_blank"
                :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
@@ -91,7 +82,7 @@
                   class="mr15"
                   title="Settings"
                   subtitle="Find and configure augmentation"
-                  style="min-width: 310px; max-width: 310px;">
+                  style="min-width: 350px; max-width: 350px;">
             <sly-field title="Augmenter Category" description="Choose augmentation category">
                 <el-select v-model="state.category" placeholder="Select category">
                     <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
@@ -102,9 +93,9 @@
                 <el-select :value="state.aug" @input="
                     (val) => {
                         state.aug = val;
-                        command('refresh_aug');
                     }
                     ">
+<!--                    command('refresh_aug');-->
                     <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
                                :value="item"></el-option>
                 </el-select>
@@ -152,12 +143,12 @@
                             <el-checkbox v-if="item.type === 'el-checkbox'"
                                          v-model="state.augVModels[state.category][state.aug][item.pname]">Enable
                             </el-checkbox>
-                            <el-input v-if="item.type === 'el-input-number'"
+                            <el-input-number v-if="item.type === 'el-input-number'"
                                       size="small"
                                       :min="item.min" :max="item.max" :step="item.step || 1"
                                       :debounce="1000"
                                       v-model="state.augVModels[state.category][state.aug][item.pname]">
-                            </el-input>
+                            </el-input-number>
                             <el-select v-if="item.type === 'el-select'" size="small"
                                        v-model="state.augVModels[state.category][state.aug][item.pname]">
                                 <el-option v-for="val in item.options" :key="val" :label="val"

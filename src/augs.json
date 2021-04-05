@@ -180,7 +180,8 @@
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "gaussian"
                     ],
                     "pname": "fill_mode"
                 },
