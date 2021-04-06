@@ -1,17 +1,25 @@
 import imgaug.augmenters as iaa
 
 
-def build_pipeline(names, params, random_order=False):
+def build_pipeline(names, params, probs=None, random_order=False):
+    if probs is None:
+        probs = [None] * len(names)
+
     pipeline = []
-    for name, params_dict in zip(names, params):
+    for name, params_dict, p in zip(names, params, probs):
         aug_f = getattr(iaa, name)
-        pipeline.append(aug_f(**params_dict))
+        if p is None:
+            pipeline.append(aug_f(**params_dict))
+        else:
+            pipeline.append(iaa.meta.Sometimes(p, aug_f(**params_dict)))
     augs = iaa.Sequential(pipeline, random_order=random_order)
     return augs
 
 
-def build(name, param_dict):
-    return build_pipeline([name], [param_dict])
+def build(name, param_dict, sometimes_p=None):
+    if sometimes_p is None:
+        return build_pipeline([name], [param_dict])
+    return build_pipeline([name], [param_dict], [sometimes_p])
 
 
 def apply(img, augs: iaa.Sequential):

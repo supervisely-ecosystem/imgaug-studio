@@ -39,7 +39,7 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
         sometimes_p = state["sometimesP"]
     py_example = aug_utils.generate_python(category_name, aug_name, default_params, params, sometimes_p)
 
-    aug = aug_utils.build(aug_name, params)
+    aug = aug_utils.build(aug_name, params, sometimes_p)
 
     preview_labels = []
     preview_images = []
