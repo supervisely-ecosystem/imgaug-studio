@@ -149,6 +149,8 @@ class InsertDocString:"""
 """
 '''
 
+exit(0) #
+
 html_dir = "../html_kit"
 sly.fs.mkdir(html_dir)
 sly.fs.clean_dir(html_dir)
