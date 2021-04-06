@@ -105,13 +105,15 @@ html_theme_options = {
     body_t['class'] = ''
 
     container = soup.new_tag('div', attrs={
-        "class": "rst-content section wy-nav-content",
-        "style": "margin: 0 auto; border-radius: 8px; box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);",
+        #"class": "rst-content section wy-nav-content",
+        #"style": "margin: 0 auto; border-radius: 8px; box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);",
     })
 
     container.append(dd)
 
-    wrapper = soup.new_tag('div', attrs={"style": "padding: 30px;"})
+    wrapper = soup.new_tag('div', attrs={
+        #"style": "padding: 30px;"
+    })
     wrapper.append(container)
 
     body_t.append(wrapper)
@@ -149,7 +151,7 @@ class InsertDocString:"""
 """
 '''
 
-exit(0) #
+#exit(0) #
 
 html_dir = "../html_kit"
 sly.fs.mkdir(html_dir)

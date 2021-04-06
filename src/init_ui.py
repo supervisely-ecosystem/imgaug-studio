@@ -83,3 +83,14 @@ def init_preview(data, state):
     #@TODO: delete
     state["num"] = 5
     state["fl"] = 0.3
+
+
+def init_docs(data):
+    data["docs"] = {}
+
+    from src.allowed_augs import augs_modules
+    for module_name, methods in augs_modules.items():
+        for method in methods:
+            doc_path = f"../html_kit/{method.__name__}.html"
+            with open(doc_path, 'r') as file:
+                data["docs"][method.__name__] = file.read()

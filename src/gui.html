@@ -64,6 +64,7 @@
             <el-button
                     :disabled="state.addMode === true"
                     type="success"
+                    size="small"
                     @click="state.addMode = true;">
                 <i class="zmdi zmdi-playlist-plus mr5"></i>Add
             </el-button>
@@ -71,6 +72,7 @@
                     style="margin-left: 5px;"
                     :disabled="state.addMode === true || data.pipeline.length === 0"
                     type="primary"
+                    size="small"
                     @click="command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview entire pipeline
             </el-button>
@@ -80,9 +82,15 @@
     <div class="fflex mt15" style="align-items: stretch">
         <sly-card v-if="state.addMode === true"
                   class="mr15"
-                  title="Settings"
-                  subtitle="Find and configure augmentation"
+                  title="Add aug to pipeline"
+                  subtitle="Explore, configure and preview"
                   style="min-width: 350px; max-width: 350px;">
+            <div slot="header">
+                <el-button type="danger" size="small" @click="state.addMode = false; state.aug = null">
+                    <i class="zmdi zmdi-close"></i> Cancel
+                </el-button>
+            </div>
+
             <sly-field title="Augmenter Category" description="Choose augmentation category">
                 <el-select v-model="state.category" placeholder="Select category">
                     <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
@@ -95,7 +103,7 @@
                         state.aug = val;
                     }
                     ">
-<!--                    command('refresh_aug');-->
+                    <!--                    command('refresh_aug');-->
                     <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
                                :value="item"></el-option>
                 </el-select>
@@ -150,10 +158,10 @@
                                          v-model="state.augVModels[state.category][state.aug][item.pname]">Enable
                             </el-checkbox>
                             <el-input-number v-if="item.type === 'el-input-number'"
-                                      size="small"
-                                      :min="item.min" :max="item.max" :step="item.step || 1"
-                                      :debounce="1000"
-                                      v-model="state.augVModels[state.category][state.aug][item.pname]">
+                                             size="small"
+                                             :min="item.min" :max="item.max" :step="item.step || 1"
+                                             :debounce="1000"
+                                             v-model="state.augVModels[state.category][state.aug][item.pname]">
                             </el-input-number>
                             <el-select v-if="item.type === 'el-select'" size="small"
                                        v-model="state.augVModels[state.category][state.aug][item.pname]">
@@ -164,47 +172,31 @@
                     </div>
                 </sly-field>
                 <div v-if="state.aug">
-                    <div class="fflex mt10">
-                        <el-button type="success" @click="command('add')">
-                            <i class="zmdi zmdi-check"></i>
-                        </el-button>
-                        <el-button type="danger" style="margin-left: 5px;" @click="command('cancel')">
-                            <i class="zmdi zmdi-close"></i>
-                        </el-button>
-                        <el-button style="margin-left: 5px;" @click="command('preview')">
+                    <div class="fflex mt10" style="justify-content: space-between;">
+                        <el-button type="primary" style="margin-left: 5px;" size="small" @click="command('preview')">
                             <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i>Preview
                         </el-button>
+                        <el-button type="success" size="small" @click="command('add')">
+                            <i class="zmdi zmdi-check"></i> Add to pipeline
+                        </el-button>
                     </div>
-
-                    <hr class="mt10 mb10" style="border: 0; border-top: 1px solid rgba(0,0,0,.12);"/>
-                    <a :href="data.config[state.category][state.aug].durl" target="_blank">
-                        Official documentation <i class="zmdi zmdi-open-in-new"></i>
-                    </a>
                 </div>
             </div>
         </sly-card>
         <sly-card title="Preview"
                   subtitle="Preview python code and aug result on a random image"
                   style="width: 100%">
-            <!--            <div slot="header">-->
-            <!--                <div class="fflex">-->
-            <!--                    <el-input-number class="mr10" v-model="state.previewCount" :min="1" :max="20"-->
-            <!--                                     size="small"></el-input-number>-->
-            <!--                    <el-button-->
-            <!--                            type="primary"-->
-            <!--                            @click="state.previewLoading = true; command('preview')"-->
-            <!--                            :disabled="!state.aug"-->
-            <!--                            :loading="state.previewLoading"-->
-            <!--                    >-->
-            <!--                        <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i> Preview-->
-            <!--                    </el-button>-->
-            <!--                </div>-->
-            <!--            </div>-->
-
             <div v-if="!data.previewPy && !state.previewLoading && !state.aug">
                 Press Preview button to show python code and visualize image examples
             </div>
 
+            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading"
+                       title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
+                <sly-grid-gallery
+                        :content="data.gallery.content"
+                        :options="data.gallery.options"
+                        :preview-options="data.gallery.previewOptions"/>
+            </sly-field>
             <sly-field v-if="data.previewPy" title="Python code">
                 <sly-copy-to-clipboard v-if="state.aug"
                                        :data="data.previewPy">
@@ -213,12 +205,12 @@
                     </sly-editor>
                 </sly-copy-to-clipboard>
             </sly-field>
-            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading"
-                       title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
-                <sly-grid-gallery
-                        :content="data.gallery.content"
-                        :options="data.gallery.options"
-                        :preview-options="data.gallery.previewOptions"/>
+
+            <sly-field v-if="state.aug && data.docs[state.aug]" title="Documentation">
+                <a :href="data.config[state.category][state.aug].durl" target="_blank">
+                    Link to original docs <i class="zmdi zmdi-open-in-new"></i>
+                </a>
+                <sly-docstring :data="data.docs[state.aug]"></sly-docstring>
             </sly-field>
         </sly-card>
     </div>

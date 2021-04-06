@@ -85,11 +85,12 @@ def main():
     ui.init_pipeline(data, state)
     ui.init_augs_configs(data, state)
     ui.init_preview(data, state)
+    ui.init_docs(data)
 
     #TODO: for debug
     state["addMode"] = True
     state["category"] = "Arithmetic"
-    #state["aug"] = "ImpulseNoise"
+    state["aug"] = "ImpulseNoise"
 
     app.run(data=data, state=state)
 
