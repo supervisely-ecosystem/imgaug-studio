@@ -43,15 +43,17 @@ might not.</p>
 </div>
 <p><strong>Supported dtypes</strong>:</p>
 <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">change_colorspace_()</span></code>.</p>
-<dl>
-<dt>to_colorspace<span class="classifier">str or list of str or imgaug.parameters.StochasticParameter</span></dt><dd><p>The target colorspace.
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>to_colorspace</strong> (<em>str</em><em> or </em><em>list of str</em><em> or </em><em>imgaug.parameters.StochasticParameter</em>) – <p>The target colorspace.
 Allowed strings are: <code class="docutils literal notranslate"><span class="pre">RGB</span></code>, <code class="docutils literal notranslate"><span class="pre">BGR</span></code>, <code class="docutils literal notranslate"><span class="pre">GRAY</span></code>, <code class="docutils literal notranslate"><span class="pre">CIE</span></code>, <code class="docutils literal notranslate"><span class="pre">YCrCb</span></code>,
 <code class="docutils literal notranslate"><span class="pre">HSV</span></code>, <code class="docutils literal notranslate"><span class="pre">HLS</span></code>, <code class="docutils literal notranslate"><span class="pre">Lab</span></code>, <code class="docutils literal notranslate"><span class="pre">Luv</span></code>.
 These are also accessible via
 <code class="docutils literal notranslate"><span class="pre">imgaug.augmenters.color.CSPACE_&lt;NAME&gt;</span></code>,
 e.g. <code class="docutils literal notranslate"><span class="pre">imgaug.augmenters.CSPACE_YCrCb</span></code>.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a string, it must be among the allowed colorspaces.</p></li>
 <li><p>If a list, it is expected to be a list of strings, each one
 being an allowed colorspace. A random element from the list
@@ -60,16 +62,15 @@ will be chosen per image.</p></li>
 sample will be drawn per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>from_colorspace<span class="classifier">str, optional</span></dt><dd><p>The source colorspace (of the input images).
-See <cite>to_colorspace</cite>. Only a single string is allowed.</p>
-</dd>
-<dt>alpha<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The alpha value of the new colorspace when overlayed over the
+</p></li>
+<li><p><strong>from_colorspace</strong> (<em>str</em><em>, </em><em>optional</em>) – The source colorspace (of the input images).
+See <cite>to_colorspace</cite>. Only a single string is allowed.</p></li>
+<li><p><strong>alpha</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>The alpha value of the new colorspace when overlayed over the
 old one. A value close to 1.0 means that mostly the new
 colorspace is visible. A value close to 0.0 means, that mostly the
 old image is visible.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If an int or float, exactly that value will be used.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, a random value from the range
 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code> will be sampled per image.</p></li>
@@ -79,19 +80,17 @@ per image.</p></li>
 parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></div></div></body>

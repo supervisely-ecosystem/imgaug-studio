@@ -33,10 +33,12 @@
 <p>Set a fraction of pixels in images to zero.</p>
 <p><strong>Supported dtypes</strong>:</p>
 <p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiplyElementwise</span></code>.</p>
-<dl>
-<dt>p<span class="classifier">float or tuple of float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The probability of any pixel being dropped (i.e. to set it to zero).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<em>float</em><em> or </em><em>tuple of float</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>The probability of any pixel being dropped (i.e. to set it to zero).</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a float, then that value will be used for all images. A value
 of <code class="docutils literal notranslate"><span class="pre">1.0</span></code> would mean that all pixels will be dropped
 and <code class="docutils literal notranslate"><span class="pre">0.0</span></code> that no pixels will be dropped. A value of <code class="docutils literal notranslate"><span class="pre">0.05</span></code>
@@ -54,8 +56,8 @@ parameter, you can usually do <code class="docutils literal notranslate"><span c
 to convert parameter <cite>p</cite> to a 0/1 representation.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>per_channel<span class="classifier">bool or float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Whether to use (imagewise) the same sample(s) for all
+</p></li>
+<li><p><strong>per_channel</strong> (<em>bool</em><em> or </em><em>float</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – Whether to use (imagewise) the same sample(s) for all
 channels (<code class="docutils literal notranslate"><span class="pre">False</span></code>) or to sample value(s) for each channel (<code class="docutils literal notranslate"><span class="pre">True</span></code>).
 Setting this to <code class="docutils literal notranslate"><span class="pre">True</span></code> will therefore lead to different
 transformations per image <em>and</em> channel, otherwise only per image.
@@ -63,22 +65,20 @@ If this value is a float <code class="docutils literal notranslate"><span class=
 <cite>per_channel</cite> will be treated as <code class="docutils literal notranslate"><span class="pre">True</span></code>.
 If it is a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code> it is expected to produce samples
 with values between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, where values <code class="docutils literal notranslate"><span class="pre">&gt;0.5</span></code> will
-lead to per-channel behaviour (i.e. same as <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+lead to per-channel behaviour (i.e. same as <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
 </pre></div>

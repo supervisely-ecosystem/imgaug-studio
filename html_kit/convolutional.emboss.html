@@ -35,11 +35,13 @@
 letting the image look as if it was recreated on a metal plate (“embossed”).</p>
 <p><strong>Supported dtypes</strong>:</p>
 <p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">Convolve</span></code>.</p>
-<dl>
-<dt>alpha<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Blending factor of the embossed image. At <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, only the original
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Blending factor of the embossed image. At <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, only the original
 image is visible, at <code class="docutils literal notranslate"><span class="pre">1.0</span></code> only its embossed version is visible.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a number, exactly that value will always be used.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, a random value will be sampled from the
 interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code> per image.</p></li>
@@ -49,12 +51,12 @@ per image.</p></li>
 parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>strength<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Parameter that controls the strength of the embossing.
+</p></li>
+<li><p><strong>strength</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Parameter that controls the strength of the embossing.
 Sane values are somewhere in the interval <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">2.0]</span></code> with <code class="docutils literal notranslate"><span class="pre">1.0</span></code>
 being the standard embossing effect. Default value is <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a number, exactly that value will always be used.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, a random value will be sampled from the
 interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code> per image.</p></li>
@@ -64,21 +66,20 @@ per image.</p></li>
 parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Emboss</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">strength</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
 </pre></div>

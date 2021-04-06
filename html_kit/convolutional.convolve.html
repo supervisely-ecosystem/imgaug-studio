@@ -70,10 +70,12 @@ format (=1) in function ‘getLinearFilter’.</p></li>
 </li>
 </ul>
 </div></blockquote>
-<dl>
-<dt>matrix<span class="classifier">None or (H, W) ndarray or imgaug.parameters.StochasticParameter or callable, optional</span></dt><dd><p>The weight matrix of the convolution kernel to apply.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix</strong> (<em>None</em><em> or </em><em>(</em><em>H</em><em>, </em><em>W</em><em>) </em><em>ndarray</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – <p>The weight matrix of the convolution kernel to apply.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the input images will not be changed.</p></li>
 <li><p>If a 2D numpy array, that array will always be used for all
 images and channels as the kernel.</p></li>
@@ -86,21 +88,20 @@ be <code class="docutils literal notranslate"><span class="pre">None</span></cod
 channel.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
 <span class="gp">&gt;&gt;&gt; </span>                   <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>

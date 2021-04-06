@@ -61,10 +61,12 @@ significantly more efficient.</p>
 </dl>
 <p>)</p>
 </div></blockquote>
-<dl>
-<dt>k<span class="classifier">int or list of int or tuple of int or imaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>How often to rotate clockwise by 90 degrees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> (<em>int</em><em> or </em><em>list of int</em><em> or </em><em>tuple of int</em><em> or </em><em>imaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>How often to rotate clockwise by 90 degrees.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will be used for all images.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a random value will be uniformly
 sampled per image from the discrete interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>.</p></li>
@@ -75,27 +77,25 @@ from that list.</p></li>
 image to sample the value to use.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>keep_size<span class="classifier">bool, optional</span></dt><dd><p>After rotation by an odd-valued <cite>k</cite> (e.g. 1 or 3), the resulting image
+</p></li>
+<li><p><strong>keep_size</strong> (<em>bool</em><em>, </em><em>optional</em>) – After rotation by an odd-valued <cite>k</cite> (e.g. 1 or 3), the resulting image
 may have a different height/width than the original image.
 If this parameter is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the rotated
 image will be resized to the input image’s size. Note that this might
-also cause the augmented image to look distorted.</p>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+also cause the augmented image to look distorted.</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Rot90</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>

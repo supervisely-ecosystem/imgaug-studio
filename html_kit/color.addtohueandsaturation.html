@@ -38,11 +38,13 @@ with <code class="docutils literal notranslate"><span class="pre">Add</span></co
 <p>TODO add float support</p>
 <p><strong>Supported dtypes</strong>:</p>
 <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">change_colorspace_()</span></code>.</p>
-<dl>
-<dt>value<span class="classifier">None or int or tuple of int or list of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Value to add to the hue <em>and</em> saturation of all pixels.
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>tuple of int</em><em> or </em><em>list of int</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Value to add to the hue <em>and</em> saturation of all pixels.
 It is expected to be in the range <code class="docutils literal notranslate"><span class="pre">-255</span></code> to <code class="docutils literal notranslate"><span class="pre">+255</span></code>.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If this is <code class="docutils literal notranslate"><span class="pre">None</span></code>, <cite>value_hue</cite> and/or <cite>value_saturation</cite>
 may be set to values other than <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p>If an integer, then that value will be used for all images.</p></li>
@@ -54,15 +56,15 @@ per image.</p></li>
 parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>value_hue<span class="classifier">None or int or tuple of int or list of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Value to add to the hue of all pixels.
+</p></li>
+<li><p><strong>value_hue</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>tuple of int</em><em> or </em><em>list of int</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Value to add to the hue of all pixels.
 This is expected to be in the range <code class="docutils literal notranslate"><span class="pre">-255</span></code> to <code class="docutils literal notranslate"><span class="pre">+255</span></code> and will
 automatically be projected to an angular representation using
 <code class="docutils literal notranslate"><span class="pre">(hue/255)</span> <span class="pre">*</span> <span class="pre">(360/2)</span></code> (OpenCV’s hue representation is in the
 range <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">180]</span></code> instead of <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">360]</span></code>).
 Only this or <cite>value</cite> may be set, not both.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If this and <cite>value_saturation</cite> are both <code class="docutils literal notranslate"><span class="pre">None</span></code>, <cite>value</cite> may
 be set to a non-<code class="docutils literal notranslate"><span class="pre">None</span></code> value.</p></li>
 <li><p>If an integer, then that value will be used for all images.</p></li>
@@ -74,12 +76,12 @@ per image.</p></li>
 parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>value_saturation<span class="classifier">None or int or tuple of int or list of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Value to add to the saturation of all pixels.
+</p></li>
+<li><p><strong>value_saturation</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>tuple of int</em><em> or </em><em>list of int</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Value to add to the saturation of all pixels.
 It is expected to be in the range <code class="docutils literal notranslate"><span class="pre">-255</span></code> to <code class="docutils literal notranslate"><span class="pre">+255</span></code>.
 Only this or <cite>value</cite> may be set, not both.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If this and <cite>value_hue</cite> are both <code class="docutils literal notranslate"><span class="pre">None</span></code>, <cite>value</cite> may
 be set to a non-<code class="docutils literal notranslate"><span class="pre">None</span></code> value.</p></li>
 <li><p>If an integer, then that value will be used for all images.</p></li>
@@ -91,31 +93,29 @@ per image.</p></li>
 parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>per_channel<span class="classifier">bool or float, optional</span></dt><dd><p>Whether to sample per image only one value from <cite>value</cite> and use it for
+</p></li>
+<li><p><strong>per_channel</strong> (<em>bool</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – <p>Whether to sample per image only one value from <cite>value</cite> and use it for
 both hue and saturation (<code class="docutils literal notranslate"><span class="pre">False</span></code>) or to sample independently one
 value for hue and one for saturation (<code class="docutils literal notranslate"><span class="pre">True</span></code>).
 If this value is a float <code class="docutils literal notranslate"><span class="pre">p</span></code>, then for <code class="docutils literal notranslate"><span class="pre">p</span></code> percent of all images
 <cite>per_channel</cite> will be treated as <code class="docutils literal notranslate"><span class="pre">True</span></code>, otherwise as <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p>This parameter has no effect is <cite>value_hue</cite> and/or <cite>value_saturation</cite>
 are used instead of <cite>value</cite>.</p>
-</dd>
-<dt>from_colorspace<span class="classifier">str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">change_colorspace_()</span></code>.</p>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+</p></li>
+<li><p><strong>from_colorspace</strong> (<em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">change_colorspace_()</span></code>.</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AddToHueAndSaturation</span><span class="p">((</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">per_channel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>

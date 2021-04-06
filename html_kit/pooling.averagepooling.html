@@ -49,8 +49,10 @@ larger/smaller than their corresponding image.</p>
 </div>
 <p><strong>Supported dtypes</strong>:</p>
 <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">avg_pool()</span></code>.</p>
-<dl class="simple">
-<dt>kernel_size<span class="classifier">int or tuple of int or list of int or imgaug.parameters.StochasticParameter or tuple of tuple of int or tuple of list of int or tuple of imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The kernel size of the pooling operation.</p>
+<dl class="py attribute">
+<dt id="my_script.InsertDocString.kernel_size">
+<code class="sig-name descname">kernel_size</code><a class="headerlink" href="#my_script.InsertDocString.kernel_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>The kernel size of the pooling operation.</p>
 <ul class="simple">
 <li><p>If an int, then that value will be used for all images for both
 kernel height and width.</p></li>
@@ -72,27 +74,72 @@ second, and used as the kernel height and width.</p></li>
 indepdently per image, one from the first parameter and one from the
 second, and used as the kernel height and width.</p></li>
 </ul>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int or tuple of int or list of int or imgaug.parameters.StochasticParameter or tuple of tuple of int or tuple of list of int or tuple of imgaug.parameters.StochasticParameter, optional</p>
 </dd>
-<dt>keep_size<span class="classifier">bool, optional</span></dt><dd><p>After pooling, the result image will usually have a different
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt id="my_script.InsertDocString.keep_size">
+<code class="sig-name descname">keep_size</code><a class="headerlink" href="#my_script.InsertDocString.keep_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>After pooling, the result image will usually have a different
 height/width compared to the original input image. If this
 parameter is set to True, then the pooled image will be resized
 to the input image’s size, i.e. the augmenter’s output shape is always
 identical to the input shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool, optional</p>
 </dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt id="my_script.InsertDocString.seed">
+<code class="sig-name descname">seed</code><a class="headerlink" href="#my_script.InsertDocString.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</p>
 </dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt id="my_script.InsertDocString.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#my_script.InsertDocString.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>None or str, optional</p>
 </dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt id="my_script.InsertDocString.random_state">
+<code class="sig-name descname">random_state</code><a class="headerlink" href="#my_script.InsertDocString.random_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
 Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
-See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</p>
 </dd>
 </dl>
+</dd></dl>
+<dl class="py attribute">
+<dt id="my_script.InsertDocString.deterministic">
+<code class="sig-name descname">deterministic</code><a class="headerlink" href="#my_script.InsertDocString.deterministic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool, optional</p>
+</dd>
+</dl>
+</dd></dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AveragePooling</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>

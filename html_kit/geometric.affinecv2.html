@@ -74,11 +74,13 @@ deals with the method of interpolation used for this.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>: ?</p></li>
 </ul>
 </div></blockquote>
-<dl>
-<dt>scale<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter or dict {“x”: number/tuple/list/StochasticParameter, “y”: number/tuple/list/StochasticParameter}, optional</span></dt><dd><p>Scaling factor to use, where <code class="docutils literal notranslate"><span class="pre">1.0</span></code> denotes “no change” and
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em> or </em><em>dict {"x": number/tuple/list/StochasticParameter</em><em>, </em><em>"y": number/tuple/list/StochasticParameter}</em><em>, </em><em>optional</em>) – <p>Scaling factor to use, where <code class="docutils literal notranslate"><span class="pre">1.0</span></code> denotes “no change” and
 <code class="docutils literal notranslate"><span class="pre">0.5</span></code> is zoomed out to <code class="docutils literal notranslate"><span class="pre">50</span></code> percent of the original size.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single number, then that value will be used for all images.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value will be uniformly sampled
 per image from the interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>. That value will be
@@ -95,12 +97,12 @@ values for the two axis and sampling will then happen
 between the axes.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>translate_percent<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter or dict {“x”: number/tuple/list/StochasticParameter, “y”: number/tuple/list/StochasticParameter}, optional</span></dt><dd><p>Translation as a fraction of the image height/width (x-translation,
+</p></li>
+<li><p><strong>translate_percent</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em> or </em><em>dict {"x": number/tuple/list/StochasticParameter</em><em>, </em><em>"y": number/tuple/list/StochasticParameter}</em><em>, </em><em>optional</em>) – <p>Translation as a fraction of the image height/width (x-translation,
 y-translation), where <code class="docutils literal notranslate"><span class="pre">0</span></code> denotes “no change” and <code class="docutils literal notranslate"><span class="pre">0.5</span></code> denotes
 “half of the axis size”.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code> then equivalent to <code class="docutils literal notranslate"><span class="pre">0.0</span></code> unless <cite>translate_px</cite> has
 a value other than <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p>If a single number, then that value will be used for all images.</p></li>
@@ -119,10 +121,10 @@ values for the two axis and sampling will then happen
 between the axes.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>translate_px<span class="classifier">int or tuple of int or list of int or imgaug.parameters.StochasticParameter or dict {“x”: int/tuple/list/StochasticParameter, “y”: int/tuple/list/StochasticParameter}, optional</span></dt><dd><p>Translation in pixels.</p>
+</p></li>
+<li><p><strong>translate_px</strong> (<em>int</em><em> or </em><em>tuple of int</em><em> or </em><em>list of int</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em> or </em><em>dict {"x": int/tuple/list/StochasticParameter</em><em>, </em><em>"y": int/tuple/list/StochasticParameter}</em><em>, </em><em>optional</em>) – <p>Translation in pixels.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code> then equivalent to <code class="docutils literal notranslate"><span class="pre">0</span></code> unless <cite>translate_percent</cite>
 has a value other than <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p>If a single int, then that value will be used for all images.</p></li>
@@ -141,12 +143,12 @@ values for the two axis and sampling will then happen
 between the axes.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>rotate<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Rotation in degrees (<strong>NOT</strong> radians), i.e. expected value range is
+</p></li>
+<li><p><strong>rotate</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Rotation in degrees (<strong>NOT</strong> radians), i.e. expected value range is
 around <code class="docutils literal notranslate"><span class="pre">[-360,</span> <span class="pre">360]</span></code>. Rotation happens around the <em>center</em> of the
 image, not the top left corner as in some other frameworks.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a number, then that value will be used for all images.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value will be uniformly sampled
 per image from the interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code> and used as the rotation
@@ -157,11 +159,11 @@ per image.</p></li>
 sample the rotation value per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>shear<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Shear in degrees (<strong>NOT</strong> radians), i.e. expected value range is
+</p></li>
+<li><p><strong>shear</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Shear in degrees (<strong>NOT</strong> radians), i.e. expected value range is
 around <code class="docutils literal notranslate"><span class="pre">[-360,</span> <span class="pre">360]</span></code>.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a number, then that value will be used for all images.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value will be uniformly sampled
 per image from the interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code> and be used as the
@@ -172,10 +174,10 @@ per image.</p></li>
 to sample the shear value per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>order<span class="classifier">int or list of int or str or list of str or imaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Interpolation order to use. Allowed are:</p>
+</p></li>
+<li><p><strong>order</strong> (<em>int</em><em> or </em><em>list of int</em><em> or </em><em>str</em><em> or </em><em>list of str</em><em> or </em><em>imaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Interpolation order to use. Allowed are:</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv2.INTER_NEAREST</span></code> (nearest-neighbor interpolation)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv2.INTER_LINEAR</span></code> (bilinear interpolation, used by default)</p></li>
 <li><dl class="simple">
@@ -193,7 +195,7 @@ to sample the shear value per image.</p></li>
 <p><code class="docutils literal notranslate"><span class="pre">INTER_NEAREST</span></code> (nearest neighbour interpolation) and
 <code class="docutils literal notranslate"><span class="pre">INTER_NEAREST</span></code> (linear interpolation) are the fastest.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that order will be used for all images.</p></li>
 <li><p>If a string, then it must be one of: <code class="docutils literal notranslate"><span class="pre">nearest</span></code>, <code class="docutils literal notranslate"><span class="pre">linear</span></code>,
 <code class="docutils literal notranslate"><span class="pre">cubic</span></code>, <code class="docutils literal notranslate"><span class="pre">lanczos4</span></code>.</p></li>
@@ -206,14 +208,14 @@ order values).</p></li>
 image to sample the order value to use.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>cval<span class="classifier">number or tuple of number or list of number or imaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The constant value to use when filling in newly created pixels.
+</p></li>
+<li><p><strong>cval</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>The constant value to use when filling in newly created pixels.
 (E.g. translating by 1px to the right will create a new 1px-wide
 column of pixels on the left of the image).  The value is only used
 when <cite>mode=constant</cite>. The expected value range is <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code> for
 <code class="docutils literal notranslate"><span class="pre">uint8</span></code> images. It may be a float value.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If this is a single number, then that value will be used
 (e.g. 0 results in black pixels).</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then three values (for three image
@@ -226,16 +228,14 @@ per image.</p></li>
 the parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>mode<span class="classifier">int or str or list of str or list of int or imgaug.ALL or imgaug.parameters.StochasticParameter,</span></dt><dd><blockquote>
-<div><p>optional</p>
-</div></blockquote>
-<p>Method to use when filling in newly created pixels.
+</p></li>
+<li><p><strong>mode</strong> (<em>int</em><em> or </em><em>str</em><em> or </em><em>list of str</em><em> or </em><em>list of int</em><em> or </em><em>imgaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>,</em>) – <p>optional
+Method to use when filling in newly created pixels.
 Same meaning as in OpenCV’s border mode. Let <code class="docutils literal notranslate"><span class="pre">abcdefgh</span></code> be an image’s
 content and <code class="docutils literal notranslate"><span class="pre">|</span></code> be an image boundary after which new pixels are
 filled in, then the valid modes and their behaviour are the following:</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv2.BORDER_REPLICATE</span></code>: <code class="docutils literal notranslate"><span class="pre">aaaaaa|abcdefgh|hhhhhhh</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv2.BORDER_REFLECT</span></code>: <code class="docutils literal notranslate"><span class="pre">fedcba|abcdefgh|hgfedcb</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv2.BORDER_REFLECT_101</span></code>: <code class="docutils literal notranslate"><span class="pre">gfedcb|abcdefgh|gfedcba</span></code></p></li>
@@ -254,7 +254,7 @@ filled in, then the valid modes and their behaviour are the following:</p>
 </div></blockquote>
 <p>The datatype of the parameter may be:</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then it must be one of the <code class="docutils literal notranslate"><span class="pre">cv2.BORDER_*</span></code>
 constants.</p></li>
 <li><p>If a single string, then it must be one of: <code class="docutils literal notranslate"><span class="pre">replicate</span></code>,
@@ -268,21 +268,20 @@ that parameter per image, i.e. it must return only the above
 mentioned strings.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AffineCv2</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 </pre></div>

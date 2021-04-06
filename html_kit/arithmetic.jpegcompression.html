@@ -41,8 +41,10 @@ the images with JPEG compression and then reloads them into arrays). It
 does not return the raw JPEG file content.</p>
 <p><strong>Supported dtypes</strong>:</p>
 <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">compress_jpeg()</span></code>.</p>
-<dl>
-<dt>compression<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Degree of compression used during JPEG compression within value range
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compression</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Degree of compression used during JPEG compression within value range
 <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">100]</span></code>. Higher values denote stronger compression and will cause
 low-frequency components to disappear. Note that JPEG’s compression
 strength is also often set as a <em>quality</em>, which is the inverse of this
@@ -50,7 +52,7 @@ parameter. Common choices for the <em>quality</em> setting are around 80 to 95,
 depending on the image. This translates here to a <em>compression</em>
 parameter of around 20 to 5.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single number, then that value always will be used as the
 compression.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then the compression will be
@@ -62,21 +64,20 @@ from that parameter per <code class="docutils literal notranslate"><span class="
 compression for the <code class="docutils literal notranslate"><span class="pre">n</span></code>-th image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">JpegCompression</span><span class="p">(</span><span class="n">compression</span><span class="o">=</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">99</span><span class="p">))</span>
 </pre></div>

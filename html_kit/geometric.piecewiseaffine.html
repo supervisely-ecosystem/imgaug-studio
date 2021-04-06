@@ -87,8 +87,10 @@ seemed to not be an issue.</p></li>
 </li>
 </ul>
 </div></blockquote>
-<dl>
-<dt>scale<span class="classifier">float or tuple of float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Each point on the regular grid is moved around via a normal
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em><em> or </em><em>tuple of float</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Each point on the regular grid is moved around via a normal
 distribution. This scale factor is equivalent to the normal
 distribution’s sigma. Note that the jitter (how far each point is
 moved in which direction) is multiplied by the height/width of the
@@ -97,7 +99,7 @@ the same for different sized images.
 Recommended values are in the range <code class="docutils literal notranslate"><span class="pre">0.01</span></code> to <code class="docutils literal notranslate"><span class="pre">0.05</span></code> (weak to
 strong augmentations).</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single <code class="docutils literal notranslate"><span class="pre">float</span></code>, then that value will always be used as
 the scale.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code> of <code class="docutils literal notranslate"><span class="pre">float</span></code> s, then a random value will
@@ -108,13 +110,13 @@ per image.</p></li>
 queried to draw one value per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>nb_rows<span class="classifier">int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Number of rows of points that the regular grid should have.
+</p></li>
+<li><p><strong>nb_rows</strong> (<em>int</em><em> or </em><em>tuple of int</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Number of rows of points that the regular grid should have.
 Must be at least <code class="docutils literal notranslate"><span class="pre">2</span></code>. For large images, you might want to pick a
 higher value than <code class="docutils literal notranslate"><span class="pre">4</span></code>. You might have to then adjust scale to lower
 values.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will always be used as the
 number of rows.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value from the discrete interval
@@ -125,40 +127,33 @@ per image.</p></li>
 draw one value per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>nb_cols<span class="classifier">int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Number of columns. Analogous to <cite>nb_rows</cite>.</p>
-</dd>
-<dt>order<span class="classifier">int or list of int or imgaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>cval<span class="classifier">int or float or tuple of float or imgaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>mode<span class="classifier">str or list of str or imgaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>absolute_scale<span class="classifier">bool, optional</span></dt><dd><p>Take <cite>scale</cite> as an absolute value rather than a relative value.</p>
-</dd>
-<dt>polygon_recoverer<span class="classifier">‘auto’ or None or imgaug.augmentables.polygons._ConcavePolygonRecoverer, optional</span></dt><dd><p>The class to use to repair invalid polygons.
+</p></li>
+<li><p><strong>nb_cols</strong> (<em>int</em><em> or </em><em>tuple of int</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – Number of columns. Analogous to <cite>nb_rows</cite>.</p></li>
+<li><p><strong>order</strong> (<em>int</em><em> or </em><em>list of int</em><em> or </em><em>imgaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>cval</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>tuple of float</em><em> or </em><em>imgaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em> or </em><em>list of str</em><em> or </em><em>imgaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>absolute_scale</strong> (<em>bool</em><em>, </em><em>optional</em>) – Take <cite>scale</cite> as an absolute value rather than a relative value.</p></li>
+<li><p><strong>polygon_recoverer</strong> (<em>'auto'</em><em> or </em><em>None</em><em> or </em><em>imgaug.augmentables.polygons._ConcavePolygonRecoverer</em><em>, </em><em>optional</em>) – The class to use to repair invalid polygons.
 If <code class="docutils literal notranslate"><span class="pre">"auto"</span></code>, a new instance of
 :class`imgaug.augmentables.polygons._ConcavePolygonRecoverer`
 will be created.
 If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no polygon recoverer will be used.
 If an object, then that object will be used and must provide a
 <code class="docutils literal notranslate"><span class="pre">recover_from()</span></code> method, similar to
-<code class="xref py py-class docutils literal notranslate"><span class="pre">_ConcavePolygonRecoverer</span></code>.</p>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+<code class="xref py py-class docutils literal notranslate"><span class="pre">_ConcavePolygonRecoverer</span></code>.</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">PiecewiseAffine</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
 </pre></div>

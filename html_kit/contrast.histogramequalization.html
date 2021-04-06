@@ -73,36 +73,35 @@ which only supports <code class="docutils literal notranslate"><span class="pre"
 </li>
 </ul>
 </div></blockquote>
-<dl class="simple">
-<dt>from_colorspace<span class="classifier">{“RGB”, “BGR”, “HSV”, “HLS”, “Lab”}, optional</span></dt><dd><p>Colorspace of the input images.
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_colorspace</strong> (<em>{"RGB"</em><em>, </em><em>"BGR"</em><em>, </em><em>"HSV"</em><em>, </em><em>"HLS"</em><em>, </em><em>"Lab"}</em><em>, </em><em>optional</em>) – Colorspace of the input images.
 If any input image has only one or zero channels, this setting will be
 ignored and it will be assumed that the input is grayscale.
 If a fourth channel is present in an input image, it will be removed
 before the colorspace conversion and later re-added.
 See also <code class="xref py py-func docutils literal notranslate"><span class="pre">change_colorspace_()</span></code> for
-details.</p>
-</dd>
-<dt>to_colorspace<span class="classifier">{“Lab”, “HLS”, “HSV”}, optional</span></dt><dd><p>Colorspace in which to perform Histogram Equalization. For <code class="docutils literal notranslate"><span class="pre">Lab</span></code>,
+details.</p></li>
+<li><p><strong>to_colorspace</strong> (<em>{"Lab"</em><em>, </em><em>"HLS"</em><em>, </em><em>"HSV"}</em><em>, </em><em>optional</em>) – Colorspace in which to perform Histogram Equalization. For <code class="docutils literal notranslate"><span class="pre">Lab</span></code>,
 the equalization will only be applied to the first channel (<code class="docutils literal notranslate"><span class="pre">L</span></code>),
 for <code class="docutils literal notranslate"><span class="pre">HLS</span></code> to the second (<code class="docutils literal notranslate"><span class="pre">L</span></code>) and for <code class="docutils literal notranslate"><span class="pre">HSV</span></code> to the third (<code class="docutils literal notranslate"><span class="pre">V</span></code>).
 To apply histogram equalization to all channels of an input image
 (without colorspace conversion), see
-<code class="docutils literal notranslate"><span class="pre">imgaug.augmenters.contrast.AllChannelsHistogramEqualization</span></code>.</p>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+<code class="docutils literal notranslate"><span class="pre">imgaug.augmenters.contrast.AllChannelsHistogramEqualization</span></code>.</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">HistogramEqualization</span><span class="p">()</span>
 </pre></div>

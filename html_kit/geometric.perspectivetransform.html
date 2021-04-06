@@ -86,14 +86,16 @@ some “focus” on polygons far inside the image.</p>
 </dl>
 <p>)</p>
 </div></blockquote>
-<dl>
-<dt>scale<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Standard deviation of the normal distributions. These are used to
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Standard deviation of the normal distributions. These are used to
 sample the random distances of the subimage’s corners from the full
 image’s corners. The sampled values reflect percentage values (with
 respect to image height/width). Recommended values are in the range
 <code class="docutils literal notranslate"><span class="pre">0.0</span></code> to <code class="docutils literal notranslate"><span class="pre">0.1</span></code>.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single number, then that value will always be used as the
 scale.</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code> of numbers, then a random value will be
@@ -104,20 +106,19 @@ list per image.</p></li>
 queried to draw one value per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>keep_size<span class="classifier">bool, optional</span></dt><dd><p>Whether to resize image’s back to their original size after applying
+</p></li>
+<li><p><strong>keep_size</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to resize image’s back to their original size after applying
 the perspective transform. If set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, the resulting images
 may end up having different shapes and will always be a list, never
-an array.</p>
-</dd>
-<dt>cval<span class="classifier">number or tuple of number or list of number or imaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The constant value used to fill up pixels in the result image that
+an array.</p></li>
+<li><p><strong>cval</strong> (<em>number</em><em> or </em><em>tuple of number</em><em> or </em><em>list of number</em><em> or </em><em>imaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>The constant value used to fill up pixels in the result image that
 didn’t exist in the input image (e.g. when translating to the left,
 some new pixels are created at the right). Such a fill-up with a
 constant value only happens, when <cite>mode</cite> is <code class="docutils literal notranslate"><span class="pre">constant</span></code>.
 The expected value range is <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code> for <code class="docutils literal notranslate"><span class="pre">uint8</span></code> images.
 It may be a float value.</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If this is a single int or float, then that value will be used
 (e.g. 0 results in black pixels).</p></li>
 <li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a random value is uniformly sampled
@@ -129,12 +130,12 @@ per image.</p></li>
 the parameter per image.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>mode<span class="classifier">int or str or list of str or list of int or imgaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Parameter that defines the handling of newly created pixels.
+</p></li>
+<li><p><strong>mode</strong> (<em>int</em><em> or </em><em>str</em><em> or </em><em>list of str</em><em> or </em><em>list of int</em><em> or </em><em>imgaug.ALL</em><em> or </em><em>imgaug.parameters.StochasticParameter</em><em>, </em><em>optional</em>) – <p>Parameter that defines the handling of newly created pixels.
 Same meaning as in OpenCV’s border mode. Let <code class="docutils literal notranslate"><span class="pre">abcdefgh</span></code> be an image’s
 content and <code class="docutils literal notranslate"><span class="pre">|</span></code> be an image boundary, then:</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv2.BORDER_REPLICATE</span></code>: <code class="docutils literal notranslate"><span class="pre">aaaaaa|abcdefgh|hhhhhhh</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv2.BORDER_CONSTANT</span></code>: <code class="docutils literal notranslate"><span class="pre">iiiiii|abcdefgh|iiiiiii</span></code>, where
 <code class="docutils literal notranslate"><span class="pre">i</span></code> is the defined cval.</p></li>
@@ -144,7 +145,7 @@ content and <code class="docutils literal notranslate"><span class="pre">|</span
 </div></blockquote>
 <p>The datatype of the parameter may be:</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then it must be one of <code class="docutils literal notranslate"><span class="pre">cv2.BORDER_*</span></code>.</p></li>
 <li><p>If a single string, then it must be one of: <code class="docutils literal notranslate"><span class="pre">replicate</span></code>,
 <code class="docutils literal notranslate"><span class="pre">reflect</span></code>, <code class="docutils literal notranslate"><span class="pre">reflect_101</span></code>, <code class="docutils literal notranslate"><span class="pre">wrap</span></code>, <code class="docutils literal notranslate"><span class="pre">constant</span></code>.</p></li>
@@ -157,8 +158,8 @@ that parameter per image, i.e. it must return only the above
 mentioned strings.</p></li>
 </ul>
 </div></blockquote>
-</dd>
-<dt>fit_output<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the image plane size and position will be adjusted
+</p></li>
+<li><p><strong>fit_output</strong> (<em>bool</em><em>, </em><em>optional</em>) – <p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the image plane size and position will be adjusted
 to still capture the whole image after perspective transformation.
 (Followed by image resizing if <cite>keep_size</cite> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.)
 Otherwise, parts of the transformed image may be outside of the image
@@ -166,30 +167,28 @@ plane.
 This setting should not be set to <code class="docutils literal notranslate"><span class="pre">True</span></code> when using large <cite>scale</cite>
 values as it could lead to very large images.</p>
 <p>Added in 0.4.0.</p>
-</dd>
-<dt>polygon_recoverer<span class="classifier">‘auto’ or None or imgaug.augmentables.polygons._ConcavePolygonRecoverer, optional</span></dt><dd><p>The class to use to repair invalid polygons.
+</p></li>
+<li><p><strong>polygon_recoverer</strong> (<em>'auto'</em><em> or </em><em>None</em><em> or </em><em>imgaug.augmentables.polygons._ConcavePolygonRecoverer</em><em>, </em><em>optional</em>) – The class to use to repair invalid polygons.
 If <code class="docutils literal notranslate"><span class="pre">"auto"</span></code>, a new instance of
 :class`imgaug.augmentables.polygons._ConcavePolygonRecoverer`
 will be created.
 If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no polygon recoverer will be used.
 If an object, then that object will be used and must provide a
 <code class="docutils literal notranslate"><span class="pre">recover_from()</span></code> method, similar to
-<code class="xref py py-class docutils literal notranslate"><span class="pre">_ConcavePolygonRecoverer</span></code>.</p>
-</dd>
-<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
-</dd>
-<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+<code class="xref py py-class docutils literal notranslate"><span class="pre">_ConcavePolygonRecoverer</span></code>.</p></li>
+<li><p><strong>seed</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>name</strong> (<em>None</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>imgaug.random.RNG</em><em> or </em><em>numpy.random.Generator</em><em> or </em><em>numpy.random.BitGenerator</em><em> or </em><em>numpy.random.SeedSequence</em><em> or </em><em>numpy.random.RandomState</em><em>, </em><em>optional</em>) – Old name for parameter <cite>seed</cite>.
 Its usage will not yet cause a deprecation warning,
 but it is still recommended to use <cite>seed</cite> now.
-Outdated since 0.4.0.</p>
-</dd>
-<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+Outdated since 0.4.0.</p></li>
+<li><p><strong>deterministic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deprecated since 0.4.0.
 See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
-details about what the “deterministic mode” actually does.</p>
+details about what the “deterministic mode” actually does.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">PerspectiveTransform</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">))</span>
 </pre></div>

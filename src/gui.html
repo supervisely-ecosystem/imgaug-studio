@@ -214,7 +214,7 @@
                 </sly-copy-to-clipboard>
             </sly-field>
 
-            <sly-field v-if="state.aug" description="afsfs sd fsd">
+            <sly-field v-if="state.aug" description="Docs for the selected augmentation method">
                 <div slot="title">
                     <b>Documentation: </b>
                     <a target="_blank" :href="data.config[state.category][state.aug].durl">
@@ -222,6 +222,7 @@
                     </a>
                 </div>
 
+<!--                style="padding: 10px 10px 10px 10px;"-->
                 <sly-docstring class="mt10"
                                v-if="data.docs[state.category][state.aug]"
                                :data="data.docs[state.category][state.aug]">
