@@ -63,7 +63,7 @@
         <div class="fflex mt10">
             <el-button
                     :disabled="state.addMode === true"
-                    type="success"
+                    type="success" class="regular"
                     size="small"
                     @click="state.addMode = true;">
                 <i class="zmdi zmdi-playlist-plus mr5"></i>Add
@@ -71,7 +71,7 @@
             <el-button
                     style="margin-left: 5px;"
                     :disabled="state.addMode === true || data.pipeline.length === 0"
-                    type="primary"
+                    type="primary" class="regular"
                     size="small"
                     @click="command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview entire pipeline
@@ -86,7 +86,7 @@
                   subtitle="Explore, configure and preview"
                   style="min-width: 350px; max-width: 350px;">
             <div slot="header">
-                <el-button type="danger" size="small" @click="state.addMode = false; state.aug = null">
+                <el-button type="danger" class="regular" size="small" @click="state.addMode = false; state.aug = null">
                     <i class="zmdi zmdi-close"></i> Cancel
                 </el-button>
             </div>
@@ -169,14 +169,18 @@
                                            :value="val"></el-option>
                             </el-select>
                         </sly-field>
+                        <sly-field title="Apply sometimes" class="apply aug with probability">
+                            <el-checkbox v-model="state.sometimes">Option</el-checkbox>
+                            <el-input-number v-model="state.sometimesP" :min="0" :max="1" :step="0.01" :debounce="1000"></el-input-number>
+                        </sly-field>
                     </div>
                 </sly-field>
                 <div v-if="state.aug">
                     <div class="fflex mt10" style="justify-content: space-between;">
-                        <el-button type="primary" style="margin-left: 5px;" size="small" @click="command('preview')">
+                        <el-button type="primary" class="regular" size="small" @click="command('preview')">
                             <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i>Preview
                         </el-button>
-                        <el-button type="success" size="small" @click="command('add')">
+                        <el-button type="success" class="regular" size="small" @click="command('add')">
                             <i class="zmdi zmdi-check"></i> Add to pipeline
                         </el-button>
                     </div>

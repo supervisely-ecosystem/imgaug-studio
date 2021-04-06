@@ -112,13 +112,3 @@ def main():
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 
-# {
-#     "type": "el-input-range",
-#     "default": [
-#         1,
-#         5
-#     ],
-#     "min": 0,
-#     "max": 10000,
-#     "pname": "nb_iterations"
-# },

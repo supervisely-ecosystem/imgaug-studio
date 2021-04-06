@@ -31,6 +31,8 @@ def init_augs_configs(data: dict, state: dict):
     data["config"] = augs_configs
     state["previewCount"] = 1
 
+    state["sometimes"] = False
+    state["sometimesP"] = 0.5
 
 def init_pipeline(data, state):
     data["pipeline"] = [
