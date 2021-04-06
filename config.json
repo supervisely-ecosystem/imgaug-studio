@@ -15,5 +15,6 @@
   "disable_stop": true,
   "context_menu": {
     "target": ["images_project"]
-  }
+  },
+  "instance_version": "6.4.9"
 }
