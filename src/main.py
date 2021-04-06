@@ -95,20 +95,10 @@ def main():
     app.run(data=data, state=state)
 
 # restore-default on client
-# slider->two el-input
-# el-input-number -> el-input
-# @TODO: random_order flag
-# https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
+# @TODO: random_order flag (shuffle flag to entire pipeline)
 # Cutout invalid arguments
 # create sequence format
-# add doc html
-# refresh preview python code + images
 # define minimum version
-# add probability to every augmentation
-# add shuffle flag to entire pipeline
-# auto modify py field
-# https://github.com/IliaLarchenko/albumentations-demo
-
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 

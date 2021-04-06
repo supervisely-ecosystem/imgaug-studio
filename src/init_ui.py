@@ -83,7 +83,7 @@ def init_preview(data, state):
     }
 
     #@TODO: delete
-    state["num"] = 5
+    state["sometimes"] = False
     state["fl"] = 0.3
 
 
