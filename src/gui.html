@@ -214,11 +214,17 @@
                 </sly-copy-to-clipboard>
             </sly-field>
 
-            <sly-field v-if="state.aug" title="Documentation">
-                <a :href="data.config[state.category][state.aug].durl" target="_blank">
-                    Link to original docs <i class="zmdi zmdi-open-in-new"></i>
-                </a>
-                <sly-docstring v-if="data.docs[state.category][state.aug]"
+            <sly-field v-if="state.aug" description="afsfs sd fsd">
+                <div slot="title">
+                    <b>Documentation: </b>
+                    <a target="_blank" :href="data.config[state.category][state.aug].durl">
+                        link to original docs <i class="zmdi zmdi-open-in-new"></i>
+                    </a>
+
+                </div>
+
+                <sly-docstring class="mt10"
+                               v-if="data.docs[state.category][state.aug]"
                                :data="data.docs[state.category][state.aug]">
                 </sly-docstring>
             </sly-field>
