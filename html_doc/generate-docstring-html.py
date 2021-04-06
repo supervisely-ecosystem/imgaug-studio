@@ -163,4 +163,4 @@ from src.allowed_augs import augs_modules
 for module_name, methods in augs_modules.items():
     for method in methods:
         docstr = py_code.format(method.__doc__)
-        pretty_py_html(docstr, "../html_kit", html_name=method.__name__)
+        pretty_py_html(docstr, "../html_kit", html_name=f"{module_name.lower()}.{method.__name__.lower()}")

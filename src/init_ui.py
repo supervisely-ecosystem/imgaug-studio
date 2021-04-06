@@ -1,4 +1,5 @@
 import os
+from collections import defaultdict
 import supervisely_lib as sly
 
 augs_configs = sly.json.load_json_file("augs.json")
@@ -88,11 +89,11 @@ def init_preview(data, state):
 
 
 def init_docs(data):
-    data["docs"] = {}
+    data["docs"] = defaultdict(dict)
 
     from src.allowed_augs import augs_modules
     for module_name, methods in augs_modules.items():
         for method in methods:
-            doc_path = f"../html_kit/{method.__name__}.html"
+            doc_path = f"../html_kit/{module_name}.{method.__name__}.html".lower()
             with open(doc_path, 'r') as file:
-                data["docs"][method.__name__] = file.read()
+                data["docs"][module_name][method.__name__] = file.read()

@@ -214,11 +214,13 @@
                 </sly-copy-to-clipboard>
             </sly-field>
 
-            <sly-field v-if="state.aug && data.docs[state.aug]" title="Documentation">
+            <sly-field v-if="state.aug" title="Documentation">
                 <a :href="data.config[state.category][state.aug].durl" target="_blank">
                     Link to original docs <i class="zmdi zmdi-open-in-new"></i>
                 </a>
-                <sly-docstring :data="data.docs[state.aug]"></sly-docstring>
+                <sly-docstring v-if="data.docs[state.category][state.aug]"
+                               :data="data.docs[state.category][state.aug]">
+                </sly-docstring>
             </sly-field>
         </sly-card>
     </div>

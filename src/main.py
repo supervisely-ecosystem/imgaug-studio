@@ -89,7 +89,7 @@ def main():
 
     #TODO: for debug
     state["addMode"] = True
-    state["category"] = "Arithmetic"
+    state["category"] = "arithmetic"
     state["aug"] = "ImpulseNoise"
 
     app.run(data=data, state=state)

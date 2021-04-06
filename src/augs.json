@@ -1,5 +1,5 @@
 {
-    "Arithmetic": {
+    "arithmetic": {
         "Add": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_arithmetic.html#imgaug.augmenters.arithmetic.Add",
             "py": "iaa.Add(value=(-20, 20), per_channel=False)",
