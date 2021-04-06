@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div style="padding: 30px;"><div class="rst-content section wy-nav-content" style="margin: 0 auto; border-radius: 8px; box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);"><dd>
+<p>Apply CLAHE to L/V/L channels in HLS/HSV/Lab colorspaces.</p>
+<blockquote>
+<div><p>This augmenter applies CLAHE (Contrast Limited Adaptive Histogram
+Equalization) to images, a form of histogram equalization that normalizes
+within local image patches.
+The augmenter transforms input images to a target colorspace (e.g.
+<code class="docutils literal notranslate"><span class="pre">Lab</span></code>), extracts an intensity-related channel from the converted
+images (e.g. <code class="docutils literal notranslate"><span class="pre">L</span></code> for <code class="docutils literal notranslate"><span class="pre">Lab</span></code>), applies CLAHE to the channel and then
+converts the resulting image back to the original colorspace.</p>
+<p>Grayscale images (images without channel axis or with only one channel
+axis) are automatically handled, <cite>from_colorspace</cite> does not have to be
+adjusted for them. For images with four channels (e.g. <code class="docutils literal notranslate"><span class="pre">RGBA</span></code>), the
+fourth channel is ignored in the colorspace conversion (e.g. from an
+<code class="docutils literal notranslate"><span class="pre">RGBA</span></code> image, only the <code class="docutils literal notranslate"><span class="pre">RGB</span></code> part is converted, normalized, converted
+back and concatenated with the input <code class="docutils literal notranslate"><span class="pre">A</span></code> channel). Images with unusual
+channel numbers (2, 5 or more than 5) are normalized channel-by-channel
+(same behaviour as <code class="docutils literal notranslate"><span class="pre">AllChannelsCLAHE</span></code>, though a warning will be raised).</p>
+<p>If you want to apply CLAHE to each channel of the original input image’s
+colorspace (without any colorspace conversion), use
+<code class="docutils literal notranslate"><span class="pre">imgaug.augmenters.contrast.AllChannelsCLAHE</span></code> instead.</p>
+<p><strong>Supported dtypes</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code>: yes; fully tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint16</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int8</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int16</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float16</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float32</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float128</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>: no (1)</p></li>
+</ul>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>This augmenter uses
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeColorspace</span></code>, which is
+currently limited to <code class="docutils literal notranslate"><span class="pre">uint8</span></code>.</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<dl>
+<dt>clip_limit<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Clipping limit. Higher values result in stronger contrast. OpenCV
+uses a default of <code class="docutils literal notranslate"><span class="pre">40</span></code>, though values around <code class="docutils literal notranslate"><span class="pre">5</span></code> seem to already
+produce decent contrast.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a number, then that value will be used for all images.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value from the range <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>
+will be used per image.</p></li>
+<li><p>If a list, then a random value will be sampled from that list
+per image.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then a value will be sampled per
+image from that parameter.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>tile_grid_size_px<span class="classifier">int or tuple of int or list of int or imgaug.parameters.StochasticParameter or tuple of tuple of int or tuple of list of int or tuple of imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Kernel size, i.e. size of each local neighbourhood in pixels.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If an <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will be used for all images for
+both kernel height and width.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value from the discrete interval
+<code class="docutils literal notranslate"><span class="pre">[a..b]</span></code> will be uniformly sampled per image.</p></li>
+<li><p>If a list, then a random value will be sampled from that list
+per image and used for both kernel height and width.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then a value will be sampled per
+image from that parameter per image and used for both kernel
+height and width.</p></li>
+<li><p>If a tuple of tuple of <code class="docutils literal notranslate"><span class="pre">int</span></code> given as <code class="docutils literal notranslate"><span class="pre">((a,</span> <span class="pre">b),</span> <span class="pre">(c,</span> <span class="pre">d))</span></code>,
+then two values will be sampled independently from the discrete
+ranges <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code> and <code class="docutils literal notranslate"><span class="pre">[c..d]</span></code> per image and used as the
+kernel height and width.</p></li>
+<li><p>If a tuple of lists of <code class="docutils literal notranslate"><span class="pre">int</span></code>, then two values will be sampled
+independently per image, one from the first list and one from
+the second, and used as the kernel height and width.</p></li>
+<li><p>If a tuple of <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then two values will be
+sampled indepdently per image, one from the first parameter and
+one from the second, and used as the kernel height and width.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>tile_grid_size_px_min<span class="classifier">int, optional</span></dt><dd><p>Minimum kernel size in px, per axis. If the sampling results in a
+value lower than this minimum, it will be clipped to this value.</p>
+</dd>
+<dt>from_colorspace<span class="classifier">{“RGB”, “BGR”, “HSV”, “HLS”, “Lab”}, optional</span></dt><dd><p>Colorspace of the input images.
+If any input image has only one or zero channels, this setting will
+be ignored and it will be assumed that the input is grayscale.
+If a fourth channel is present in an input image, it will be removed
+before the colorspace conversion and later re-added.
+See also <code class="xref py py-func docutils literal notranslate"><span class="pre">change_colorspace_()</span></code> for
+details.</p>
+</dd>
+<dt>to_colorspace<span class="classifier">{“Lab”, “HLS”, “HSV”}, optional</span></dt><dd><p>Colorspace in which to perform CLAHE. For <code class="docutils literal notranslate"><span class="pre">Lab</span></code>, CLAHE will only be
+applied to the first channel (<code class="docutils literal notranslate"><span class="pre">L</span></code>), for <code class="docutils literal notranslate"><span class="pre">HLS</span></code> to the
+second (<code class="docutils literal notranslate"><span class="pre">L</span></code>) and for <code class="docutils literal notranslate"><span class="pre">HSV</span></code> to the third (<code class="docutils literal notranslate"><span class="pre">V</span></code>). To apply CLAHE
+to all channels of an input image (without colorspace conversion),
+see <code class="docutils literal notranslate"><span class="pre">imgaug.augmenters.contrast.AllChannelsCLAHE</span></code>.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CLAHE</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Create a standard CLAHE augmenter.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CLAHE</span><span class="p">(</span><span class="n">clip_limit</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Create a CLAHE augmenter with a clip limit uniformly sampled from
+<code class="docutils literal notranslate"><span class="pre">[1..10]</span></code>, where <code class="docutils literal notranslate"><span class="pre">1</span></code> is rather low contrast and <code class="docutils literal notranslate"><span class="pre">10</span></code> is rather
+high contrast.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CLAHE</span><span class="p">(</span><span class="n">tile_grid_size_px</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Create a CLAHE augmenter with kernel sizes of <code class="docutils literal notranslate"><span class="pre">SxS</span></code>, where <code class="docutils literal notranslate"><span class="pre">S</span></code> is
+uniformly sampled from <code class="docutils literal notranslate"><span class="pre">[3..21]</span></code>. Sampling happens once per image.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CLAHE</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">tile_grid_size_px</span><span class="o">=</span><span class="n">iap</span><span class="o">.</span><span class="n">Discretize</span><span class="p">(</span><span class="n">iap</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">tile_grid_size_px_min</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a CLAHE augmenter with kernel sizes of <code class="docutils literal notranslate"><span class="pre">SxS</span></code>, where <code class="docutils literal notranslate"><span class="pre">S</span></code> is
+sampled from <code class="docutils literal notranslate"><span class="pre">N(7,</span> <span class="pre">2)</span></code>, but does not go below <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CLAHE</span><span class="p">(</span><span class="n">tile_grid_size_px</span><span class="o">=</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>Create a CLAHE augmenter with kernel sizes of <code class="docutils literal notranslate"><span class="pre">HxW</span></code>, where <code class="docutils literal notranslate"><span class="pre">H</span></code> is
+uniformly sampled from <code class="docutils literal notranslate"><span class="pre">[3..21]</span></code> and <code class="docutils literal notranslate"><span class="pre">W</span></code> is randomly picked from the
+list <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">5,</span> <span class="pre">7]</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CLAHE</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">from_colorspace</span><span class="o">=</span><span class="n">iaa</span><span class="o">.</span><span class="n">CSPACE_BGR</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">to_colorspace</span><span class="o">=</span><span class="n">iaa</span><span class="o">.</span><span class="n">CSPACE_HSV</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a CLAHE augmenter that converts images from BGR colorspace to
+HSV colorspace and then applies the local histogram equalization to the
+<code class="docutils literal notranslate"><span class="pre">V</span></code> channel of the images (before converting back to <code class="docutils literal notranslate"><span class="pre">BGR</span></code>).
+Alternatively, <code class="docutils literal notranslate"><span class="pre">Lab</span></code> (default) or <code class="docutils literal notranslate"><span class="pre">HLS</span></code> can be used as the target
+colorspace. Grayscale images (no channels / one channel) are never
+converted and are instead directly normalized (i.e. <cite>from_colorspace</cite>
+does not have to be changed for them).</p>
+</div></blockquote>
+</dd></div></div></body>
+</html>

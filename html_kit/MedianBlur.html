@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div style="padding: 30px;"><div class="rst-content section wy-nav-content" style="margin: 0 auto; border-radius: 8px; box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);"><dd>
+<p>Blur an image by computing median values over neighbourhoods.</p>
+<blockquote>
+<div><p>Median blurring can be used to remove small dirt from images.
+At larger kernel sizes, its effects have some similarity with Superpixels.</p>
+<p><strong>Supported dtypes</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code>: yes; fully tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint16</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int8</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int16</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float16</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float32</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float128</span></code>: ?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>: ?</p></li>
+</ul>
+</div></blockquote>
+<dl>
+<dt>k<span class="classifier">int or tuple of int or list of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Kernel size.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will be used for the
+height and width of the kernel. Must be an odd value.</p></li>
+<li><p>If a tuple of two ints <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then the kernel size will be
+an odd value sampled from the interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>. <code class="docutils literal notranslate"><span class="pre">a</span></code> and
+<code class="docutils literal notranslate"><span class="pre">b</span></code> must both be odd values.</p></li>
+<li><p>If a list, then a random value will be sampled from that list
+per image.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then <code class="docutils literal notranslate"><span class="pre">N</span></code> samples will be drawn
+from that parameter per <code class="docutils literal notranslate"><span class="pre">N</span></code> input images, each representing
+the kernel size for the nth image. Expected to be discrete. If
+a sampled value is not odd, then that value will be increased
+by <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">MedianBlur</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Blur all images using a kernel size of <code class="docutils literal notranslate"><span class="pre">5x5</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">MedianBlur</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Blur images using varying kernel sizes, which are sampled uniformly from
+the interval <code class="docutils literal notranslate"><span class="pre">[3..7]</span></code>. Only odd values will be sampled, i.e. <code class="docutils literal notranslate"><span class="pre">3</span></code>
+or <code class="docutils literal notranslate"><span class="pre">5</span></code> or <code class="docutils literal notranslate"><span class="pre">7</span></code>.</p>
+</div></blockquote>
+</dd></div></div></body>
+</html>

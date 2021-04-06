@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div style="padding: 30px;"><div class="rst-content section wy-nav-content" style="margin: 0 auto; border-radius: 8px; box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);"><dd>
+<p>Convert non-snowy landscapes to snowy ones.</p>
+<blockquote>
+<div><p>This augmenter expects to get an image that roughly shows a landscape.</p>
+<p>This augmenter is based on the method proposed in
+<a class="reference external" href="https://medium.freecodecamp.org/image-augmentation-make-it-rain-make-it-snow-how-to-modify-a-photo-with-machine-learning-163c0cb3843f?gi=bca4a13e634c">https://medium.freecodecamp.org/image-augmentation-make-it-rain-make-it-snow-how-to-modify-a-photo-with-machine-learning-163c0cb3843f?gi=bca4a13e634c</a></p>
+<p><strong>Supported dtypes</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code>: yes; fully tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint16</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int8</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int16</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float16</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float32</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float128</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>: no (1)</p></li>
+</ul>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>This augmenter is based on a colorspace conversion to HLS.
+Hence, only RGB <code class="docutils literal notranslate"><span class="pre">uint8</span></code> inputs are sensible.</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<dl>
+<dt>lightness_threshold<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>All pixels with lightness in HLS colorspace that is below this value
+will have their lightness increased by <cite>lightness_multiplier</cite>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">number</span></code>, then that value will always be used.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value will be uniformly sampled
+per image from the discrete interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">list</span></code>, then a random value will be sampled from that
+<code class="docutils literal notranslate"><span class="pre">list</span></code> per image.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then a value will be sampled
+per image from that parameter.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>lightness_multiplier<span class="classifier">number or tuple of number or list of number or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Multiplier for pixel’s lightness value in HLS colorspace.
+Affects all pixels selected via <cite>lightness_threshold</cite>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">number</span></code>, then that value will always be used.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value will be uniformly sampled
+per image from the discrete interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">list</span></code>, then a random value will be sampled from that
+<code class="docutils literal notranslate"><span class="pre">list</span></code> per image.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then a value will be sampled
+per image from that parameter.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>from_colorspace<span class="classifier">str, optional</span></dt><dd><p>The source colorspace of the input images.
+See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">FastSnowyLandscape</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">lightness_threshold</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">lightness_multiplier</span><span class="o">=</span><span class="mf">2.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Search for all pixels in the image with a lightness value in HLS
+colorspace of less than <code class="docutils literal notranslate"><span class="pre">140</span></code> and increase their lightness by a factor
+of <code class="docutils literal notranslate"><span class="pre">2.5</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">FastSnowyLandscape</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">lightness_threshold</span><span class="o">=</span><span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">lightness_multiplier</span><span class="o">=</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Search for all pixels in the image with a lightness value in HLS
+colorspace of less than <code class="docutils literal notranslate"><span class="pre">128</span></code> or less than <code class="docutils literal notranslate"><span class="pre">200</span></code> (one of these
+values is picked per image) and multiply their lightness by a factor
+of <code class="docutils literal notranslate"><span class="pre">x</span></code> with <code class="docutils literal notranslate"><span class="pre">x</span></code> being sampled from <code class="docutils literal notranslate"><span class="pre">uniform(1.5,</span> <span class="pre">3.5)</span></code> (once per
+image).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">FastSnowyLandscape</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">lightness_threshold</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">lightness_multiplier</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similar to the previous example, but the lightness threshold is sampled
+from <code class="docutils literal notranslate"><span class="pre">uniform(100,</span> <span class="pre">255)</span></code> (per image) and the multiplier
+from <code class="docutils literal notranslate"><span class="pre">uniform(1.0,</span> <span class="pre">4.0)</span></code> (per image). This seems to produce good and
+varied results.</p>
+</div></blockquote>
+</dd></div></div></body>
+</html>

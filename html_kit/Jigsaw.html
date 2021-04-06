@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div style="padding: 30px;"><div class="rst-content section wy-nav-content" style="margin: 0 auto; border-radius: 8px; box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);"><dd>
+<p>Move cells within images similar to jigsaw patterns.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This augmenter will by default pad images until their height is a
+multiple of <cite>nb_rows</cite>. Analogous for <cite>nb_cols</cite>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This augmenter will resize heatmaps and segmentation maps to the
+image size, then apply similar padding as for the corresponding images
+and resize back to the original map size. That also means that images
+may change in shape (due to padding), but heatmaps/segmaps will not
+change. For heatmaps/segmaps, this deviates from pad augmenters that
+will change images and heatmaps/segmaps in corresponding ways and then
+keep the heatmaps/segmaps at the new size.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This augmenter currently only supports augmentation of images,
+heatmaps, segmentation maps and keypoints. Other augmentables,
+i.e. bounding boxes, polygons and line strings, will result in errors.</p>
+</div>
+<p>Added in 0.4.0.</p>
+<p><strong>Supported dtypes</strong>:</p>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">apply_jigsaw()</span></code>.</p>
+<dl>
+<dt>nb_rows<span class="classifier">int or list of int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>How many rows the jigsaw pattern should have.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will be used for all images.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a random value will be uniformly
+sampled per image from the discrete interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>.</p></li>
+<li><p>If a list, then for each image a random value will be sampled
+from that list.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then that parameter is queried per
+image to sample the value to use.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>nb_cols<span class="classifier">int or list of int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>How many cols the jigsaw pattern should have.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will be used for all images.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a random value will be uniformly
+sampled per image from the discrete interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>.</p></li>
+<li><p>If a list, then for each image a random value will be sampled
+from that list.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then that parameter is queried per
+image to sample the value to use.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>max_steps<span class="classifier">int or list of int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>How many steps each jigsaw cell may be moved.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will be used for all images.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a random value will be uniformly
+sampled per image from the discrete interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>.</p></li>
+<li><p>If a list, then for each image a random value will be sampled
+from that list.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then that parameter is queried per
+image to sample the value to use.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>allow_pad<span class="classifier">bool, optional</span></dt><dd><p>Whether to allow automatically padding images until they are evenly
+divisible by <code class="docutils literal notranslate"><span class="pre">nb_rows</span></code> and <code class="docutils literal notranslate"><span class="pre">nb_cols</span></code>.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Jigsaw</span><span class="p">(</span><span class="n">nb_rows</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">nb_cols</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a jigsaw augmenter that splits images into <code class="docutils literal notranslate"><span class="pre">10x10</span></code> cells
+and shifts them around by <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">2</span></code> steps (default setting).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Jigsaw</span><span class="p">(</span><span class="n">nb_rows</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">nb_cols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Create a jigsaw augmenter that splits each image into <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">4</span></code>
+cells along each axis.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Jigsaw</span><span class="p">(</span><span class="n">nb_rows</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">nb_cols</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Create a jigsaw augmenter that moves the cells in each image by a random
+amount between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code> times (decided per image). Some images will
+be barely changed, some will be fairly distorted.</p>
+</div></blockquote>
+</dd></div></div></body>
+</html>

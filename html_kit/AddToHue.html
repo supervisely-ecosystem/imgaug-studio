@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div style="padding: 30px;"><div class="rst-content section wy-nav-content" style="margin: 0 auto; border-radius: 8px; box-shadow: 0 0px 24px 0 rgb(0 0 0 / 6%), 0 1px 0px 0 rgb(0 0 0 / 2%);"><dd>
+<p>Add random values to the hue of images.</p>
+<p>The augmenter first transforms images to HSV colorspace, then adds random
+values to the H channel and afterwards converts back to RGB.</p>
+<p>If you want to change both the hue and the saturation, it is recommended
+to use <code class="docutils literal notranslate"><span class="pre">AddToHueAndSaturation</span></code> as otherwise the image will be
+converted twice to HSV and back to RGB.</p>
+<p>This augmenter is a shortcut for <code class="docutils literal notranslate"><span class="pre">AddToHueAndSaturation(value_hue=...)</span></code>.</p>
+<p><strong>Supported dtypes</strong>:</p>
+<p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">AddToHueAndSaturation</span></code>.</p>
+<dl>
+<dt>value<span class="classifier">None or int or tuple of int or list of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Value to add to the hue of all pixels.
+This is expected to be in the range <code class="docutils literal notranslate"><span class="pre">-255</span></code> to <code class="docutils literal notranslate"><span class="pre">+255</span></code> and will
+automatically be projected to an angular representation using
+<code class="docutils literal notranslate"><span class="pre">(hue/255)</span> <span class="pre">*</span> <span class="pre">(360/2)</span></code> (OpenCV’s hue representation is in the
+range <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">180]</span></code> instead of <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">360]</span></code>).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If an integer, then that value will be used for all images.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value from the discrete
+range <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code> will be sampled per image.</p></li>
+<li><p>If a list, then a random value will be sampled from that list
+per image.</p></li>
+<li><p>If a StochasticParameter, then a value will be sampled from that
+parameter per image.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>from_colorspace<span class="classifier">str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">change_colorspace_()</span></code>.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AddToHue</span><span class="p">((</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Sample random values from the discrete uniform range <code class="docutils literal notranslate"><span class="pre">[-50..50]</span></code>,
+convert them to angular representation and add them to the hue, i.e.
+to the <code class="docutils literal notranslate"><span class="pre">H</span></code> channel in <code class="docutils literal notranslate"><span class="pre">HSV</span></code> colorspace.</p>
+</dd></div></div></body>
+</html>
