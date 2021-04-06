@@ -57,7 +57,7 @@ def generate_python_pypeline(names, params, random_order=False):
     """
 
 
-def generate_python(name, default_params, params):
+def generate_python(category_name, aug_name, default_params, params, sometimes_p=None):
     pstr = ""
     for item in default_params:
         name = item["pname"]
@@ -66,8 +66,11 @@ def generate_python(name, default_params, params):
             pstr += f"{name}='{value}', "
         else:
             pstr += f"{name}={value}, "
-    method_py_final = f"iaa.{name}({pstr[:-2]})"
-    return method_py_final
+    method_py_final = f"iaa.{category_name}.{aug_name}({pstr[:-2]})"
+    res = method_py_final
+    if sometimes_p is not None and sometimes_p < 1 and type(sometimes_p) in [float]:
+        res = f"iaa.Sometimes({sometimes_p}, {method_py_final})"
+    return res
 
 
 # name = "do"
