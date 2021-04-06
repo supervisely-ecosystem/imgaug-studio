@@ -6,5 +6,5 @@ images/*
 src/conf.py
 src/index.rst
 src/my_file/*
-html_kit/*
+html_kit/_static/*
 src/_build/*

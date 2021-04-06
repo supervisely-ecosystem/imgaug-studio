@@ -12,7 +12,8 @@
                     ],
                     "min": -255,
                     "max": 255,
-                    "pname": "value"
+                    "pname": "value",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -33,7 +34,8 @@
                     ],
                     "min": -255,
                     "max": 255,
-                    "pname": "value"
+                    "pname": "value",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -54,7 +56,8 @@
                     ],
                     "min": 0,
                     "max": 255,
-                    "pname": "scale"
+                    "pname": "scale",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -75,7 +78,8 @@
                     ],
                     "min": 0,
                     "max": 255,
-                    "pname": "scale"
+                    "pname": "scale",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -96,7 +100,8 @@
                     ],
                     "min": 0,
                     "max": 50,
-                    "pname": "lam"
+                    "pname": "lam",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
