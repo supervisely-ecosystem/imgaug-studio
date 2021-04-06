@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div><div><dd>
+<p>Augmenter that applies other augmenters in a polar-transformed space.</p>
+<blockquote>
+<div><p>This augmenter first transforms an image into a polar representation,
+then applies its child augmenter, then transforms back to cartesian
+space. The polar representation is still in the image’s input dtype
+(i.e. <code class="docutils literal notranslate"><span class="pre">uint8</span></code> stays <code class="docutils literal notranslate"><span class="pre">uint8</span></code>) and can be visualized. It can be thought
+of as an “unrolled” version of the image, where previously circular lines
+appear straight. Hence, applying child augmenters in that space can lead
+to circular effects. E.g. replacing rectangular pixel areas in the polar
+representation with black pixels will lead to curved black areas in
+the cartesian result.</p>
+<p>This augmenter can create new pixels in the image. It will fill these
+with black pixels. For segmentation maps it will fill with class
+id <code class="docutils literal notranslate"><span class="pre">0</span></code>. For heatmaps it will fill with <code class="docutils literal notranslate"><span class="pre">0.0</span></code>.</p>
+<p>This augmenter is limited to arrays with a height and/or width of
+<code class="docutils literal notranslate"><span class="pre">32767</span></code> or less.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When augmenting coordinates in polar representation, it is possible
+that these are shifted outside of the polar image, but are inside the
+image plane after transforming back to cartesian representation,
+usually on newly created pixels (i.e. black backgrounds).
+These coordinates are currently not removed. It is recommended to
+not use very strong child transformations when also augmenting
+coordinate-based augmentables.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For bounding boxes, this augmenter suffers from the same problem as
+affine rotations applied to bounding boxes, i.e. the resulting
+bounding boxes can have unintuitive (seemingly wrong) appearance.
+This is due to coordinates being “rotated” that are inside the
+bounding box, but do not fall on the object and actually are
+background.
+It is recommended to use this augmenter with caution when augmenting
+bounding boxes.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For polygons, this augmenter should not be combined with
+augmenters that perform automatic polygon recovery for invalid
+polygons, as the polygons will frequently appear broken in polar
+representation and their “fixed” version will be very broken in
+cartesian representation. Augmenters that perform such polygon
+recovery are currently <code class="docutils literal notranslate"><span class="pre">PerspectiveTransform</span></code>, <code class="docutils literal notranslate"><span class="pre">PiecewiseAffine</span></code>
+and <code class="docutils literal notranslate"><span class="pre">ElasticTransformation</span></code>.</p>
+</div>
+<p>Added in 0.4.0.</p>
+<p><strong>Supported dtypes</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code>: yes; fully tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint16</span></code>: yes; tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64</span></code>: no (2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int8</span></code>: yes; tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int16</span></code>: yes; tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32</span></code>: yes; tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64</span></code>: no (2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float16</span></code>: yes; tested (3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float32</span></code>: yes; tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code>: yes; tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float128</span></code>: no (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>: yes; tested (4)</p></li>
+</ul>
+<ul class="simple">
+<li><p>(1) OpenCV produces error
+<code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">Expected</span> <span class="pre">cv::UMat</span> <span class="pre">for</span> <span class="pre">argument</span> <span class="pre">'src'</span></code></p></li>
+<li><ol class="arabic simple" start="2">
+<li><p>OpenCV produces array of nothing but zeros.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Mapepd to <code class="docutils literal notranslate"><span class="pre">float32</span></code>.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Mapped to <code class="docutils literal notranslate"><span class="pre">uint8</span></code>.</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>children<span class="classifier">imgaug.augmenters.meta.Augmenter or list of imgaug.augmenters.meta.Augmenter or None, optional</span></dt><dd><p>One or more augmenters to apply to images after they were transformed
+to polar representation.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">WithPolarWarping</span><span class="p">(</span><span class="n">iaa</span><span class="o">.</span><span class="n">CropAndPad</span><span class="p">(</span><span class="n">percent</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Apply cropping and padding in polar representation, then warp back to
+cartesian representation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">WithPolarWarping</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">iaa</span><span class="o">.</span><span class="n">Affine</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">translate_percent</span><span class="o">=</span><span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="s2">"y"</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)},</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">rotate</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="n">shear</span><span class="o">=</span><span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="s2">"y"</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">)}</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Apply affine transformations in polar representation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">WithPolarWarping</span><span class="p">(</span><span class="n">iaa</span><span class="o">.</span><span class="n">AveragePooling</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Apply average pooling in polar representation. This leads to circular
+bins.</p>
+</div></blockquote>
+</dd></div></div></body>
+</html>

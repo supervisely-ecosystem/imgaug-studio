@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div><div><dd>
+<p>Resize images back to their input sizes after applying child augmenters.</p>
+<blockquote>
+<div><p>Combining this with e.g. a cropping augmenter as the child will lead to
+images being resized back to the input size after the crop operation was
+applied. Some augmenters have a <code class="docutils literal notranslate"><span class="pre">keep_size</span></code> argument that achieves the
+same goal (if set to <code class="docutils literal notranslate"><span class="pre">True</span></code>), though this augmenter offers control over
+the interpolation mode and which augmentables to resize (images, heatmaps,
+segmentation maps).</p>
+<p><strong>Supported dtypes</strong>:</p>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">imresize_many_images()</span></code>.</p>
+<dl>
+<dt>children<span class="classifier">Augmenter or list of imgaug.augmenters.meta.Augmenter or None, optional</span></dt><dd><p>One or more augmenters to apply to images. These augmenters may change
+the image size.</p>
+</dd>
+<dt>interpolation<span class="classifier">KeepSizeByResize.NO_RESIZE or {‘nearest’, ‘linear’, ‘area’, ‘cubic’} or {cv2.INTER_NEAREST, cv2.INTER_LINEAR, cv2.INTER_AREA, cv2.INTER_CUBIC} or list of str or list of int or StochasticParameter, optional</span></dt><dd><p>The interpolation mode to use when resizing images.
+Can take any value that <code class="xref py py-func docutils literal notranslate"><span class="pre">imresize_single_image()</span></code>
+accepts, e.g. <code class="docutils literal notranslate"><span class="pre">cubic</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If this is <code class="docutils literal notranslate"><span class="pre">KeepSizeByResize.NO_RESIZE</span></code> then images will not
+be resized.</p></li>
+<li><p>If this is a single <code class="docutils literal notranslate"><span class="pre">str</span></code>, it is expected to have one of the
+following values: <code class="docutils literal notranslate"><span class="pre">nearest</span></code>, <code class="docutils literal notranslate"><span class="pre">linear</span></code>, <code class="docutils literal notranslate"><span class="pre">area</span></code>, <code class="docutils literal notranslate"><span class="pre">cubic</span></code>.</p></li>
+<li><p>If this is a single integer, it is expected to have a value
+identical to one of: <code class="docutils literal notranslate"><span class="pre">cv2.INTER_NEAREST</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cv2.INTER_LINEAR</span></code>, <code class="docutils literal notranslate"><span class="pre">cv2.INTER_AREA</span></code>, <code class="docutils literal notranslate"><span class="pre">cv2.INTER_CUBIC</span></code>.</p></li>
+<li><p>If this is a <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">int</span></code>, it is expected that
+each <code class="docutils literal notranslate"><span class="pre">str</span></code>/<code class="docutils literal notranslate"><span class="pre">int</span></code> is one of the above mentioned valid ones.
+A random one of these values will be sampled per image.</p></li>
+<li><p>If this is a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, it will be queried once per
+call to <code class="docutils literal notranslate"><span class="pre">_augment_images()</span></code> and must return <code class="docutils literal notranslate"><span class="pre">N</span></code> <code class="docutils literal notranslate"><span class="pre">str</span></code> s or
+<code class="docutils literal notranslate"><span class="pre">int</span></code> s (matching the above mentioned ones) for <code class="docutils literal notranslate"><span class="pre">N</span></code> images.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>interpolation_heatmaps<span class="classifier">KeepSizeByResize.SAME_AS_IMAGES or KeepSizeByResize.NO_RESIZE or {‘nearest’, ‘linear’, ‘area’, ‘cubic’} or {cv2.INTER_NEAREST, cv2.INTER_LINEAR, cv2.INTER_AREA, cv2.INTER_CUBIC} or list of str or list of int or StochasticParameter, optional</span></dt><dd><p>The interpolation mode to use when resizing heatmaps.
+Meaning and valid values are similar to <cite>interpolation</cite>. This
+parameter may also take the value <code class="docutils literal notranslate"><span class="pre">KeepSizeByResize.SAME_AS_IMAGES</span></code>,
+which will lead to copying the interpolation modes used for the
+corresponding images. The value may also be returned on a per-image
+basis if <cite>interpolation_heatmaps</cite> is provided as a
+<code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code> or may be one possible value if it is
+provided as a <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</dd>
+<dt>interpolation_segmaps<span class="classifier">KeepSizeByResize.SAME_AS_IMAGES or KeepSizeByResize.NO_RESIZE or {‘nearest’, ‘linear’, ‘area’, ‘cubic’} or {cv2.INTER_NEAREST, cv2.INTER_LINEAR, cv2.INTER_AREA, cv2.INTER_CUBIC} or list of str or list of int or StochasticParameter, optional</span></dt><dd><p>The interpolation mode to use when resizing segmentation maps.
+Similar to <cite>interpolation_heatmaps</cite>.
+<strong>Note</strong>: For segmentation maps, only <code class="docutils literal notranslate"><span class="pre">NO_RESIZE</span></code> or nearest
+neighbour interpolation (i.e. <code class="docutils literal notranslate"><span class="pre">nearest</span></code>) make sense in the vast
+majority of all cases.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">KeepSizeByResize</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">keep_size</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Apply random cropping to input images, then resize them back to their
+original input sizes. The resizing is done using this augmenter instead
+of the corresponding internal resizing operation in <code class="docutils literal notranslate"><span class="pre">Crop</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">KeepSizeByResize</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">keep_size</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">interpolation</span><span class="o">=</span><span class="s2">"nearest"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Same as in the previous example, but images are now always resized using
+nearest neighbour interpolation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">KeepSizeByResize</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">keep_size</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">interpolation</span><span class="o">=</span><span class="p">[</span><span class="s2">"nearest"</span><span class="p">,</span> <span class="s2">"cubic"</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">interpolation_heatmaps</span><span class="o">=</span><span class="n">iaa</span><span class="o">.</span><span class="n">KeepSizeByResize</span><span class="o">.</span><span class="n">SAME_AS_IMAGES</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">interpolation_segmaps</span><span class="o">=</span><span class="n">iaa</span><span class="o">.</span><span class="n">KeepSizeByResize</span><span class="o">.</span><span class="n">NO_RESIZE</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similar to the previous example, but images are now sometimes resized
+using linear interpolation and sometimes using nearest neighbour
+interpolation. Heatmaps are resized using the same interpolation as was
+used for the corresponding image. Segmentation maps are not resized and
+will therefore remain at their size after cropping.</p>
+</div></blockquote>
+</dd></div></div></body>
+</html>

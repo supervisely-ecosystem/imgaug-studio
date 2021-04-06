@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div><div><dd>
+<p>Replace pixels in images with pepper noise, i.e. black-ish pixels.</p>
+<p>This augmenter is similar to <code class="docutils literal notranslate"><span class="pre">SaltAndPepper</span></code>, but adds no salt noise to
+images.</p>
+<p>This augmenter is similar to <code class="docutils literal notranslate"><span class="pre">Dropout</span></code>, but slower and the black pixels
+are not uniformly black.</p>
+<p><strong>Supported dtypes</strong>:</p>
+<p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">ReplaceElementwise</span></code>.</p>
+<dl>
+<dt>p<span class="classifier">float or tuple of float or list of float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Probability of replacing a pixel with pepper noise.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a float, then that value will always be used as the
+probability.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a probability will be sampled
+uniformly per image from the interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>.</p></li>
+<li><p>If a list, then a random value will be sampled from that list
+per image.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then a image-sized mask will be
+sampled from that parameter per image. Any value <code class="docutils literal notranslate"><span class="pre">&gt;0.5</span></code> in
+that mask will be replaced with pepper noise.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>per_channel<span class="classifier">bool or float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Whether to use (imagewise) the same sample(s) for all
+channels (<code class="docutils literal notranslate"><span class="pre">False</span></code>) or to sample value(s) for each channel (<code class="docutils literal notranslate"><span class="pre">True</span></code>).
+Setting this to <code class="docutils literal notranslate"><span class="pre">True</span></code> will therefore lead to different
+transformations per image <em>and</em> channel, otherwise only per image.
+If this value is a float <code class="docutils literal notranslate"><span class="pre">p</span></code>, then for <code class="docutils literal notranslate"><span class="pre">p</span></code> percent of all images
+<cite>per_channel</cite> will be treated as <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+If it is a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code> it is expected to produce samples
+with values between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, where values <code class="docutils literal notranslate"><span class="pre">&gt;0.5</span></code> will
+lead to per-channel behaviour (i.e. same as <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Pepper</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">5%</span></code> of all pixels with pepper noise (black-ish colors).</p>
+</dd></div></div></body>
+</html>

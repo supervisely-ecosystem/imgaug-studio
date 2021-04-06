@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div><div><dd>
+<p>Crop images, i.e. remove columns/rows of pixels at the sides of images.</p>
+<blockquote>
+<div><p>This augmenter allows to extract smaller-sized subimages from given
+full-sized input images. The number of pixels to cut off may be defined
+in absolute values or as fractions of the image sizes.</p>
+<p>This augmenter will never crop images below a height or width of <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p><strong>Supported dtypes</strong>:</p>
+<p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">CropAndPad</span></code>.</p>
+<dl>
+<dt>px<span class="classifier">None or int or imgaug.parameters.StochasticParameter or tuple, optional</span></dt><dd><p>The number of pixels to crop on each side of the image.
+Expected value range is <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">inf)</span></code>.
+Either this or the parameter <cite>percent</cite> may be set, not both at the same
+time.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then pixel-based cropping will not be used.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that exact number of pixels will always be
+cropped.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then that parameter will be used for
+each image. Four samples will be drawn per image (top, right,
+bottom, left), unless <cite>sample_independently</cite> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+as then only one value will be sampled per image and used for
+all sides.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of two <code class="docutils literal notranslate"><span class="pre">int</span></code> s with values <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>,
+then each side will be cropped by a random amount sampled
+uniformly per image and side from the inteval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>. If
+however <cite>sample_independently</cite> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, only one
+value will be sampled per image and used for all sides.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of four entries, then the entries represent top,
+right, bottom, left. Each entry may be a single <code class="docutils literal notranslate"><span class="pre">int</span></code> (always
+crop by exactly that value), a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of two <code class="docutils literal notranslate"><span class="pre">int</span></code> s
+<code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> (crop by an amount within <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>), a
+<code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">int</span></code> s (crop by a random value that is
+contained in the <code class="docutils literal notranslate"><span class="pre">list</span></code>) or a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code> (sample
+the amount to crop from that parameter).</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>percent<span class="classifier">None or int or float or imgaug.parameters.StochasticParameter or tuple, optional</span></dt><dd><p>The number of pixels to crop
+on each side of the image given as a <em>fraction</em> of the image
+height/width. E.g. if this is set to <code class="docutils literal notranslate"><span class="pre">0.1</span></code>, the augmenter will
+always crop <code class="docutils literal notranslate"><span class="pre">10%</span></code> of the image’s height at both the top and the
+bottom (both <code class="docutils literal notranslate"><span class="pre">10%</span></code> each), as well as <code class="docutils literal notranslate"><span class="pre">10%</span></code> of the width at the
+right and left.
+Expected value range is <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">1.0)</span></code>.
+Either this or the parameter <cite>px</cite> may be set, not both
+at the same time.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, then fraction-based cropping will not be
+used.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">number</span></code>, then that fraction will always be cropped.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then that parameter will be used for
+each image. Four samples will be drawn per image (top, right,
+bottom, left). If however <cite>sample_independently</cite> is set to
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, only one value will be sampled per image and used for
+all sides.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of two <code class="docutils literal notranslate"><span class="pre">float</span></code> s with values <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>,
+then each side will be cropped by a random fraction
+sampled uniformly per image and side from the interval
+<code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>. If however <cite>sample_independently</cite> is set to
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, only one value will be sampled per image and used for
+all sides.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of four entries, then the entries represent top,
+right, bottom, left. Each entry may be a single <code class="docutils literal notranslate"><span class="pre">float</span></code>
+(always crop by exactly that fraction), a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> of
+two <code class="docutils literal notranslate"><span class="pre">float</span></code> s <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> (crop by a fraction from
+<code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>), a <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">float</span></code> s (crop by a random
+value that is contained in the list) or a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>
+(sample the percentage to crop from that parameter).</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>keep_size<span class="classifier">bool, optional</span></dt><dd><p>After cropping, the result image will usually have a
+different height/width compared to the original input image. If this
+parameter is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then the cropped image will be
+resized to the input image’s size, i.e. the augmenter’s output shape
+is always identical to the input shape.</p>
+</dd>
+<dt>sample_independently<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">False</span></code> <em>and</em> the values for <cite>px</cite>/<cite>percent</cite> result in exactly
+<em>one</em> probability distribution for all image sides, only one single
+value will be sampled from that probability distribution and used for
+all sides. I.e. the crop amount then is the same for all sides.
+If <code class="docutils literal notranslate"><span class="pre">True</span></code>, four values will be sampled independently, one per side.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">(</span><span class="n">px</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Crop each side by a random pixel value sampled uniformly per image and
+side from the discrete interval <code class="docutils literal notranslate"><span class="pre">[0..10]</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">(</span><span class="n">px</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sample_independently</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Crop each side by a random pixel value sampled uniformly once per image
+from the discrete interval <code class="docutils literal notranslate"><span class="pre">[0..10]</span></code>. Each sampled value is used
+for <em>all</em> sides of the corresponding image.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">(</span><span class="n">px</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">keep_size</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Crop each side by a random pixel value sampled uniformly per image and
+side from the discrete interval <code class="docutils literal notranslate"><span class="pre">[0..10]</span></code>. Afterwards, do <strong>not</strong>
+resize the cropped image back to the input image’s size. This will decrease
+the image’s height and width by a maximum of <code class="docutils literal notranslate"><span class="pre">20</span></code> pixels.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">(</span><span class="n">px</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Crop the top and bottom by a random pixel value sampled uniformly from the
+discrete interval <code class="docutils literal notranslate"><span class="pre">[0..10]</span></code>. Crop the left and right analogously by
+a random value sampled from <code class="docutils literal notranslate"><span class="pre">[0..5]</span></code>. Each value is always sampled
+independently.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">(</span><span class="n">percent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Crop each side by a random fraction sampled uniformly from the continuous
+interval <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">0.10]</span></code>. The fraction is sampled once per image and
+side. E.g. a sampled fraction of <code class="docutils literal notranslate"><span class="pre">0.1</span></code> for the top side would crop by
+<code class="docutils literal notranslate"><span class="pre">0.1*H</span></code>, where <code class="docutils literal notranslate"><span class="pre">H</span></code> is the height of the input image.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Crop</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">percent</span><span class="o">=</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>Crops each side by either <code class="docutils literal notranslate"><span class="pre">5%</span></code> or <code class="docutils literal notranslate"><span class="pre">10%</span></code>. The values are sampled
+once per side and image.</p>
+</div></blockquote>
+</dd></div></div></body>
+</html>

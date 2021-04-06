@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div><div><dd>
+<p>Set rectangular areas within images to zero.</p>
+<p>In contrast to <code class="docutils literal notranslate"><span class="pre">Dropout</span></code>, these areas can have larger sizes.
+(E.g. you might end up with three large black rectangles in an image.)
+Note that the current implementation leads to correlated sizes,
+so if e.g. there is any thin and high rectangle that is dropped, there is
+a high likelihood that all other dropped areas are also thin and high.</p>
+<p>This method is implemented by generating the dropout mask at a
+lower resolution (than the image has) and then upsampling the mask
+before dropping the pixels.</p>
+<p>This augmenter is similar to Cutout. Usually, cutout is defined as an
+operation that drops exactly one rectangle from an image, while here
+<code class="docutils literal notranslate"><span class="pre">CoarseDropout</span></code> can drop multiple rectangles (with some correlation
+between the sizes of these rectangles).</p>
+<p><strong>Supported dtypes</strong>:</p>
+<p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiplyElementwise</span></code>.</p>
+<dl>
+<dt>p<span class="classifier">float or tuple of float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The probability of any pixel being dropped (i.e. set to zero) in
+the lower-resolution dropout mask.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a float, then that value will be used for all pixels. A value
+of <code class="docutils literal notranslate"><span class="pre">1.0</span></code> would mean, that all pixels will be dropped. A value
+of <code class="docutils literal notranslate"><span class="pre">0.0</span></code> would lead to no pixels being dropped.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value <code class="docutils literal notranslate"><span class="pre">p</span></code> will be sampled from
+the interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code> per image and be used as the dropout
+probability.</p></li>
+<li><p>If a list, then a value will be sampled from that list per
+batch and used as the probability.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then this parameter will be used to
+determine per pixel whether it should be <em>kept</em> (sampled value
+of <code class="docutils literal notranslate"><span class="pre">&gt;0.5</span></code>) or shouldn’t be kept (sampled value of <code class="docutils literal notranslate"><span class="pre">&lt;=0.5</span></code>).
+If you instead want to provide the probability as a stochastic
+parameter, you can usually do <code class="docutils literal notranslate"><span class="pre">imgaug.parameters.Binomial(1-p)</span></code>
+to convert parameter <cite>p</cite> to a 0/1 representation.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>size_px<span class="classifier">None or int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The size of the lower resolution image from which to sample the dropout
+mask in absolute pixel dimensions.
+Note that this means that <em>lower</em> values of this parameter lead to
+<em>larger</em> areas being dropped (as any pixel in the lower resolution
+image will correspond to a larger area at the original resolution).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code> then <cite>size_percent</cite> must be set.</p></li>
+<li><p>If an integer, then that size will always be used for both height
+and width. E.g. a value of <code class="docutils literal notranslate"><span class="pre">3</span></code> would lead to a <code class="docutils literal notranslate"><span class="pre">3x3</span></code> mask,
+which is then upsampled to <code class="docutils literal notranslate"><span class="pre">HxW</span></code>, where <code class="docutils literal notranslate"><span class="pre">H</span></code> is the image size
+and <code class="docutils literal notranslate"><span class="pre">W</span></code> the image width.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then two values <code class="docutils literal notranslate"><span class="pre">M</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code> will be
+sampled from the discrete interval <code class="docutils literal notranslate"><span class="pre">[a..b]</span></code>. The dropout mask
+will then be generated at size <code class="docutils literal notranslate"><span class="pre">MxN</span></code> and upsampled to <code class="docutils literal notranslate"><span class="pre">HxW</span></code>.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then this parameter will be used to
+determine the sizes. It is expected to be discrete.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>size_percent<span class="classifier">None or float or tuple of float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The size of the lower resolution image from which to sample the dropout
+mask <em>in percent</em> of the input image.
+Note that this means that <em>lower</em> values of this parameter lead to
+<em>larger</em> areas being dropped (as any pixel in the lower resolution
+image will correspond to a larger area at the original resolution).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code> then <cite>size_px</cite> must be set.</p></li>
+<li><p>If a float, then that value will always be used as the percentage
+of the height and width (relative to the original size). E.g. for
+value <code class="docutils literal notranslate"><span class="pre">p</span></code>, the mask will be sampled from <code class="docutils literal notranslate"><span class="pre">(p*H)x(p*W)</span></code> and
+later upsampled to <code class="docutils literal notranslate"><span class="pre">HxW</span></code>.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then two values <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code> will be
+sampled from the interval <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code> and used as the size
+fractions, i.e the mask size will be <code class="docutils literal notranslate"><span class="pre">(m*H)x(n*W)</span></code>.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then this parameter will be used to
+sample the percentage values. It is expected to be continuous.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>per_channel<span class="classifier">bool or float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Whether to use (imagewise) the same sample(s) for all
+channels (<code class="docutils literal notranslate"><span class="pre">False</span></code>) or to sample value(s) for each channel (<code class="docutils literal notranslate"><span class="pre">True</span></code>).
+Setting this to <code class="docutils literal notranslate"><span class="pre">True</span></code> will therefore lead to different
+transformations per image <em>and</em> channel, otherwise only per image.
+If this value is a float <code class="docutils literal notranslate"><span class="pre">p</span></code>, then for <code class="docutils literal notranslate"><span class="pre">p</span></code> percent of all images
+<cite>per_channel</cite> will be treated as <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+If it is a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code> it is expected to produce samples
+with values between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>, where values <code class="docutils literal notranslate"><span class="pre">&gt;0.5</span></code> will
+lead to per-channel behaviour (i.e. same as <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+</dd>
+<dt>min_size<span class="classifier">int, optional</span></dt><dd><p>Minimum height and width of the low resolution mask. If
+<cite>size_percent</cite> or <cite>size_px</cite> leads to a lower value than this,
+<cite>min_size</cite> will be used instead. This should never have a value of
+less than <code class="docutils literal notranslate"><span class="pre">2</span></code>, otherwise one may end up with a <code class="docutils literal notranslate"><span class="pre">1x1</span></code> low resolution
+mask, leading easily to the whole image being dropped.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CoarseDropout</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size_percent</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Drops <code class="docutils literal notranslate"><span class="pre">2</span></code> percent of all pixels on a lower-resolution image that has
+<code class="docutils literal notranslate"><span class="pre">50</span></code> percent of the original image’s size, leading to dropped areas that
+have roughly <code class="docutils literal notranslate"><span class="pre">2x2</span></code> pixels size.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CoarseDropout</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span> <span class="n">size_percent</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Generates a dropout mask at <code class="docutils literal notranslate"><span class="pre">5</span></code> to <code class="docutils literal notranslate"><span class="pre">50</span></code> percent of each input image’s
+size. In that mask, <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code> percent of all pixels are marked as
+being dropped. The mask is afterwards projected to the input image’s
+size to apply the actual dropout operation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CoarseDropout</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span> <span class="n">size_px</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Same as the previous example, but the lower resolution image has <code class="docutils literal notranslate"><span class="pre">2</span></code> to
+<code class="docutils literal notranslate"><span class="pre">16</span></code> pixels size. On images of e.g. <code class="docutils literal notranslate"><span class="pre">224x224`</span> <span class="pre">pixels</span> <span class="pre">in</span> <span class="pre">size</span> <span class="pre">this</span> <span class="pre">would</span>
+<span class="pre">lead</span> <span class="pre">to</span> <span class="pre">fairly</span> <span class="pre">large</span> <span class="pre">areas</span> <span class="pre">being</span> <span class="pre">dropped</span> <span class="pre">(height/width</span> <span class="pre">of</span> <span class="pre">``224/2</span></code> to
+<code class="docutils literal notranslate"><span class="pre">224/16</span></code>).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CoarseDropout</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size_percent</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">per_channel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Drops <code class="docutils literal notranslate"><span class="pre">2</span></code> percent of all pixels at <code class="docutils literal notranslate"><span class="pre">50</span></code> percent resolution (<code class="docutils literal notranslate"><span class="pre">2x2</span></code>
+sizes) in a channel-wise fashion, i.e. it is unlikely for any pixel to
+have all channels set to zero (black pixels).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">CoarseDropout</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size_percent</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">per_channel</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Same as the previous example, but the <cite>per_channel</cite> feature is only active
+for <code class="docutils literal notranslate"><span class="pre">50</span></code> percent of all images.</p>
+</dd></div></div></body>
+</html>

@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div><div><dd>
+<p>Apply average pooling to images.</p>
+<p>This augmenter pools images with kernel sizes <code class="docutils literal notranslate"><span class="pre">H</span> <span class="pre">x</span> <span class="pre">W</span></code> by averaging the
+pixel values within these windows. For e.g. <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">x</span> <span class="pre">2</span></code> this halves the image
+size. Optionally, the augmenter will automatically re-upscale the image
+to the input size (by default this is activated).</p>
+<p>Note that this augmenter is very similar to <code class="docutils literal notranslate"><span class="pre">AverageBlur</span></code>.
+<code class="docutils literal notranslate"><span class="pre">AverageBlur</span></code> applies averaging within windows of given kernel size
+<em>without</em> striding, while <code class="docutils literal notranslate"><span class="pre">AveragePooling</span></code> applies striding corresponding
+to the kernel size, with optional upscaling afterwards. The upscaling
+is configured to create “pixelated”/”blocky” images by default.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>During heatmap or segmentation map augmentation, the respective
+arrays are not changed, only the shapes of the underlying images
+are updated. This is because imgaug can handle maps/maks that are
+larger/smaller than their corresponding image.</p>
+</div>
+<p><strong>Supported dtypes</strong>:</p>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">avg_pool()</span></code>.</p>
+<dl class="simple">
+<dt>kernel_size<span class="classifier">int or tuple of int or list of int or imgaug.parameters.StochasticParameter or tuple of tuple of int or tuple of list of int or tuple of imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>The kernel size of the pooling operation.</p>
+<ul class="simple">
+<li><p>If an int, then that value will be used for all images for both
+kernel height and width.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value from the discrete range
+<code class="docutils literal notranslate"><span class="pre">[a..b]</span></code> will be sampled per image.</p></li>
+<li><p>If a list, then a random value will be sampled from that list per
+image and used for both kernel height and width.</p></li>
+<li><p>If a StochasticParameter, then a value will be sampled per image
+from that parameter per image and used for both kernel height and
+width.</p></li>
+<li><p>If a tuple of tuple of int given as <code class="docutils literal notranslate"><span class="pre">((a,</span> <span class="pre">b),</span> <span class="pre">(c,</span> <span class="pre">d))</span></code>, then two
+values will be sampled independently from the discrete ranges
+<code class="docutils literal notranslate"><span class="pre">[a..b]</span></code> and <code class="docutils literal notranslate"><span class="pre">[c..d]</span></code> per image and used as the kernel height
+and width.</p></li>
+<li><p>If a tuple of lists of int, then two values will be sampled
+independently per image, one from the first list and one from the
+second, and used as the kernel height and width.</p></li>
+<li><p>If a tuple of StochasticParameter, then two values will be sampled
+indepdently per image, one from the first parameter and one from the
+second, and used as the kernel height and width.</p></li>
+</ul>
+</dd>
+<dt>keep_size<span class="classifier">bool, optional</span></dt><dd><p>After pooling, the result image will usually have a different
+height/width compared to the original input image. If this
+parameter is set to True, then the pooled image will be resized
+to the input image’s size, i.e. the augmenter’s output shape is always
+identical to the input shape.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AveragePooling</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create an augmenter that always pools with a kernel size of <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">x</span> <span class="pre">2</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AveragePooling</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">keep_size</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create an augmenter that always pools with a kernel size of <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">x</span> <span class="pre">2</span></code>
+and does <em>not</em> resize back to the input image size, i.e. the resulting
+images have half the resolution.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AveragePooling</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Create an augmenter that always pools either with a kernel size
+of <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">x</span> <span class="pre">2</span></code> or <code class="docutils literal notranslate"><span class="pre">8</span> <span class="pre">x</span> <span class="pre">8</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AveragePooling</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Create an augmenter that always pools with a kernel size of
+<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">x</span> <span class="pre">1</span></code> (does nothing) to <code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">x</span> <span class="pre">7</span></code>. The kernel sizes are always
+symmetric.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">AveragePooling</span><span class="p">(((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Create an augmenter that always pools with a kernel size of
+<code class="docutils literal notranslate"><span class="pre">H</span> <span class="pre">x</span> <span class="pre">W</span></code> where <code class="docutils literal notranslate"><span class="pre">H</span></code> and <code class="docutils literal notranslate"><span class="pre">W</span></code> are both sampled independently from the
+range <code class="docutils literal notranslate"><span class="pre">[1..7]</span></code>. E.g. resulting kernel sizes could be <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">x</span> <span class="pre">7</span></code>
+or <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">x</span> <span class="pre">1</span></code>.</p>
+</dd></div></div></body>
+</html>

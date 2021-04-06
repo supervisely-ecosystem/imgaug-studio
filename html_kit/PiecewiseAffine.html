@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="Docutils 0.17: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>my_script module — Python  documentation</title>
+<link href="_static/css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+<!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js" type="text/javascript"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/clipboard.min.js"></script>
+<script src="_static/copybutton.js"></script>
+<script src="_static/js/theme.js" type="text/javascript"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="modules.html" rel="prev" title="my_file"/>
+<style>
+       ul.simple li {
+         list-style: disc;
+         margin-left: 24px;
+       }
+     </style></head>
+<body class=""><div><div><dd>
+<p>Apply affine transformations that differ between local neighbourhoods.</p>
+<p>This augmenter places a regular grid of points on an image and randomly
+moves the neighbourhood of these point around via affine transformations.
+This leads to local distortions.</p>
+<p>This is mostly a wrapper around scikit-image’s <code class="docutils literal notranslate"><span class="pre">PiecewiseAffine</span></code>.
+See also <code class="docutils literal notranslate"><span class="pre">Affine</span></code> for a similar technique.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This augmenter is very slow. See <span class="xref std std-ref">performance</span>.
+Try to use <code class="docutils literal notranslate"><span class="pre">ElasticTransformation</span></code> instead, which is at least 10x
+faster.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For coordinate-based inputs (keypoints, bounding boxes, polygons,
+…), this augmenter still has to perform an image-based augmentation,
+which will make it significantly slower for such inputs than other
+augmenters. See <span class="xref std std-ref">performance</span>.</p>
+</div>
+<p><strong>Supported dtypes</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code>: yes; fully tested</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint16</span></code>: yes; tested (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code>: yes; tested (1) (2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uint64</span></code>: no (3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int8</span></code>: yes; tested (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int16</span></code>: yes; tested (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32</span></code>: yes; tested (1) (2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64</span></code>: no (3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float16</span></code>: yes; tested (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float32</span></code>: yes; tested (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float64</span></code>: yes; tested (1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float128</span></code>: no (3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>: yes; tested (1) (4)</p></li>
+</ul>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Only tested with <cite>order</cite> set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>scikit-image converts internally to <code class="docutils literal notranslate"><span class="pre">float64</span></code>, which might
+introduce inaccuracies. Tests showed that these inaccuracies
+seemed to not be an issue.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Results too inaccurate.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Mapped internally to <code class="docutils literal notranslate"><span class="pre">float64</span></code>.</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<dl>
+<dt>scale<span class="classifier">float or tuple of float or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Each point on the regular grid is moved around via a normal
+distribution. This scale factor is equivalent to the normal
+distribution’s sigma. Note that the jitter (how far each point is
+moved in which direction) is multiplied by the height/width of the
+image if <code class="docutils literal notranslate"><span class="pre">absolute_scale=False</span></code> (default), so this scale can be
+the same for different sized images.
+Recommended values are in the range <code class="docutils literal notranslate"><span class="pre">0.01</span></code> to <code class="docutils literal notranslate"><span class="pre">0.05</span></code> (weak to
+strong augmentations).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a single <code class="docutils literal notranslate"><span class="pre">float</span></code>, then that value will always be used as
+the scale.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code> of <code class="docutils literal notranslate"><span class="pre">float</span></code> s, then a random value will
+be uniformly sampled per image from the interval <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b]</span></code>.</p></li>
+<li><p>If a list, then a random value will be picked from that list
+per image.</p></li>
+<li><p>If a <code class="docutils literal notranslate"><span class="pre">StochasticParameter</span></code>, then that parameter will be
+queried to draw one value per image.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>nb_rows<span class="classifier">int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Number of rows of points that the regular grid should have.
+Must be at least <code class="docutils literal notranslate"><span class="pre">2</span></code>. For large images, you might want to pick a
+higher value than <code class="docutils literal notranslate"><span class="pre">4</span></code>. You might have to then adjust scale to lower
+values.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If a single <code class="docutils literal notranslate"><span class="pre">int</span></code>, then that value will always be used as the
+number of rows.</p></li>
+<li><p>If a tuple <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>, then a value from the discrete interval
+<code class="docutils literal notranslate"><span class="pre">[a..b]</span></code> will be uniformly sampled per image.</p></li>
+<li><p>If a list, then a random value will be picked from that list
+per image.</p></li>
+<li><p>If a StochasticParameter, then that parameter will be queried to
+draw one value per image.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>nb_cols<span class="classifier">int or tuple of int or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>Number of columns. Analogous to <cite>nb_rows</cite>.</p>
+</dd>
+<dt>order<span class="classifier">int or list of int or imgaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>cval<span class="classifier">int or float or tuple of float or imgaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>mode<span class="classifier">str or list of str or imgaug.ALL or imgaug.parameters.StochasticParameter, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>absolute_scale<span class="classifier">bool, optional</span></dt><dd><p>Take <cite>scale</cite> as an absolute value rather than a relative value.</p>
+</dd>
+<dt>polygon_recoverer<span class="classifier">‘auto’ or None or imgaug.augmentables.polygons._ConcavePolygonRecoverer, optional</span></dt><dd><p>The class to use to repair invalid polygons.
+If <code class="docutils literal notranslate"><span class="pre">"auto"</span></code>, a new instance of
+:class`imgaug.augmentables.polygons._ConcavePolygonRecoverer`
+will be created.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no polygon recoverer will be used.
+If an object, then that object will be used and must provide a
+<code class="docutils literal notranslate"><span class="pre">recover_from()</span></code> method, similar to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">_ConcavePolygonRecoverer</span></code>.</p>
+</dd>
+<dt>seed<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>name<span class="classifier">None or str, optional</span></dt><dd><p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+</dd>
+<dt>random_state<span class="classifier">None or int or imgaug.random.RNG or numpy.random.Generator or numpy.random.BitGenerator or numpy.random.SeedSequence or numpy.random.RandomState, optional</span></dt><dd><p>Old name for parameter <cite>seed</cite>.
+Its usage will not yet cause a deprecation warning,
+but it is still recommended to use <cite>seed</cite> now.
+Outdated since 0.4.0.</p>
+</dd>
+<dt>deterministic<span class="classifier">bool, optional</span></dt><dd><p>Deprecated since 0.4.0.
+See method <code class="docutils literal notranslate"><span class="pre">to_deterministic()</span></code> for an alternative and for
+details about what the “deterministic mode” actually does.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">imgaug.augmenters</span> <span class="k">as</span> <span class="nn">iaa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">PiecewiseAffine</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Place a regular grid of points on each image and then randomly move each
+point around by <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code> percent (with respect to the image
+height/width). Pixels between these points will be moved accordingly.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">PiecewiseAffine</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span> <span class="n">nb_rows</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">nb_cols</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Same as the previous example, but uses a denser grid of <code class="docutils literal notranslate"><span class="pre">8x8</span></code> points
+(default is <code class="docutils literal notranslate"><span class="pre">4x4</span></code>). This can be useful for large images.</p>
+</dd></div></div></body>
+</html>
