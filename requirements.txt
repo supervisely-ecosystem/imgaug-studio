@@ -1,4 +1,4 @@
-supervisely==6.1.59
+supervisely==6.1.61
 imgaug==0.4.0
 imagecorruptions==1.1.2
 
