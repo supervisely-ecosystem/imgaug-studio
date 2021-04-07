@@ -36,31 +36,35 @@ def save_preview_image(api: sly.Api, task_id, img):
     return file_info
 
 
+def preview_augs(api: sly.Api, task_id, augs, infos):
+    img_info, img = get_random_image(api)
+    res_img = imgaug_utils.apply(augs, img)
+    file_info = save_preview_image(api, task_id, res_img)
+    gallery = ui.get_gallery(urls=[img_info.full_storage_url, file_info.full_storage_url])
+    fields = [
+        {"field": "data.gallery", "payload": gallery},
+        {"field": "state.previewLoading", "payload": False},
+    ]
+    if len(infos) == 1:
+        fields.append({"field": "data.previewPy", "payload": infos[0]["python"]})
+    else:
+        pass
+
+    api.task.set_fields(task_id, fields)
+
+
 @app.callback("preview")
 @sly.timeit
 def preview(api: sly.Api, task_id, context, state, app_logger):
     aug_info = ui_augs.get_aug_info(state)
     aug = imgaug_utils.build(aug_info)
-
-    img_info, img = get_random_image(api)
-    res_img = imgaug_utils.apply(aug, img)
-    file_info = save_preview_image(api, task_id, res_img)
-    gallery = ui.get_gallery(urls=[img_info.full_storage_url, file_info.full_storage_url])
-
-    fields = [
-        {"field": "data.gallery", "payload": gallery},
-        {"field": "state.previewLoading", "payload": False},
-        {"field": "data.previewPy", "payload": aug_info["python"]},
-    ]
-    api.task.set_fields(task_id, fields)
+    preview_augs(api, task_id, aug, [aug_info])
 
 
 @app.callback("add_to_pipeline")
 @sly.timeit
 def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
     aug_info = ui_augs.get_aug_info(state)
-
-    print(json.dumps(aug_info, indent=4))
     pipeline.append(aug_info)
 
     fields = [
@@ -73,7 +77,11 @@ def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
 @app.callback("preview_pipeline")
 @sly.timeit
 def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
-    pass
+    random_order = False
+    if len(pipeline) > 1:
+        random_order = state["randomOrder"]
+    augs = imgaug_utils.build_pipeline(pipeline, random_order)
+    preview_augs(api, task_id, augs, pipeline)
 
 
 def main():

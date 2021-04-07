@@ -106,21 +106,9 @@ def aug_to_python(aug_info):
         res = f"iaa.Sometimes({aug_info['sometimes']}, {method_py})"
     return res
 
-    # pstr = ""
-    # for item in default_params:
-    #     name = item["pname"]
-    #     value = params[name]
-    #     if type(value) is str:
-    #         pstr += f"{name}='{value}', "
-    #     else:
-    #         pstr += f"{name}={value}, "
-    # method_py_final = f"iaa.{category_name}.{aug_name}({pstr[:-2]})"
-    # res = method_py_final
-    # if "sometimesP" in params:
-    #     p = params["sometimesP"]
-    #     if p < 1 and type(p) in [float]:
-    #         res = f"iaa.Sometimes({p}, {method_py_final})"
-    # return res
+
+def pipeline_to_python(aug_infos, random_order=False):
+    pass
 
 
 
