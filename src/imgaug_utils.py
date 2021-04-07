@@ -11,7 +11,7 @@ def get_function(category_name, aug_name):
         return aug_f
     except Exception as e:
         sly.logger.error(repr(e))
-        #raise e
+        # raise e
         return None
 
 
@@ -37,7 +37,7 @@ def build(aug_info):
     return build_pipeline([aug_info])
 
 
-def create_aug_info(category_name, aug_name, params, sometimes: float=None):
+def create_aug_info(category_name, aug_name, params, sometimes: float = None):
     clean_params = remove_unexpected_arguments(category_name, aug_name, params)
     res = {
         "category": category_name,
@@ -45,7 +45,7 @@ def create_aug_info(category_name, aug_name, params, sometimes: float=None):
         "params": clean_params,
     }
     if sometimes is not None:
-        if type(sometimes) is not float or not( 0.0 <= sometimes <= 1.0):
+        if type(sometimes) is not float or not (0.0 <= sometimes <= 1.0):
             raise ValueError(f"sometimes={sometimes}, type != {type(sometimes)}")
         res["sometimes"] = sometimes
     res["python"] = aug_to_python(res)
@@ -108,7 +108,15 @@ def aug_to_python(aug_info):
 
 
 def pipeline_to_python(aug_infos, random_order=False):
-    pass
-
-
+    template = \
+    """
+    import imgaug.augmenters as iaa
+        
+    seq = iaa.Sequential([
+        {}
+    ], random_order=True)
+    """
+    py_lines = [info["python"] for info in aug_infos]
+    res = template.format(',\n\t'.join(py_lines))
+    return res
 

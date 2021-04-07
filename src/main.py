@@ -36,7 +36,7 @@ def save_preview_image(api: sly.Api, task_id, img):
     return file_info
 
 
-def preview_augs(api: sly.Api, task_id, augs, infos):
+def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     img_info, img = get_random_image(api)
     res_img = imgaug_utils.apply(augs, img)
     file_info = save_preview_image(api, task_id, res_img)
@@ -45,10 +45,12 @@ def preview_augs(api: sly.Api, task_id, augs, infos):
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.previewLoading", "payload": False},
     ]
-    if len(infos) == 1:
+    if len(infos) == 1 and py_code is None:
         fields.append({"field": "data.previewPy", "payload": infos[0]["python"]})
     else:
-        pass
+        if py_code is None:
+            py_code = imgaug_utils.pipeline_to_python(infos, random_order=False)
+        fields.append({"field": "data.previewPy", "payload": py_code})
 
     api.task.set_fields(task_id, fields)
 
@@ -81,7 +83,8 @@ def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
     if len(pipeline) > 1:
         random_order = state["randomOrder"]
     augs = imgaug_utils.build_pipeline(pipeline, random_order)
-    preview_augs(api, task_id, augs, pipeline)
+    py_code = imgaug_utils.pipeline_to_python(pipeline, random_order=False)
+    preview_augs(api, task_id, augs, pipeline, py_code)
 
 
 def main():

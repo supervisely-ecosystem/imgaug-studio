@@ -205,18 +205,18 @@
         <sly-card title="Preview"
                   subtitle="Preview python code and aug result on a random image"
                   style="width: 100%">
-            <div v-if="!state.addMode && !data.previewPy">
+            <div v-if="!data.previewPy">
                 Press Preview button to show python code and visualize image examples
             </div>
 
-            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading && state.addMode"
+            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0"
                        title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
                 <sly-grid-gallery
                         :content="data.gallery.content"
                         :options="data.gallery.options"
                         :preview-options="data.gallery.previewOptions"/>
             </sly-field>
-            <sly-field v-if="data.previewPy && state.addMode" title="Python code">
+            <sly-field v-if="data.previewPy" title="Python code">
                 <sly-copy-to-clipboard v-if="state.aug"
                                        :data="data.previewPy">
                     <sly-editor v-model="data.previewPy"
@@ -225,7 +225,7 @@
                 </sly-copy-to-clipboard>
             </sly-field>
 
-            <sly-field v-if="state.aug && state.addMode" description="Docs for the selected augmentation method">
+            <sly-field v-if="state.addMode === true" description="Docs for the selected augmentation method">
                 <div slot="title">
                     <b>Documentation: </b>
                     <a target="_blank" :href="data.config[state.category][state.aug].durl">
