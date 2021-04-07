@@ -98,3 +98,24 @@ def init_docs(data):
             doc_path = f"../html_kit/{module_name}.{method.__name__}.html".lower()
             with open(doc_path, 'r') as file:
                 data["docs"][module_name][method.__name__] = file.read()
+
+
+def get_gallery(urls, img_labels=None):
+    if img_labels is None:
+        img_labels = [[]] * len(urls)
+
+    CNT_GRID_COLUMNS, gallery = get_empty_gallery()
+    grid_annotations = {}
+    grid_layout = [[] for i in range(CNT_GRID_COLUMNS)]
+    sync_keys = [[] for i in range(CNT_GRID_COLUMNS)]
+    for idx, (image_url, labels) in enumerate(zip(urls, img_labels)):
+        grid_annotations[str(idx)] = {
+            "url": image_url,
+            "figures": labels
+        }
+        grid_layout[idx % CNT_GRID_COLUMNS].append(str(idx))
+        sync_keys[idx % CNT_GRID_COLUMNS].append(str(idx))
+
+    gallery["content"]["layout"] = grid_layout
+    gallery["content"]["annotations"] = grid_annotations
+    gallery["options"]["syncViewsBindings"] = sync_keys

@@ -1,17 +1,22 @@
+from collections import OrderedDict
 from ui import augs_configs
+from imgaug_utils import create_aug_info
 
 
-def ui_to_params(state, category_name, aug_name):
+def get_aug_info(state):
+    category_name = state["category"]
+    aug_name = state["aug"]
     ui_defaults = augs_configs[category_name][aug_name]["params"]
     ui_vmodels = state["augVModels"][category_name][aug_name]
+    sometimes = state["sometimesP"] if state["sometimes"] else None
     params = _normalize_params(ui_defaults, ui_vmodels)
-    _try_add_sometime(state, params)
-    return params
+    aug_info = create_aug_info(category_name, aug_name, params, sometimes)
+    return aug_info
 
 
 def _normalize_params(default_params: dict, params: dict):
     ptypes = {p["pname"]: p for p in default_params}
-    res = {}
+    res = OrderedDict()
     for name, value in params.items():
         if ptypes[name]["type"] == 'el-slider-range':
             res[name] = tuple(value)
@@ -37,7 +42,6 @@ def _normalize_params(default_params: dict, params: dict):
     return res
 
 
-def _try_add_sometime(state, params):
-    sometimes_p = state["sometimesP"] if state["sometimes"] else None
+def _try_add_sometime(state, aug_info):
     if state["sometimes"]:
-        params["sometimes"] = state["sometimesP"]
+        aug_info["sometimes"] = state["sometimesP"]

@@ -26,49 +26,28 @@ sly.fs.mkdir(vis_dir)
 sly.fs.clean_dir(vis_dir)  # convenient for debug
 
 
+def save_preview_image(api: sly.Api, task_id, img):
+    local_path = os.path.join(vis_dir, f"last_preview.png")
+    remote_path = os.path.join(f"/imgaug-studio/{task_id}", f"last_preview.png")
+    sly.image.write(local_path, img)
+    if api.file.exists(team_id, remote_path):
+        api.file.remove(team_id, remote_path)
+    file_info = api.file.upload(team_id, local_path, remote_path)
+    return file_info
+
+
 @app.callback("preview")
 @sly.timeit
 def preview(api: sly.Api, task_id, context, state, app_logger):
-    category_name = state["category"]
-    aug_name = state["aug"]
+    aug_info = ui_augs.get_aug_info(state)
+    aug = imgaug_utils.build(aug_info)
 
-    params = ui_augs.ui_to_params(state, category_name, aug_name)
+    img_info, img = get_random_image(api)
+    res_img = imgaug_utils.apply(aug, img)
+    file_info = save_preview_image(api, task_id, res_img)
+    gallery = ui.get_gallery(urls=[img_info.full_storage_url, file_info.full_storage_url])
+    py_example = imgaug_utils.generate_python(aug_info)
 
-
-
-    # py_example = aug_utils.generate_python(category_name, aug_name, default_params, params)
-    # aug = aug_utils.build(aug_name, params)
-    #
-    # preview_labels = []
-    # preview_images = []
-    # sync_keys = []
-    #
-    # img_info, img = get_random_image(api)
-    # res_img = aug_utils.apply(img, aug)
-    # preview_local_path = os.path.join(vis_dir, f"preview_image_{0}.png")
-    # preview_remote_path = os.path.join(f"/imgaug-studio/{task_id}", f"preview_image_{0}.png")
-    # sly.image.write(preview_local_path, res_img)
-    #
-    # if api.file.exists(team_id, preview_remote_path):
-    #     api.file.remove(team_id, preview_remote_path)
-    # file_info = api.file.upload(team_id, preview_local_path, preview_remote_path)
-    #
-    # sync_keys.append(["0", "1"])
-    # preview_labels.extend([[], []])
-    # preview_images.extend([img_info.full_storage_url, file_info.full_storage_url])
-    #
-    # CNT_GRID_COLUMNS, gallery = ui.get_empty_gallery()
-    # grid_annotations = {}
-    # grid_layout = [[] for i in range(CNT_GRID_COLUMNS)]
-    # for idx, (image_url, labels) in enumerate(zip(preview_images, preview_labels)):
-    #     grid_annotations[str(idx)] = {
-    #         "url": image_url,
-    #         "figures": labels
-    #     }
-    #     grid_layout[idx % CNT_GRID_COLUMNS].append(str(idx))
-    # gallery["content"]["layout"] = grid_layout
-    # gallery["content"]["annotations"] = grid_annotations
-    # gallery["options"]["syncViewsBindings"] = sync_keys
     #
     # fields = [
     #     {"field": "data.gallery", "payload": gallery},
@@ -114,9 +93,6 @@ def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
 @sly.timeit
 def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
     pass
-
-
-import pickle
 
 
 def main():
