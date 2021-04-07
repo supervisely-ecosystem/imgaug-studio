@@ -119,3 +119,5 @@ def get_gallery(urls, img_labels=None):
     gallery["content"]["layout"] = grid_layout
     gallery["content"]["annotations"] = grid_annotations
     gallery["options"]["syncViewsBindings"] = sync_keys
+
+    return gallery

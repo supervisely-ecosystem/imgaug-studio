@@ -42,19 +42,19 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     aug_info = ui_augs.get_aug_info(state)
     aug = imgaug_utils.build(aug_info)
 
+    py_example = imgaug_utils.aug_to_python(aug_info)
+
     img_info, img = get_random_image(api)
     res_img = imgaug_utils.apply(aug, img)
     file_info = save_preview_image(api, task_id, res_img)
     gallery = ui.get_gallery(urls=[img_info.full_storage_url, file_info.full_storage_url])
-    py_example = imgaug_utils.generate_python(aug_info)
 
-    #
-    # fields = [
-    #     {"field": "data.gallery", "payload": gallery},
-    #     {"field": "state.previewLoading", "payload": False},
-    #     {"field": "data.previewPy", "payload": py_example},
-    # ]
-    # api.task.set_fields(task_id, fields)
+    fields = [
+        {"field": "data.gallery", "payload": gallery},
+        {"field": "state.previewLoading", "payload": False},
+        {"field": "data.previewPy", "payload": py_example},
+    ]
+    api.task.set_fields(task_id, fields)
 
 
 @app.callback("add_to_pipeline")

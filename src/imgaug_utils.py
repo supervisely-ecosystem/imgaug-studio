@@ -1,5 +1,6 @@
 import imgaug.augmenters as iaa
 import inspect
+from collections import OrderedDict
 import supervisely_lib as sly
 
 
@@ -37,10 +38,11 @@ def build(aug_info):
 
 
 def create_aug_info(category_name, aug_name, params, sometimes: float=None):
+    clean_params = remove_unexpected_arguments(category_name, aug_name, params)
     res = {
         "category": category_name,
         "name": aug_name,
-        "params": params,
+        "params": clean_params,
     }
     if sometimes is not None:
         if type(sometimes) is not float or not( 0.0 <= sometimes <= 1.0):
@@ -52,39 +54,6 @@ def create_aug_info(category_name, aug_name, params, sometimes: float=None):
 def apply(augs: iaa.Sequential, img):
     res = augs(images=[img])
     return res[0]
-
-
-# def generate_python(aug_info):
-#     pstr = ""
-#     for name, value in aug_info["params"].items():
-#         if type(value) is str:
-#             pstr += f"{name}='{value}', "
-#         else:
-#             pstr += f"{name}={value}, "
-#     method_py = f"iaa.{aug_info['category']}.{aug_info['name']}({pstr[:-2]})"
-#
-#     res = method_py
-#     if "sometimesP" in params:
-#         p = params["sometimesP"]
-#         if p < 1 and type(p) in [float]:
-#             res = f"iaa.Sometimes({p}, {method_py_final})"
-#     return res
-#
-#     # pstr = ""
-#     # for item in default_params:
-#     #     name = item["pname"]
-#     #     value = params[name]
-#     #     if type(value) is str:
-#     #         pstr += f"{name}='{value}', "
-#     #     else:
-#     #         pstr += f"{name}={value}, "
-#     # method_py_final = f"iaa.{category_name}.{aug_name}({pstr[:-2]})"
-#     # res = method_py_final
-#     # if "sometimesP" in params:
-#     #     p = params["sometimesP"]
-#     #     if p < 1 and type(p) in [float]:
-#     #         res = f"iaa.Sometimes({p}, {method_py_final})"
-#     # return res
 
 
 def get_default_params_by_function(f):
@@ -108,10 +77,48 @@ def get_default_params_by_name(category_name, aug_name):
     defaults = get_default_params_by_function(func)
     return defaults
 
-# TypeError: f() got an unexpected keyword argument 'b'
-def remove_unexpected_arguments(category_name, aug_name, params):
-    defaults = get_default_params_by_name(category_name, aug_name)
 
+def remove_unexpected_arguments(category_name, aug_name, params):
+    # TypeError: f() got an unexpected keyword argument 'b'
+    defaults = get_default_params_by_name(category_name, aug_name)
+    allowed_names = [d["pname"] for d in defaults]
+
+    res = OrderedDict()
+    for name, value in params.items():
+        if name in allowed_names:
+            res[name] = value
+    return res
+
+
+def aug_to_python(aug_info):
+    pstr = ""
+    for name, value in aug_info["params"].items():
+        if type(value) is str:
+            pstr += f"{name}='{value}', "
+        else:
+            pstr += f"{name}={value}, "
+    method_py = f"iaa.{aug_info['category']}.{aug_info['name']}({pstr[:-2]})"
+
+    res = method_py
+    if "sometimes" in aug_info:
+        res = f"iaa.Sometimes({aug_info['sometimes']}, {method_py})"
+    return res
+
+    # pstr = ""
+    # for item in default_params:
+    #     name = item["pname"]
+    #     value = params[name]
+    #     if type(value) is str:
+    #         pstr += f"{name}='{value}', "
+    #     else:
+    #         pstr += f"{name}={value}, "
+    # method_py_final = f"iaa.{category_name}.{aug_name}({pstr[:-2]})"
+    # res = method_py_final
+    # if "sometimesP" in params:
+    #     p = params["sometimesP"]
+    #     if p < 1 and type(p) in [float]:
+    #         res = f"iaa.Sometimes({p}, {method_py_final})"
+    # return res
 
 
 
