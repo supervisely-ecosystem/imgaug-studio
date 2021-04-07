@@ -35,6 +35,7 @@ def init_augs_configs(data: dict, state: dict):
     state["sometimes"] = False
     state["sometimesP"] = 0.5
 
+
 def init_pipeline(data, state):
     data["pipeline"] = [
         # "iaa.imgcorruptlike.GaussianBlur(severity=(1, 1))",
@@ -79,7 +80,7 @@ def init_preview(data, state):
         "mode": 'ace/mode/python',
         "showGutter": False,
         "readOnly": True,
-        "maxLines": 10,
+        "maxLines": 50,
         "highlightActiveLine": False
     }
 

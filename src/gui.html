@@ -39,13 +39,13 @@
         <div v-if="data.pipeline.length > 0">
             <table>
                 <tbody>
-                <tr v-for="(pyLine, index) in data.pipeline">
+                <tr v-for="(aug, index) in data.pipeline">
                     <td style="min-width: 30px; color: gray">
                         # {{index}}
                     </td>
                     <td style="width: 100%;">
-                        <sly-copy-to-clipboard :data="pyLine">
-                            <sly-editor v-model="pyLine" :options="data.pyViewOptions"></sly-editor>
+                        <sly-copy-to-clipboard :data="aug.pyExample">
+                            <sly-editor v-model="aug.pyExample" :options="data.pyViewOptions"></sly-editor>
                         </sly-copy-to-clipboard>
                     </td>
                     <td style="min-width: 130px;">
@@ -185,7 +185,7 @@
                         <el-button type="primary" class="regular" size="small" @click="command('preview')">
                             <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i>Preview
                         </el-button>
-                        <el-button type="success" class="regular" size="small" @click="command('add')">
+                        <el-button type="success" class="regular" size="small" @click="command('add_to_pipeline')">
                             <i class="zmdi zmdi-check"></i> Add to pipeline
                         </el-button>
                     </div>
@@ -195,18 +195,18 @@
         <sly-card title="Preview"
                   subtitle="Preview python code and aug result on a random image"
                   style="width: 100%">
-            <div v-if="!data.previewPy && !state.previewLoading && !state.aug">
+            <div v-if="!state.addMode && !data.previewPy">
                 Press Preview button to show python code and visualize image examples
             </div>
 
-            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading"
+            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && !state.previewLoading && state.addMode"
                        title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
                 <sly-grid-gallery
                         :content="data.gallery.content"
                         :options="data.gallery.options"
                         :preview-options="data.gallery.previewOptions"/>
             </sly-field>
-            <sly-field v-if="data.previewPy" title="Python code">
+            <sly-field v-if="data.previewPy && state.addMode" title="Python code">
                 <sly-copy-to-clipboard v-if="state.aug"
                                        :data="data.previewPy">
                     <sly-editor v-model="data.previewPy"
@@ -215,7 +215,7 @@
                 </sly-copy-to-clipboard>
             </sly-field>
 
-            <sly-field v-if="state.aug" description="Docs for the selected augmentation method">
+            <sly-field v-if="state.aug && state.addMode" description="Docs for the selected augmentation method">
                 <div slot="title">
                     <b>Documentation: </b>
                     <a target="_blank" :href="data.config[state.category][state.aug].durl">

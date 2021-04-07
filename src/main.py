@@ -29,17 +29,14 @@ sly.fs.clean_dir(vis_dir)  # convenient for debug
 def preview(api: sly.Api, task_id, context, state, app_logger):
     category_name = state["category"]
     aug_name = state["aug"]
-
-    aug_info = augs_configs[category_name][aug_name]
     default_params = augs_configs[category_name][aug_name]["params"]
     params = aug_utils.normalize_params(default_params, state["augVModels"][category_name][aug_name])
-
-    sometimes_p = None
-    if state["sometimes"]:
-        sometimes_p = state["sometimesP"]
+    params["sometimes"] = state["sometimes"]
+    params["sometimesP"] = state["sometimesP"]
+    sometimes_p = state["sometimesP"] if state["sometimes"] else None
     py_example = aug_utils.generate_python(category_name, aug_name, default_params, params, sometimes_p)
 
-    aug = aug_utils.build(aug_name, params, sometimes_p)
+    aug = aug_utils.build(aug_name, params)
 
     preview_labels = []
     preview_images = []
@@ -78,6 +75,40 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
         {"field": "data.previewPy", "payload": py_example},
     ]
     api.task.set_fields(task_id, fields)
+
+
+@app.callback("add_to_pipeline")
+@sly.timeit
+def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
+    category = state["category"]
+    aug = state["aug"]
+
+    default_params = augs_configs[category][aug]["params"]
+    params = aug_utils.normalize_params(default_params, state["augVModels"][category][aug])
+    sometimes_p = state["sometimesP"] if state["sometimes"] else None
+    py_example = aug_utils.generate_python(category, aug, default_params, params, sometimes_p)
+
+    aug_config = {
+        "category": category,
+        "aug": aug,
+        "augVModels": state["augVModels"][category][aug],  # optional in general
+        "sometimes": state["sometimes"],
+        "sometimesP": state["sometimesP"],
+        "pyExample": py_example
+    }
+    pipeline.append(aug_config)
+
+    fields = [
+        {"field": "data.pipeline", "payload": pipeline},
+        {"field": "state.addMode", "payload": False},
+    ]
+    api.task.set_fields(task_id, fields)
+
+
+@app.callback("preview_pipeline")
+@sly.timeit
+def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
+    pass
 
 
 def main():
