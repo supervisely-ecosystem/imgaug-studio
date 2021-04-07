@@ -171,8 +171,9 @@
                         </sly-field>
                     </div>
                     <sly-field title="Apply sometimes" description="apply aug with given probability">
-                        <el-checkbox v-model="state.sometimes"><b>Apply sometimes</b></el-checkbox>
+                        <el-checkbox v-model="state.sometimes">probability</el-checkbox>
                         <el-input-number v-model="state.sometimesP"
+                                         class="ml5"
                                          :disabled="!state.sometimes"
                                          :min="0" :max="1" :step="0.01"
                                          size="small"
