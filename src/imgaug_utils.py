@@ -113,9 +113,9 @@ def pipeline_to_python(aug_infos, random_order=False):
 
 seq = iaa.Sequential([
     {}
-], random_order=True)
+], random_order={})
 """
     py_lines = [info["python"] for info in aug_infos]
-    res = template.format(',\n\t'.join(py_lines))
+    res = template.format(',\n\t'.join(py_lines), random_order)
     return res
 
