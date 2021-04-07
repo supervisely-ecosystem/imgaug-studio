@@ -51,7 +51,6 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
         if py_code is None:
             py_code = imgaug_utils.pipeline_to_python(infos, random_order=False)
         fields.append({"field": "data.previewPy", "payload": py_code})
-
     api.task.set_fields(task_id, fields)
 
 
@@ -105,9 +104,7 @@ def main():
 
     app.run(data=data, state=state)
 
-# check and fix build_pipeline
-# restore-default on client
-# @TODO: random_order flag (shuffle flag to entire pipeline)
+
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 

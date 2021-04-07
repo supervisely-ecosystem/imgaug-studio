@@ -84,10 +84,7 @@ def init_preview(data, state):
         "maxLines": 50,
         "highlightActiveLine": False
     }
-
-    #@TODO: delete
     state["sometimes"] = False
-    state["fl"] = 0.3
 
 
 def init_docs(data):
