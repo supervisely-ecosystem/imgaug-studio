@@ -43,6 +43,7 @@ def init_pipeline(data, state):
         # "iaa.imgcorruptlike.GaussianBlur(severity=(3, 3))",
     ]
     state["addMode"] = False
+    state["randomOrder"] = False
 
 
 def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):

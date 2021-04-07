@@ -48,6 +48,7 @@ def create_aug_info(category_name, aug_name, params, sometimes: float=None):
         if type(sometimes) is not float or not( 0.0 <= sometimes <= 1.0):
             raise ValueError(f"sometimes={sometimes}, type != {type(sometimes)}")
         res["sometimes"] = sometimes
+    res["python"] = aug_to_python(res)
     return res
 
 
@@ -79,6 +80,7 @@ def get_default_params_by_name(category_name, aug_name):
 
 
 def remove_unexpected_arguments(category_name, aug_name, params):
+    # to avoid this:
     # TypeError: f() got an unexpected keyword argument 'b'
     defaults = get_default_params_by_name(category_name, aug_name)
     allowed_names = [d["pname"] for d in defaults]

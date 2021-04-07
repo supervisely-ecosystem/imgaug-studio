@@ -44,8 +44,8 @@
                         # {{index}}
                     </td>
                     <td style="width: 100%;">
-                        <sly-copy-to-clipboard :data="aug.pyExample">
-                            <sly-editor v-model="aug.pyExample" :options="data.pyViewOptions"></sly-editor>
+                        <sly-copy-to-clipboard :data="aug.python">
+                            <sly-editor v-model="aug.python" :options="data.pyViewOptions"></sly-editor>
                         </sly-copy-to-clipboard>
                     </td>
                     <td style="min-width: 130px;">
@@ -57,6 +57,16 @@
                         <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-close"></i></el-button>
                     </td>
                 </tr>
+<!--                <tr>-->
+<!--                    <td style="min-width: 30px; color: gray">-->
+<!--                        option-->
+<!--                    </td>-->
+<!--                    <td style="width: 100%;">-->
+<!--                        <el-checkbox v-model="state.randomOrder">Random order</el-checkbox>-->
+<!--                    </td>-->
+<!--                    <td style="min-width: 130px;">-->
+<!--                    </td>-->
+<!--                </tr>-->
                 </tbody>
             </table>
         </div>

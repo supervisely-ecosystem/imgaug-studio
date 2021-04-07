@@ -42,8 +42,6 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     aug_info = ui_augs.get_aug_info(state)
     aug = imgaug_utils.build(aug_info)
 
-    py_example = imgaug_utils.aug_to_python(aug_info)
-
     img_info, img = get_random_image(api)
     res_img = imgaug_utils.apply(aug, img)
     file_info = save_preview_image(api, task_id, res_img)
@@ -52,7 +50,7 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     fields = [
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.previewLoading", "payload": False},
-        {"field": "data.previewPy", "payload": py_example},
+        {"field": "data.previewPy", "payload": aug_info["python"]},
     ]
     api.task.set_fields(task_id, fields)
 
@@ -60,33 +58,16 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
 @app.callback("add_to_pipeline")
 @sly.timeit
 def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
-    pass
-    # category = state["category"]
-    # aug = state["aug"]
-    #
-    # default_params =
-    #
-    #
-    # augs_configs[category][aug]["params"]
-    # params = aug_utils.normalize_params(default_params, state["augVModels"][category][aug])
-    # if state["sometimes"]:
-    #     params["sometimesP"] = state["sometimesP"]
-    # py_example = aug_utils.generate_python(category, aug, default_params, params)
-    #
-    # aug_config = {
-    #     "category": category,
-    #     "aug": aug,
-    #     "augVModels": params,  # optional in general
-    #     "pyExample": py_example
-    # }
-    # print(json.dumps(aug_config, indent=4))
-    # pipeline.append(aug_config)
-    #
-    # fields = [
-    #     {"field": "data.pipeline", "payload": pipeline},
-    #     {"field": "state.addMode", "payload": False},
-    # ]
-    # api.task.set_fields(task_id, fields)
+    aug_info = ui_augs.get_aug_info(state)
+
+    print(json.dumps(aug_info, indent=4))
+    pipeline.append(aug_info)
+
+    fields = [
+        {"field": "data.pipeline", "payload": pipeline},
+        {"field": "state.addMode", "payload": False},
+    ]
+    api.task.set_fields(task_id, fields)
 
 
 @app.callback("preview_pipeline")
@@ -114,7 +95,6 @@ def main():
     app.run(data=data, state=state)
 
 # check and fix build_pipeline
-# rename augVModels -> params
 # restore-default on client
 # @TODO: random_order flag (shuffle flag to entire pipeline)
 if __name__ == "__main__":
