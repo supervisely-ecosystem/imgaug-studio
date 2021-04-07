@@ -97,7 +97,7 @@ def main():
     ui.init_preview(data, state)
     ui.init_docs(data)
 
-    #TODO: for debug
+    #@TODO: for debug
     state["addMode"] = True
     state["category"] = "arithmetic"
     state["aug"] = "ImpulseNoise"

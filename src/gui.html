@@ -86,6 +86,14 @@
                     @click="command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview pipeline
             </el-button>
+            <el-button
+                    style="margin-left: 5px;"
+                    :disabled="state.addMode === true || data.pipeline.length === 0"
+                    type="primary" class="regular"
+                    size="small"
+                    @click="command('export_pipeline')">
+                <i class="zmdi zmdi-floppy mr5"></i></i>Export
+            </el-button>
         </div>
     </sly-card>
 
@@ -206,7 +214,7 @@
                   subtitle="Preview python code and aug result on a random image"
                   style="width: 100%">
             <div v-if="!data.previewPy">
-                Press Preview button to show python code and visualize image examples
+                <el-tag type="primary">Press Preview button to show python code and visualize image examples</el-tag>
             </div>
 
             <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0"
@@ -225,7 +233,7 @@
                 </sly-copy-to-clipboard>
             </sly-field>
 
-            <sly-field v-if="state.addMode === true" description="Docs for the selected augmentation method">
+            <sly-field v-if="state.addMode === true && state.aug" description="Docs for the selected augmentation method">
                 <div slot="title">
                     <b>Documentation: </b>
                     <a target="_blank" :href="data.config[state.category][state.aug].durl">
