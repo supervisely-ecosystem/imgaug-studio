@@ -57,16 +57,16 @@
                         <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-close"></i></el-button>
                     </td>
                 </tr>
-<!--                <tr>-->
-<!--                    <td style="min-width: 30px; color: gray">-->
-<!--                        option-->
-<!--                    </td>-->
-<!--                    <td style="width: 100%;">-->
-<!--                        <el-checkbox v-model="state.randomOrder">Random order</el-checkbox>-->
-<!--                    </td>-->
-<!--                    <td style="min-width: 130px;">-->
-<!--                    </td>-->
-<!--                </tr>-->
+                <tr v-show="data.pipeline.length > 1">
+                    <td></td>
+                    <td>
+                        <el-checkbox v-model="state.randomOrder">
+                            Random order (i.e. shuffle) - whether to apply augmenters in random order
+                        </el-checkbox>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
