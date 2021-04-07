@@ -112,10 +112,10 @@ def pipeline_to_python(aug_infos, random_order=False):
 """import imgaug.augmenters as iaa
 
 seq = iaa.Sequential([
-    {}
+{}
 ], random_order={})
 """
     py_lines = [info["python"] for info in aug_infos]
-    res = template.format(',\n\t'.join(py_lines), random_order)
+    res = template.format('\t' + ',\n\t'.join(py_lines), random_order)
     return res
 
