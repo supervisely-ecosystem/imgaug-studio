@@ -1,4 +1,5 @@
 import os
+import json
 import supervisely_lib as sly
 
 import init_ui as ui
@@ -85,17 +86,17 @@ def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
 
     default_params = augs_configs[category][aug]["params"]
     params = aug_utils.normalize_params(default_params, state["augVModels"][category][aug])
-    sometimes_p = state["sometimesP"] if state["sometimes"] else None
-    py_example = aug_utils.generate_python(category, aug, default_params, params, sometimes_p)
+    if state["sometimes"]:
+        params["sometimesP"] = state["sometimesP"]
+    py_example = aug_utils.generate_python(category, aug, default_params, params)
 
     aug_config = {
         "category": category,
         "aug": aug,
-        "augVModels": state["augVModels"][category][aug],  # optional in general
+        "augVModels": params,  # optional in general
         "pyExample": py_example
     }
-    if state["sometimes"]:
-        aug_config["sometimesP"] = state["sometimesP"],
+    print(json.dumps(aug_config, indent=4))
     pipeline.append(aug_config)
 
     fields = [
