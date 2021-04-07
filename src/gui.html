@@ -73,24 +73,22 @@
         <div class="fflex mt10">
             <el-button
                     :disabled="state.addMode === true"
-                    type="success" class="regular"
-                    size="small"
+                    type="success" class="regular" size="small"
                     @click="state.addMode = true;">
                 <i class="zmdi zmdi-playlist-plus mr5"></i>Add
             </el-button>
             <el-button
                     style="margin-left: 5px;"
                     :disabled="state.addMode === true || data.pipeline.length === 0"
-                    type="primary" class="regular"
-                    size="small"
+                    type="primary" class="regular" size="small"
                     @click="command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview pipeline
             </el-button>
+<!--            :plain="true" -->
             <el-button
                     style="margin-left: 5px;"
+                    type="primary" class="regular" size="small"
                     :disabled="state.addMode === true || data.pipeline.length === 0"
-                    type="primary" class="regular"
-                    size="small"
                     @click="command('export_pipeline')">
                 <i class="zmdi zmdi-floppy mr5"></i></i>Export
             </el-button>
@@ -104,7 +102,8 @@
                   subtitle="Explore, configure and preview"
                   style="min-width: 350px; max-width: 350px;">
             <div slot="header">
-                <el-button type="danger" class="regular" size="small" @click="state.addMode = false; state.aug = null">
+                <el-button type="danger" class="regular" size="small"
+                           @click="state.addMode = false; state.aug = null; data.previewPy = null">
                     <i class="zmdi zmdi-close"></i>
                 </el-button>
             </div>
@@ -217,7 +216,7 @@
                 <el-tag type="primary">Press Preview button to show python code and visualize image examples</el-tag>
             </div>
 
-            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0"
+            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && data.previewPy"
                        title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
                 <sly-grid-gallery
                         :content="data.gallery.content"

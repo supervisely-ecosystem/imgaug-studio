@@ -102,17 +102,20 @@ def get_gallery(urls, img_labels=None):
     if img_labels is None:
         img_labels = [[]] * len(urls)
 
+    if len(urls) % 2 != 0:
+        raise ValueError("Gallery only for image pairs")
+
     CNT_GRID_COLUMNS, gallery = get_empty_gallery()
     grid_annotations = {}
     grid_layout = [[] for i in range(CNT_GRID_COLUMNS)]
-    sync_keys = [[] for i in range(CNT_GRID_COLUMNS)]
+    sync_keys = [[] for i in range(int((len(urls) / 2)))]
     for idx, (image_url, labels) in enumerate(zip(urls, img_labels)):
         grid_annotations[str(idx)] = {
             "url": image_url,
             "figures": labels
         }
         grid_layout[idx % CNT_GRID_COLUMNS].append(str(idx))
-        sync_keys[idx % CNT_GRID_COLUMNS].append(str(idx))
+        sync_keys[int(idx / 2)].append(str(idx))
 
     gallery["content"]["layout"] = grid_layout
     gallery["content"]["annotations"] = grid_annotations
