@@ -71,6 +71,7 @@ def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
     fields = [
         {"field": "data.pipeline", "payload": pipeline},
         {"field": "state.addMode", "payload": False},
+        {"field": "data.previewPy", "payload": None},
     ]
     api.task.set_fields(task_id, fields)
 
@@ -98,9 +99,9 @@ def main():
     ui.init_docs(data)
 
     #@TODO: for debug
-    state["addMode"] = True
-    state["category"] = "arithmetic"
-    state["aug"] = "ImpulseNoise"
+    # state["addMode"] = True
+    # state["category"] = "arithmetic"
+    # state["aug"] = "ImpulseNoise"
 
     app.run(data=data, state=state)
 

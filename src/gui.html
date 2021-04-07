@@ -74,7 +74,7 @@
             <el-button
                     :disabled="state.addMode === true"
                     type="success" class="regular" size="small"
-                    @click="state.addMode = true;">
+                    @click="state.addMode = true; data.previewPy = null;">
                 <i class="zmdi zmdi-playlist-plus mr5"></i>Add
             </el-button>
             <el-button
@@ -84,7 +84,7 @@
                     @click="command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview pipeline
             </el-button>
-<!--            :plain="true" -->
+            <!--            :plain="true" -->
             <el-button
                     style="margin-left: 5px;"
                     type="primary" class="regular" size="small"
@@ -100,7 +100,7 @@
                   class="mr15"
                   title="Add aug to pipeline"
                   subtitle="Explore, configure and preview"
-                  style="min-width: 350px; max-width: 350px;">
+                  style="min-width: 350px; max-width: 350px; align-self: flex-start;">
             <div slot="header">
                 <el-button type="danger" class="regular" size="small"
                            @click="state.addMode = false; state.aug = null; data.previewPy = null">
@@ -127,6 +127,15 @@
             </sly-field>
 
             <div v-if="state.aug">
+                <sly-field title="Apply sometimes" description="apply aug with given probability">
+                    <el-checkbox v-model="state.sometimes">probability</el-checkbox>
+                    <el-input-number v-model="state.sometimesP"
+                                     class="ml5"
+                                     :disabled="!state.sometimes"
+                                     :min="0" :max="1" :step="0.01"
+                                     size="small"
+                                     :debounce="1000"></el-input-number>
+                </sly-field>
                 <sly-field title="Params" description="Configure current augmentation">
                     <div v-for="item in data.config[state.category][state.aug].params" :key="item.pname">
                         <sly-field :title="item.pname" class="auto-field">
@@ -187,15 +196,6 @@
                             </el-select>
                         </sly-field>
                     </div>
-                    <sly-field title="Apply sometimes" description="apply aug with given probability">
-                        <el-checkbox v-model="state.sometimes">probability</el-checkbox>
-                        <el-input-number v-model="state.sometimesP"
-                                         class="ml5"
-                                         :disabled="!state.sometimes"
-                                         :min="0" :max="1" :step="0.01"
-                                         size="small"
-                                         :debounce="1000"></el-input-number>
-                    </sly-field>
                 </sly-field>
                 <div v-if="state.aug">
                     <div class="fflex mt10" style="justify-content: space-between;">
@@ -232,7 +232,8 @@
                 </sly-copy-to-clipboard>
             </sly-field>
 
-            <sly-field v-if="state.addMode === true && state.aug" description="Docs for the selected augmentation method">
+            <sly-field style="margin-top: 20px;" v-if="state.addMode === true && state.aug"
+                       description="Docs for the selected augmentation method">
                 <div slot="title">
                     <b>Documentation: </b>
                     <a target="_blank" :href="data.config[state.category][state.aug].durl">
@@ -240,7 +241,7 @@
                     </a>
                 </div>
 
-<!--                style="padding: 10px 10px 10px 10px;"-->
+                <!--                style="padding: 10px 10px 10px 10px;"-->
                 <sly-docstring class="mt10"
                                v-if="data.docs[state.category][state.aug]"
                                :data="data.docs[state.category][state.aug]">
