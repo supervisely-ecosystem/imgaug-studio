@@ -31,10 +31,10 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
     aug_name = state["aug"]
     default_params = augs_configs[category_name][aug_name]["params"]
     params = aug_utils.normalize_params(default_params, state["augVModels"][category_name][aug_name])
-    params["sometimes"] = state["sometimes"]
-    params["sometimesP"] = state["sometimesP"]
     sometimes_p = state["sometimesP"] if state["sometimes"] else None
-    py_example = aug_utils.generate_python(category_name, aug_name, default_params, params, sometimes_p)
+    if state["sometimes"]:
+        params["sometimesP"] = state["sometimesP"],
+    py_example = aug_utils.generate_python(category_name, aug_name, default_params, params)
 
     aug = aug_utils.build(aug_name, params)
 
@@ -92,10 +92,10 @@ def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
         "category": category,
         "aug": aug,
         "augVModels": state["augVModels"][category][aug],  # optional in general
-        "sometimes": state["sometimes"],
-        "sometimesP": state["sometimesP"],
         "pyExample": py_example
     }
+    if state["sometimes"]:
+        aug_config["sometimesP"] = state["sometimesP"],
     pipeline.append(aug_config)
 
     fields = [
@@ -131,9 +131,6 @@ def main():
 
 # restore-default on client
 # @TODO: random_order flag (shuffle flag to entire pipeline)
-# Cutout invalid arguments
-# create sequence format
-# define minimum version
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 
