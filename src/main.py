@@ -46,11 +46,11 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
         {"field": "state.previewLoading", "payload": False},
     ]
     if len(infos) == 1 and py_code is None:
-        fields.append({"field": "data.previewPy", "payload": infos[0]["python"]})
+        fields.append({"field": "state.previewPy", "payload": infos[0]["python"]})
     else:
         if py_code is None:
             py_code = imgaug_utils.pipeline_to_python(infos, random_order=False)
-        fields.append({"field": "data.previewPy", "payload": py_code})
+        fields.append({"field": "state.previewPy", "payload": py_code})
     api.task.set_fields(task_id, fields)
 
 
@@ -71,7 +71,7 @@ def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
     fields = [
         {"field": "data.pipeline", "payload": pipeline},
         {"field": "state.addMode", "payload": False},
-        {"field": "data.previewPy", "payload": None},
+        {"field": "state.previewPy", "payload": None},
     ]
     api.task.set_fields(task_id, fields)
 

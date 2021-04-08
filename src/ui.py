@@ -76,7 +76,7 @@ def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
 def init_preview(data, state):
     _, data["gallery"] = get_empty_gallery()
     state["previewLoading"] = False
-    data["previewPy"] = None
+    state["previewPy"] = None
     data["pyViewOptions"] = {
         "mode": 'ace/mode/python',
         "showGutter": False,

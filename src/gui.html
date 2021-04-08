@@ -23,7 +23,7 @@
         text-align: center;
         }
     </sly-style>
-
+    <div style="color: red">{{state.previewPy}}</div>
     <sly-card title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
         <sly-field title="" description="Input project">
@@ -74,7 +74,7 @@
             <el-button
                     :disabled="state.addMode === true"
                     type="success" class="regular" size="small"
-                    @click="state.addMode = true; data.previewPy = null;">
+                    @click="state.addMode = true; state.previewPy = null;">
                 <i class="zmdi zmdi-playlist-plus mr5"></i>Add
             </el-button>
             <el-button
@@ -84,7 +84,7 @@
                     @click="command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview pipeline
             </el-button>
-            <!--            :plain="true" -->
+<!--            :plain="true"-->
             <el-button
                     style="margin-left: 5px;"
                     type="primary" class="regular" size="small"
@@ -103,7 +103,7 @@
                   style="min-width: 350px; max-width: 350px; align-self: flex-start;">
             <div slot="header">
                 <el-button type="danger" class="regular" size="small"
-                           @click="state.addMode = false; state.aug = null; data.previewPy = null">
+                           @click="state.addMode = false; state.aug = null; state.previewPy = null">
                     <i class="zmdi zmdi-close"></i>
                 </el-button>
             </div>
@@ -212,21 +212,20 @@
         <sly-card title="Preview"
                   subtitle="Preview python code and aug result on a random image"
                   style="width: 100%">
-            <div v-if="!data.previewPy">
+            <div v-if="!state.previewPy">
                 <el-tag type="primary">Press Preview button to show python code and visualize image examples</el-tag>
             </div>
 
-            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && data.previewPy"
+            <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && state.previewPy"
                        title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
                 <sly-grid-gallery
                         :content="data.gallery.content"
                         :options="data.gallery.options"
                         :preview-options="data.gallery.previewOptions"/>
             </sly-field>
-            <sly-field v-if="data.previewPy" title="Python code">
-                <sly-copy-to-clipboard v-if="state.aug"
-                                       :data="data.previewPy">
-                    <sly-editor v-model="data.previewPy"
+            <sly-field v-if="state.previewPy" title="Python code">
+                <sly-copy-to-clipboard :data="state.previewPy">
+                    <sly-editor v-model="state.previewPy"
                                 :options="data.pyViewOptions">
                     </sly-editor>
                 </sly-copy-to-clipboard>
