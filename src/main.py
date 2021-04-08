@@ -83,8 +83,27 @@ def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
     if len(pipeline) > 1:
         random_order = state["randomOrder"]
     augs = imgaug_utils.build_pipeline(pipeline, random_order)
-    py_code = imgaug_utils.pipeline_to_python(pipeline, random_order=False)
+    py_code = imgaug_utils.pipeline_to_python(pipeline, random_order)
     preview_augs(api, task_id, augs, pipeline, py_code)
+
+
+@app.callback("export")
+@sly.timeit
+def export(api: sly.Api, task_id, context, state, app_logger):
+    random_order = False
+    if len(pipeline) > 1:
+        random_order = state["randomOrder"]
+
+    name = state["saveName"]
+    py_code = imgaug_utils.pipeline_to_python(pipeline, random_order)
+    py_path = os.path.join(app.data_dir, f"{name}.py")
+    with open(py_path, "w") as text_file:
+        text_file.writelines(py_code)
+
+    json_path = os.path.join(app.data_dir, f"{name}.json")
+    sly.json.dump_json_file(pipeline, json_path)
+
+
 
 
 def main():
@@ -97,6 +116,7 @@ def main():
     ui.init_augs_configs(data, state)
     ui.init_preview(data, state)
     ui.init_docs(data)
+    ui.init_export(data, state, app.task_id)
 
     #@TODO: for debug
     # state["addMode"] = True

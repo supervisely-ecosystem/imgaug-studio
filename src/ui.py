@@ -122,3 +122,8 @@ def get_gallery(urls, img_labels=None):
     gallery["options"]["syncViewsBindings"] = sync_keys
 
     return gallery
+
+
+def init_export(data, state, task_id):
+    state["saveDir"] = f"imgaug_studio/{task_id}/"
+    state["saveName"] = f"{task_id}_my_augs_pipeline"
