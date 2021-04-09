@@ -89,38 +89,41 @@
                     style="margin-left: 5px;"
                     type="primary" class="regular" size="small"
                     :disabled="state.addMode === true || data.pipeline.length === 0"
-                    @click="command('export_pipeline')">
+                    @click="state.saveMode = true;">
                 <i class="zmdi zmdi-floppy mr5"></i></i>Export
             </el-button>
         </div>
     </sly-card>
 
-    <sly-card class="mt15"
-              title="Export pipeline"
-              subtitle="Save both python representation and json configuration. The latter one can be used for
-              real-time augmentation during NN training.">
+    <el-dialog title="Export pipeline"
+               :visible.sync="state.saveMode"
+               size="tiny">
         <sly-field title="Directory" description="Configurations will be saved to Team Files">
             <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">
                 <i class="zmdi zmdi-folder"></i>
             </sly-icon>
             <el-input placeholder="Please input destination directory" v-model="state.saveDir"></el-input>
         </sly-field>
-
         <sly-field title="Name" description="py and json configurations will be saved with this name">
-            <div class="fflex">
-                <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
-                <el-button
-                        style="margin-left: 5px;"
-                        :disabled="state.saveName.length === 0"
-                        type="primary" class="regular" size="small"
-                        @click="command('export_pipeline')">
-                    <i class="zmdi zmdi-floppy mr5"></i>Export pipeline
-                </el-button>
-            </div>
+            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">
+                <i class="zmdi zmdi-star"></i>
+            </sly-icon>
+            <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
         </sly-field>
-    </sly-card>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="state.saveMode = false">Cancel</el-button>
+            <el-button
+                    style="margin-left: 5px;"
+                    :disabled="state.saveName.length === 0"
+                    type="primary" class="regular" size="small"
+                    @click="command('export_pipeline')">
+                    <i class="zmdi zmdi-floppy mr5"></i>Export pipeline
+            </el-button>
+        </span>
+    </el-dialog>
 
     <div class="fflex mt15" style="align-items: stretch">
+        <!--        position: sticky; top: 15px;-->
         <sly-card v-if="state.addMode === true"
                   class="mr15"
                   title="Add aug to pipeline"
