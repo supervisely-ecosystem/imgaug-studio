@@ -87,9 +87,11 @@ def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
     preview_augs(api, task_id, augs, pipeline, py_code)
 
 
-@app.callback("export")
+@app.callback("export_pipeline")
 @sly.timeit
-def export(api: sly.Api, task_id, context, state, app_logger):
+def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
+    api.task.set_field(task_id, "state.exporting", True)
+
     random_order = False
     if len(pipeline) > 1:
         random_order = state["randomOrder"]
@@ -101,9 +103,26 @@ def export(api: sly.Api, task_id, context, state, app_logger):
         text_file.writelines(py_code)
 
     json_path = os.path.join(app.data_dir, f"{name}.json")
-    sly.json.dump_json_file(pipeline, json_path)
+    res_json = {
+        "pipeline": pipeline,
+        "random_order": random_order
+    }
+    sly.json.dump_json_file(res_json, json_path)
 
+    remote_py_path = os.path.join(state["saveDir"], f"{name}.py")
+    remote_json_path = os.path.join(state["saveDir"], f"{name}.json")
 
+    if api.file.exists(team_id, remote_py_path):
+        remote_py_path = api.file.get_free_name(team_id, remote_py_path)
+    if api.file.exists(team_id, remote_json_path):
+        remote_json_path = api.file.get_free_name(team_id, remote_json_path)
+
+    api.file.upload_bulk(team_id, [py_path, json_path], [remote_py_path, remote_json_path])
+    fields = [
+        {"field": "state.exporting", "payload": False},
+        {"field": "state.saveMode", "payload": False},
+    ]
+    api.task.set_fields(task_id, fields)
 
 
 def main():

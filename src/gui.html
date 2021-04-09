@@ -23,7 +23,6 @@
         text-align: center;
         }
     </sly-style>
-    <div style="color: red">{{state.previewPy}}</div>
     <sly-card title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
         <sly-field title="" description="Input project">
@@ -111,9 +110,10 @@
             <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
         </sly-field>
         <span slot="footer" class="dialog-footer">
-            <el-button @click="state.saveMode = false">Cancel</el-button>
+            <el-button @click="state.saveMode = false; state.exporting = false;">Cancel</el-button>
             <el-button
                     style="margin-left: 5px;"
+                    :loading="state.exporting"
                     :disabled="state.saveName.length === 0"
                     type="primary" class="regular" size="small"
                     @click="command('export_pipeline')">
