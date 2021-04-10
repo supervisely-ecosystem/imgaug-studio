@@ -2,6 +2,7 @@ import imgaug.augmenters as iaa
 import inspect
 from collections import OrderedDict
 import supervisely_lib as sly
+from imgaug.augmentables.bbs import BoundingBox, BoundingBoxesOnImage
 
 
 def get_function(category_name, aug_name):
@@ -119,3 +120,15 @@ seq = iaa.Sequential([
     res = template.format('\t' + ',\n\t'.join(py_lines), random_order)
     return res
 
+
+def convert_sly_to_imgaug_annotations(ann: sly.Annotation):
+    # polygons, bitmaps -> mask
+    # rect -> bbox
+    # other is skipped
+
+    # bbs = BoundingBoxesOnImage([
+    #     BoundingBox(x1=65, y1=100, x2=200, y2=150),
+    #     BoundingBox(x1=150, y1=80, x2=200, y2=130)
+    # ], shape=image.shape)
+
+    pass
