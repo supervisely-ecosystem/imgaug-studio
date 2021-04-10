@@ -126,6 +126,8 @@ def get_gallery(urls, img_labels=None):
 
 def init_export(data, state, task_id):
     state["saveMode"] = False
-    state["saveDir"] = f"imgaug_studio/"
+    state["saveDir"] = f"/imgaug_studio/"
     state["saveName"] = f"{task_id}_my_pipeline"
     state["exporting"] = False
+    data["savedUrl"] = None
+    data["savedPath"] = None

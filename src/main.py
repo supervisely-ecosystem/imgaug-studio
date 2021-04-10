@@ -1,5 +1,7 @@
 import os
 import json
+import time
+
 import supervisely_lib as sly
 
 import ui
@@ -117,10 +119,12 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
     if api.file.exists(team_id, remote_json_path):
         remote_json_path = api.file.get_free_name(team_id, remote_json_path)
 
-    api.file.upload_bulk(team_id, [py_path, json_path], [remote_py_path, remote_json_path])
+    infos = api.file.upload_bulk(team_id, [py_path, json_path], [remote_py_path, remote_json_path])
     fields = [
         {"field": "state.exporting", "payload": False},
         {"field": "state.saveMode", "payload": False},
+        {"field": "state.savedUrl", "payload": api.file.get_url(infos[1].id)},
+        {"field": "state.savedPath", "payload": infos[1].path}
     ]
     api.task.set_fields(task_id, fields)
 
@@ -144,7 +148,7 @@ def main():
 
     app.run(data=data, state=state)
 
-
+#@TODO: preview expotrt directory - fix WS
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 

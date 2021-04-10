@@ -81,7 +81,7 @@
                     :disabled="state.addMode === true || data.pipeline.length === 0"
                     type="primary" class="regular" size="small"
                     @click="command('preview_pipeline')">
-                <i class="zmdi zmdi-slideshow mr5"></i>Preview pipeline
+                <i class="zmdi zmdi-slideshow mr5"></i>Preview
             </el-button>
             <!--            :plain="true"-->
             <el-button
@@ -109,6 +109,17 @@
             </sly-icon>
             <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
         </sly-field>
+<!--        <div> data.savedUrl: {{data.savedUrl}}</div>-->
+<!--        <div> data.savedPath: {{data.savedPath}}</div>-->
+        <sly-field v-if="data.savedUrl"
+                   title=""
+                   description="Augs pipeline has been successfully saved">
+            <a slot="title" target="_blank" :href="`${data.savedUrl}`">{{data.savedPath}}</a>
+            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">
+                <i class="zmdi zmdi-check-all"></i>
+            </sly-icon>
+        </sly-field>
+
         <span slot="footer" class="dialog-footer">
             <el-button @click="state.saveMode = false; state.exporting = false;">Cancel</el-button>
             <el-button
@@ -117,7 +128,7 @@
                     :disabled="state.saveName.length === 0"
                     type="primary" class="regular" size="small"
                     @click="command('export_pipeline')">
-                    <i class="zmdi zmdi-floppy mr5"></i>Export pipeline
+                    <i class="zmdi zmdi-floppy mr5"></i>Export
             </el-button>
         </span>
     </el-dialog>
