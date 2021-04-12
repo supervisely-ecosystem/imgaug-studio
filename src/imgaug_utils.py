@@ -3,6 +3,8 @@ import inspect
 from collections import OrderedDict
 import supervisely_lib as sly
 from imgaug.augmentables.bbs import BoundingBox, BoundingBoxesOnImage
+from imgaug.augmentables.segmaps import SegmentationMapsOnImage
+import numpy as np
 
 
 def get_function(category_name, aug_name):
@@ -53,8 +55,9 @@ def create_aug_info(category_name, aug_name, params, sometimes: float = None):
     return res
 
 
-def apply(augs: iaa.Sequential, img):
-    res = augs(images=[img])
+def apply(augs: iaa.Sequential, img, ann):
+    bbs, segmaps = to_imgaug_annotations(ann)
+    res = augs(images=[img], bounding_boxes=bbs, segmentation_maps=segmaps)
     return res[0]
 
 
@@ -110,25 +113,40 @@ def aug_to_python(aug_info):
 
 def pipeline_to_python(aug_infos, random_order=False):
     template = \
-"""import imgaug.augmenters as iaa
-
-seq = iaa.Sequential([
-{}
-], random_order={})
-"""
+        """import imgaug.augmenters as iaa
+        
+        seq = iaa.Sequential([
+        {}
+        ], random_order={})
+        """
     py_lines = [info["python"] for info in aug_infos]
     res = template.format('\t' + ',\n\t'.join(py_lines), random_order)
     return res
 
 
-def convert_sly_to_imgaug_annotations(ann: sly.Annotation):
-    # polygons, bitmaps -> mask
-    # rect -> bbox
-    # other is skipped
+def boxes_from_sly_to_imgaug(ann: sly.Annotation) -> BoundingBoxesOnImage:
+    boxes = []
+    for label in ann.labels:
+        if type(label.geometry) == sly.Rectangle:
+            rect: sly.Rectangle = label.geometry
+            boxes.append(
+                BoundingBox(x1=rect.left, y1=rect.top, x2=rect.right, y2=rect.bottom, label=label.obj_class.name))
+    bbs = None
+    if len(boxes) > 0:
+        bbs = BoundingBoxesOnImage(boxes, shape=ann.img_size)
+    return bbs
 
-    # bbs = BoundingBoxesOnImage([
-    #     BoundingBox(x1=65, y1=100, x2=200, y2=150),
-    #     BoundingBox(x1=150, y1=80, x2=200, y2=130)
-    # ], shape=image.shape)
 
-    pass
+def masks_from_sly_to_imgaug(ann: sly.Annotation) -> SegmentationMapsOnImage:
+    masks = []
+    for label in ann.labels:
+        if type(label.geometry) == sly.Bitmap:
+            bbox: sly.Rectangle = label.geometry.to_bbox()
+            temp_label = label.translate(drow=-bbox.top, dcol=-bbox.left)
+            mask = np.zeros((bbox.height, bbox.width, 1), dtype=bool)
+            temp_label.draw(mask, [True])
+            masks.append(mask)
+    segmaps = None
+    if len(masks) > 0:
+        segmaps = SegmentationMapsOnImage([masks], shape=ann.img_size)
+    return segmaps

@@ -252,7 +252,9 @@
                   subtitle="Preview python code and aug result on a random image"
                   style="width: 100%">
             <div v-if="!state.previewPy">
-                <el-tag type="primary">Press Preview button to show python code and visualize image examples</el-tag>
+                <el-tag type="primary"><i class="zmdi zmdi-help-outline mr5"></i> Press Preview button to show python
+                    code and visualize image examples
+                </el-tag>
             </div>
 
             <sly-field v-show="Object.keys(data.gallery.content.annotations).length > 0 && state.previewPy"

@@ -40,7 +40,10 @@ def save_preview_image(api: sly.Api, task_id, img):
 
 def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     img_info, img = get_random_image(api)
-    res_img = imgaug_utils.apply(augs, img)
+    ann_json = api.annotation.download(img_info.id).annotation
+    ann = sly.Annotation.from_json(ann_json, meta)
+
+    res_img = imgaug_utils.apply(augs, img, ann)
     file_info = save_preview_image(api, task_id, res_img)
     gallery = ui.get_gallery(urls=[img_info.full_storage_url, file_info.full_storage_url])
     fields = [
@@ -142,9 +145,9 @@ def main():
     ui.init_export(data, state, app.task_id)
 
     #@TODO: for debug
-    # state["addMode"] = True
-    # state["category"] = "arithmetic"
-    # state["aug"] = "ImpulseNoise"
+    state["addMode"] = True
+    state["category"] = "flip"
+    state["aug"] = "Fliplr"
 
     app.run(data=data, state=state)
 
