@@ -123,30 +123,3 @@ def pipeline_to_python(aug_infos, random_order=False):
     res = template.format('\t' + ',\n\t'.join(py_lines), random_order)
     return res
 
-
-def boxes_from_sly_to_imgaug(ann: sly.Annotation) -> BoundingBoxesOnImage:
-    boxes = []
-    for label in ann.labels:
-        if type(label.geometry) == sly.Rectangle:
-            rect: sly.Rectangle = label.geometry
-            boxes.append(
-                BoundingBox(x1=rect.left, y1=rect.top, x2=rect.right, y2=rect.bottom, label=label.obj_class.name))
-    bbs = None
-    if len(boxes) > 0:
-        bbs = BoundingBoxesOnImage(boxes, shape=ann.img_size)
-    return bbs
-
-
-def masks_from_sly_to_imgaug(ann: sly.Annotation) -> SegmentationMapsOnImage:
-    masks = []
-    for label in ann.labels:
-        if type(label.geometry) == sly.Bitmap:
-            bbox: sly.Rectangle = label.geometry.to_bbox()
-            temp_label = label.translate(drow=-bbox.top, dcol=-bbox.left)
-            mask = np.zeros((bbox.height, bbox.width, 1), dtype=bool)
-            temp_label.draw(mask, [True])
-            masks.append(mask)
-    segmaps = None
-    if len(masks) > 0:
-        segmaps = SegmentationMapsOnImage([masks], shape=ann.img_size)
-    return segmaps

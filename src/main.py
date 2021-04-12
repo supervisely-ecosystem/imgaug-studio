@@ -43,6 +43,13 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     ann_json = api.annotation.download(img_info.id).annotation
     ann = sly.Annotation.from_json(ann_json, meta)
 
+    seg_meta, mapping = meta.to_segmentation_task()
+    seg_ann = ann.to_nonoverlapping_masks(mapping)
+    seg_ann = seg_ann.to_segmentation_task()
+
+    imgaug_masks = seg_ann.masks_to_imgaug()
+    imgaug_boxes = seg_ann.masks_to_imgaug()
+
     res_img = imgaug_utils.apply(augs, img, ann)
     file_info = save_preview_image(api, task_id, res_img)
     gallery = ui.get_gallery(urls=[img_info.full_storage_url, file_info.full_storage_url])
