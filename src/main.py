@@ -184,9 +184,9 @@ def main():
     ui.init_export(data, state, app.task_id)
 
     # @TODO: for debug
-    # state["addMode"] = True
-    # state["category"] = "flip"
-    # state["aug"] = "Fliplr"
+    state["addMode"] = True
+    state["category"] = "color"
+    state["aug"] = "Posterize"
 
     app.run(data=data, state=state)
 
