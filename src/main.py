@@ -185,8 +185,8 @@ def main():
 
     # @TODO: for debug
     state["addMode"] = True
-    state["category"] = "color"
-    state["aug"] = "Posterize"
+    state["category"] = "contrast"
+    state["aug"] = "GammaContrast"
 
     app.run(data=data, state=state)
 
