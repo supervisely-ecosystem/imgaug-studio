@@ -55,7 +55,7 @@ def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
             "layout": [[] for i in range(CNT_GRID_COLUMNS)]
         },
         "previewOptions": {
-            "opacity": 0.1,
+            "opacity": 0.5,
             "enableZoom": True,
             "resizeOnZoom": True,
             "showOpacityInHeader": True,
@@ -65,7 +65,7 @@ def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
             "syncViews": True,
             "showPreview": False,
             "selectable": False,
-            "opacity": 0.1,
+            "opacity": 0.5,
             "showOpacityInHeader": True,
             # "viewHeight": 450
         }

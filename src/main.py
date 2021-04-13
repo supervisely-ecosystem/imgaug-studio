@@ -62,8 +62,6 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     ann_json = api.annotation.download(img_info.id).annotation
     ann = sly.Annotation.from_json(ann_json, meta)
 
-
-
     det_meta, det_mapping = meta.to_detection_task(convert_classes=False)
     det_ann = ann.to_detection_task(det_mapping)
     ia_boxes = det_ann.bboxes_to_imgaug()
@@ -71,11 +69,14 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     seg_meta, seg_mapping = meta.to_segmentation_task()
     seg_ann = ann.to_nonoverlapping_masks(seg_mapping)
     seg_ann = seg_ann.to_segmentation_task()
-    ia_masks = seg_ann.masks_to_imgaug()
+    class_to_index = {obj_class.name: idx for idx, obj_class in enumerate(seg_meta.obj_classes, start=1)}
+    index_to_class = {v: k for k, v in class_to_index.items()}
+    ia_masks = seg_ann.masks_to_imgaug(class_to_index)
 
     res_meta = det_meta.merge(seg_meta)
     res_img, res_ia_boxes, res_ia_masks = imgaug_utils.apply(augs, img, ia_boxes, ia_masks)
-    res_ann = sly.Annotation.from_imgaug(res_img, ia_boxes=res_ia_boxes, ia_masks=res_ia_masks, meta=res_meta)
+    res_ann = sly.Annotation.from_imgaug(res_img, ia_boxes=res_ia_boxes, ia_masks=res_ia_masks,
+                                         index_to_class=index_to_class, meta=res_meta)
 
     file_info = save_preview_image(api, task_id, res_img)
     gallery = ui.get_gallery(project_meta=res_meta,
