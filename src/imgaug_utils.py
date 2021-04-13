@@ -55,10 +55,10 @@ def create_aug_info(category_name, aug_name, params, sometimes: float = None):
     return res
 
 
-def apply(augs: iaa.Sequential, img, ann):
-    bbs, segmaps = to_imgaug_annotations(ann)
-    res = augs(images=[img], bounding_boxes=bbs, segmentation_maps=segmaps)
-    return res[0]
+def apply(augs: iaa.Sequential, img, boxes=None, masks=None):
+    res = augs(images=[img], bounding_boxes=boxes, segmentation_maps=masks)
+    #return image, boxes, masks
+    return res[0][0], res[1], res[2]
 
 
 def get_default_params_by_function(f):

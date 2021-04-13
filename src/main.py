@@ -38,21 +38,49 @@ def save_preview_image(api: sly.Api, task_id, img):
     return file_info
 
 
+def rename_meta_and_annotations(meta: sly.ProjectMeta, ann: sly.Annotation, suffix="original"):
+    def _get_new_name(current_name):
+        return f"{current_name}-{suffix}"
+
+    new_classes = []
+    for obj_class in meta.obj_classes:
+        obj_class: sly.ObjClass
+        new_classes.append(obj_class.clone(name=_get_new_name(obj_class.name)))
+    new_meta = meta.clone(obj_classes=sly.ObjClassCollection(new_classes))
+
+    new_labels = []
+    for label in ann.labels:
+        dest_name = _get_new_name(label.obj_class.name)
+        dest_class = new_meta.get_obj_class(dest_name)
+        new_labels.append(label.clone(obj_class=dest_class))
+    new_ann = ann.clone(labels=new_labels)
+    return new_meta, new_ann
+
+
 def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     img_info, img = get_random_image(api)
     ann_json = api.annotation.download(img_info.id).annotation
     ann = sly.Annotation.from_json(ann_json, meta)
 
-    seg_meta, mapping = meta.to_segmentation_task()
-    seg_ann = ann.to_nonoverlapping_masks(mapping)
+
+
+    det_meta, det_mapping = meta.to_detection_task(convert_classes=False)
+    det_ann = ann.to_detection_task(det_mapping)
+    ia_boxes = det_ann.bboxes_to_imgaug()
+
+    seg_meta, seg_mapping = meta.to_segmentation_task()
+    seg_ann = ann.to_nonoverlapping_masks(seg_mapping)
     seg_ann = seg_ann.to_segmentation_task()
+    ia_masks = seg_ann.masks_to_imgaug()
 
-    imgaug_masks = seg_ann.masks_to_imgaug()
-    imgaug_boxes = seg_ann.masks_to_imgaug()
+    res_meta = det_meta.merge(seg_meta)
+    res_img, res_ia_boxes, res_ia_masks = imgaug_utils.apply(augs, img, ia_boxes, ia_masks)
+    res_ann = sly.Annotation.from_imgaug(ia_boxes=res_ia_boxes, ia_masks=res_ia_masks, meta=res_meta)
 
-    res_img = imgaug_utils.apply(augs, img, ann)
     file_info = save_preview_image(api, task_id, res_img)
-    gallery = ui.get_gallery(urls=[img_info.full_storage_url, file_info.full_storage_url])
+    gallery = ui.get_gallery(project_meta=res_meta,
+                             urls=[img_info.full_storage_url, file_info.full_storage_url],
+                             img_labels=[ann.labels, res_ann.labels])
     fields = [
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.previewLoading", "payload": False},
@@ -132,7 +160,7 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
     infos = api.file.upload_bulk(team_id, [py_path, json_path], [remote_py_path, remote_json_path])
     fields = [
         {"field": "state.exporting", "payload": False},
-        {"field": "state.saveMode", "payload": False},
+        #{"field": "state.saveMode", "payload": False},
         {"field": "state.savedUrl", "payload": api.file.get_url(infos[1].id)},
         {"field": "state.savedPath", "payload": infos[1].path}
     ]
@@ -158,7 +186,10 @@ def main():
 
     app.run(data=data, state=state)
 
+
 #@TODO: preview expotrt directory - fix WS
+#@TODO: add preview hint - seg/det preview
+#@TODO: add explanation to export
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
 

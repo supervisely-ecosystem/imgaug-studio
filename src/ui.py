@@ -50,7 +50,7 @@ def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
     CNT_GRID_COLUMNS = 2
     empty_gallery = {
         "content": {
-            "projectMeta": sly.ProjectMeta().to_json(),
+            "projectMeta": meta.to_json(),
             "annotations": {},
             "layout": [[] for i in range(CNT_GRID_COLUMNS)]
         },
@@ -98,14 +98,15 @@ def init_docs(data):
                 data["docs"][module_name][method.__name__] = file.read()
 
 
-def get_gallery(urls, img_labels=None):
+def get_gallery(project_meta: sly.ProjectMeta, urls, img_labels=None):
     if img_labels is None:
         img_labels = [[]] * len(urls)
 
     if len(urls) % 2 != 0:
         raise ValueError("Gallery only for image pairs")
 
-    CNT_GRID_COLUMNS, gallery = get_empty_gallery()
+    CNT_GRID_COLUMNS, gallery = get_empty_gallery(project_meta)
+
     grid_annotations = {}
     grid_layout = [[] for i in range(CNT_GRID_COLUMNS)]
     sync_keys = [[] for i in range(int((len(urls) / 2)))]
@@ -129,5 +130,5 @@ def init_export(data, state, task_id):
     state["saveDir"] = f"/imgaug_studio/"
     state["saveName"] = f"{task_id}_my_pipeline"
     state["exporting"] = False
-    data["savedUrl"] = None
-    data["savedPath"] = None
+    state["savedUrl"] = None
+    state["savedPath"] = None

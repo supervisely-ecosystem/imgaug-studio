@@ -23,6 +23,7 @@
         text-align: center;
         }
     </sly-style>
+
     <sly-card title="Your custom augmentation pipeline"
               subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
         <sly-field title="" description="Input project">
@@ -109,12 +110,10 @@
             </sly-icon>
             <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
         </sly-field>
-<!--        <div> data.savedUrl: {{data.savedUrl}}</div>-->
-<!--        <div> data.savedPath: {{data.savedPath}}</div>-->
-        <sly-field v-if="data.savedUrl"
+        <sly-field v-if="state.savedUrl"
                    title=""
                    description="Augs pipeline has been successfully saved">
-            <a slot="title" target="_blank" :href="`${data.savedUrl}`">{{data.savedPath}}</a>
+            <a slot="title" target="_blank" :href="`${state.savedUrl}`">{{state.savedPath}}</a>
             <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">
                 <i class="zmdi zmdi-check-all"></i>
             </sly-icon>
