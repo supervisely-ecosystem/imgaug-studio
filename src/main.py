@@ -75,7 +75,8 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
 
     res_meta = det_meta.merge(seg_meta)
     res_img, res_ia_boxes, res_ia_masks = imgaug_utils.apply(augs, img, ia_boxes, ia_masks)
-    res_ann = sly.Annotation.from_imgaug(res_img, ia_boxes=res_ia_boxes, ia_masks=res_ia_masks,
+    res_ann = sly.Annotation.from_imgaug(res_img,
+                                         ia_boxes=res_ia_boxes, ia_masks=res_ia_masks,
                                          index_to_class=index_to_class, meta=res_meta)
 
     file_info = save_preview_image(api, task_id, res_img)
