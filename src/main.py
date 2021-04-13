@@ -9,7 +9,6 @@ from cache import get_random_image, cache_images
 import ui_augs
 import imgaug_utils
 
-
 app: sly.AppService = sly.AppService()
 
 team_id = int(os.environ['context.teamId'])
@@ -81,8 +80,10 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
 
     file_info = save_preview_image(api, task_id, res_img)
     gallery, sync_keys = ui.get_gallery(project_meta=res_meta,
-                             urls=[img_info.full_storage_url, file_info.full_storage_url],
-                             img_labels=[ann.labels, res_ann.labels])
+                                        urls=[img_info.full_storage_url, file_info.full_storage_url],
+                                        card_names=["original", "augmented"],
+                                        img_labels=[ann.labels, res_ann.labels],
+                                        )
     fields = [
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.galleryOptions.syncViewsBindings", "payload": sync_keys},
@@ -163,7 +164,7 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
     infos = api.file.upload_bulk(team_id, [py_path, json_path], [remote_py_path, remote_json_path])
     fields = [
         {"field": "state.exporting", "payload": False},
-        #{"field": "state.saveMode", "payload": False},
+        # {"field": "state.saveMode", "payload": False},
         {"field": "state.savedUrl", "payload": api.file.get_url(infos[1].id)},
         {"field": "state.savedPath", "payload": infos[1].path}
     ]
@@ -182,7 +183,7 @@ def main():
     ui.init_docs(data)
     ui.init_export(data, state, app.task_id)
 
-    #@TODO: for debug
+    # @TODO: for debug
     state["addMode"] = True
     state["category"] = "flip"
     state["aug"] = "Fliplr"
@@ -190,9 +191,8 @@ def main():
     app.run(data=data, state=state)
 
 
-#@TODO: preview expotrt directory - fix WS
-#@TODO: add preview hint - seg/det preview
-#@TODO: add explanation to export
+# @TODO: preview expotrt directory - fix WS
+# @TODO: add preview hint - seg/det preview
+# @TODO: add explanation to export
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
-

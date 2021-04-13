@@ -99,7 +99,7 @@ def init_docs(data):
                 data["docs"][module_name][method.__name__] = file.read()
 
 
-def get_gallery(project_meta: sly.ProjectMeta, urls, img_labels=None):
+def get_gallery(project_meta: sly.ProjectMeta, urls, card_names, img_labels=None):
     if img_labels is None:
         img_labels = [[]] * len(urls)
 
@@ -111,10 +111,13 @@ def get_gallery(project_meta: sly.ProjectMeta, urls, img_labels=None):
     grid_annotations = {}
     grid_layout = [[] for i in range(CNT_GRID_COLUMNS)]
     sync_keys = [[] for i in range(int((len(urls) / 2)))]
-    for idx, (image_url, labels) in enumerate(zip(urls, img_labels)):
+    for idx, (image_url, card_name, labels) in enumerate(zip(urls, card_names, img_labels)):
         grid_annotations[str(idx)] = {
             "url": image_url,
-            "figures": [label.to_json() for label in labels]
+            "figures": [label.to_json() for label in labels],
+            "info": {
+                "title": card_name
+            }
         }
         grid_layout[idx % CNT_GRID_COLUMNS].append(str(idx))
         sync_keys[int(idx / 2)].append(str(idx))

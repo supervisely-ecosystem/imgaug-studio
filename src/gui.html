@@ -147,7 +147,7 @@
             </div>
 
             <sly-field title="Augmenter Category" description="Choose augmentation category">
-<!--                v-model="state.category"-->
+                <!--                v-model="state.category"-->
                 <el-select :value="state.category" @input="
                     (val) => {
                         state.category = val;
@@ -267,7 +267,13 @@
                 <sly-grid-gallery
                         :content="data.gallery.content"
                         :options="state.galleryOptions"
-                        :preview-options="state.galleryPreviewOptions"/>
+                        :preview-options="state.galleryPreviewOptions">
+                    <template v-slot:card-footer="{ annotation }">
+                        <div class="mt5" style="text-align: center">
+                            <el-tag type="primary">{{annotation.info.title}}</el-tag>
+                        </div>
+                    </template>
+                </sly-grid-gallery>
             </sly-field>
             <sly-field v-if="state.previewPy" title="Python code">
                 <sly-copy-to-clipboard :data="state.previewPy">
