@@ -184,15 +184,12 @@ def main():
     ui.init_export(data, state, app.task_id)
 
     # @TODO: for debug
-    state["addMode"] = True
-    state["category"] = "flip"
-    state["aug"] = "Fliplr"
+    # state["addMode"] = True
+    # state["category"] = "flip"
+    # state["aug"] = "Fliplr"
 
     app.run(data=data, state=state)
 
-
-# @TODO: preview expotrt directory - fix WS
-# @TODO: add preview hint - seg/det preview
 # @TODO: add explanation to export
 if __name__ == "__main__":
     sly.main_wrapper("main", main)

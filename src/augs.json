@@ -547,7 +547,9 @@
                     ],
                     "min": 0,
                     "max": 3,
-                    "pname": "sigma"
+                    "pname": "sigma",
+                    "step": 0.2,
+                    "valueType": "int"
                 }
             ]
         },
@@ -563,7 +565,8 @@
                     ],
                     "min": 0,
                     "max": 20,
-                    "pname": "k"
+                    "pname": "k",
+                    "valueType": "int"
                 }
             ]
         },
@@ -579,7 +582,8 @@
                     ],
                     "min": 0,
                     "max": 20,
-                    "pname": "k"
+                    "pname": "k",
+                    "valueType": "int"
                 }
             ]
         },
@@ -595,7 +599,8 @@
                     ],
                     "min": 0,
                     "max": 10,
-                    "pname": "d"
+                    "pname": "d",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -605,7 +610,8 @@
                     ],
                     "min": 0,
                     "max": 400,
-                    "pname": "sigma_color"
+                    "pname": "sigma_color",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -615,7 +621,8 @@
                     ],
                     "min": 0,
                     "max": 400,
-                    "pname": "sigma_space"
+                    "pname": "sigma_space",
+                    "valueType": "int"
                 }
             ]
         },
@@ -631,7 +638,8 @@
                     ],
                     "min": 0,
                     "max": 20,
-                    "pname": "k"
+                    "pname": "k",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -641,7 +649,8 @@
                     ],
                     "min": 0,
                     "max": 360,
-                    "pname": "angle"
+                    "pname": "angle",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -675,7 +684,8 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "pname": "spatial_radius"
+                    "pname": "spatial_radius",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -685,7 +695,8 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "pname": "color_radius"
+                    "pname": "color_radius",
+                    "valueType": "int"
                 }
             ]
         }
