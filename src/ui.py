@@ -54,21 +54,6 @@ def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
             "annotations": {},
             "layout": [[] for i in range(CNT_GRID_COLUMNS)]
         },
-        "previewOptions": {
-            "opacity": 0.5,
-            "enableZoom": True,
-            "resizeOnZoom": True,
-            "showOpacityInHeader": True,
-        },
-        "options": {
-            "enableZoom": True,
-            "syncViews": True,
-            "showPreview": False,
-            "selectable": False,
-            "opacity": 0.5,
-            "showOpacityInHeader": True,
-            # "viewHeight": 450
-        }
     }
     return CNT_GRID_COLUMNS, empty_gallery
 
@@ -85,6 +70,22 @@ def init_preview(data, state):
         "highlightActiveLine": False
     }
     state["sometimes"] = False
+
+    state["galleryPreviewOptions"] = {
+        "opacity": 0.5,
+        "enableZoom": True,
+        "resizeOnZoom": True,
+        "showOpacityInHeader": True,
+    },
+    state["galleryOptions"] = {
+        "enableZoom": True,
+        "syncViews": True,
+        "showPreview": False,
+        "selectable": False,
+        "opacity": 0.5,
+        "showOpacityInHeader": True,
+        # "viewHeight": 450
+    }
 
 
 def init_docs(data):
@@ -120,9 +121,7 @@ def get_gallery(project_meta: sly.ProjectMeta, urls, img_labels=None):
 
     gallery["content"]["layout"] = grid_layout
     gallery["content"]["annotations"] = grid_annotations
-    gallery["options"]["syncViewsBindings"] = sync_keys
-
-    return gallery
+    return gallery, sync_keys
 
 
 def init_export(data, state, task_id):

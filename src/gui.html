@@ -147,7 +147,13 @@
             </div>
 
             <sly-field title="Augmenter Category" description="Choose augmentation category">
-                <el-select v-model="state.category" placeholder="Select category">
+<!--                v-model="state.category"-->
+                <el-select :value="state.category" @input="
+                    (val) => {
+                        state.category = val;
+                        state.aug = data.augs[state.category][0];
+                    }
+                    ">
                     <el-option v-for="item in data.categories" :key="item" :label="item" :value="item"></el-option>
                 </el-select>
             </sly-field>
@@ -260,8 +266,8 @@
                        title="Original vs Augmented" description="Pairs of images: left - original, right - augmented">
                 <sly-grid-gallery
                         :content="data.gallery.content"
-                        :options="data.gallery.options"
-                        :preview-options="data.gallery.previewOptions"/>
+                        :options="state.galleryOptions"
+                        :preview-options="state.galleryPreviewOptions"/>
             </sly-field>
             <sly-field v-if="state.previewPy" title="Python code">
                 <sly-copy-to-clipboard :data="state.previewPy">

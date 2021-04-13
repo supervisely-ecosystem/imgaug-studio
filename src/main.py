@@ -80,11 +80,12 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
                                          index_to_class=index_to_class, meta=res_meta)
 
     file_info = save_preview_image(api, task_id, res_img)
-    gallery = ui.get_gallery(project_meta=res_meta,
+    gallery, sync_keys = ui.get_gallery(project_meta=res_meta,
                              urls=[img_info.full_storage_url, file_info.full_storage_url],
                              img_labels=[ann.labels, res_ann.labels])
     fields = [
         {"field": "data.gallery", "payload": gallery},
+        {"field": "state.galleryOptions.syncViewsBindings", "payload": sync_keys},
         {"field": "state.previewLoading", "payload": False},
     ]
     if len(infos) == 1 and py_code is None:
