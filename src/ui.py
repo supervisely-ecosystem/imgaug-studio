@@ -113,7 +113,7 @@ def get_gallery(project_meta: sly.ProjectMeta, urls, img_labels=None):
     for idx, (image_url, labels) in enumerate(zip(urls, img_labels)):
         grid_annotations[str(idx)] = {
             "url": image_url,
-            "figures": labels
+            "figures": [label.to_json() for label in labels]
         }
         grid_layout[idx % CNT_GRID_COLUMNS].append(str(idx))
         sync_keys[int(idx / 2)].append(str(idx))
