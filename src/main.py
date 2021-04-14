@@ -185,8 +185,8 @@ def main():
 
     # @TODO: for debug
     state["addMode"] = True
-    state["category"] = "flip"
-    state["aug"] = "Fliplr"
+    state["category"] = "geometric"
+    state["aug"] = "ScaleX"
 
     app.run(data=data, state=state)
 

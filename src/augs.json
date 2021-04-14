@@ -1413,82 +1413,6 @@
         }
     },
     "geometric": {
-        "Affine": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.Affine",
-            "py": "iaa.Affine(scale=None, translate_percent=None, translate_px=None, rotate=None, shear=None, order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "scale"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "translate_percent"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "translate_px"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "rotate"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "shear"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 1,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "order"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "cval"
-                },
-                {
-                    "type": "el-select",
-                    "default": "constant",
-                    "options": [
-                        "constant"
-                    ],
-                    "pname": "mode"
-                },
-                {
-                    "type": "el-checkbox",
-                    "default": false,
-                    "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
-                }
-            ]
-        },
         "ScaleX": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.ScaleX",
             "py": "iaa.ScaleX(scale=(0.5, 1.5), order=1, cval=0, mode='constant', fit_output=False, backend='auto')",
@@ -1500,28 +1424,35 @@
                         1.5
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 10,
+                    "step": 0.1,
                     "pname": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 1,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1529,14 +1460,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
                 }
             ]
         },
@@ -1551,28 +1474,35 @@
                         1.5
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 10,
+                    "step": 0.1,
                     "pname": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 1,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1580,14 +1510,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
                 }
             ]
         },

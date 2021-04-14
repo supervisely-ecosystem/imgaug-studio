@@ -116,7 +116,7 @@ augs_modules = {
         flip.Flipud,
     ],
     "geometric": [
-        geometric.Affine,
+        #geometric.Affine,
         geometric.ScaleX,
         geometric.ScaleY,
         geometric.TranslateX,
