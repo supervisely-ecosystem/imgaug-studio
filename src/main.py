@@ -186,7 +186,7 @@ def main():
     # @TODO: for debug
     state["addMode"] = True
     state["category"] = "size"
-    state["aug"] = "CropAndPad"
+    state["aug"] = "PadToFixedSize"
 
     app.run(data=data, state=state)
 

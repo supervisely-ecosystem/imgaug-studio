@@ -41,7 +41,8 @@ def build(aug_info):
 
 
 def create_aug_info(category_name, aug_name, params, sometimes: float = None):
-    clean_params = remove_unexpected_arguments(category_name, aug_name, params)
+    clean_params = params
+    #clean_params = remove_unexpected_arguments(category_name, aug_name, params)
     res = {
         "category": category_name,
         "name": aug_name,
