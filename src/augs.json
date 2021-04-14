@@ -563,8 +563,9 @@
                         1,
                         7
                     ],
-                    "min": 0,
-                    "max": 20,
+                    "min": 1,
+                    "max": 21,
+                    "step": 2,
                     "pname": "k",
                     "valueType": "int"
                 }
@@ -580,8 +581,9 @@
                         1,
                         7
                     ],
-                    "min": 0,
-                    "max": 20,
+                    "min": 1,
+                    "max": 21,
+                    "step": 2,
                     "pname": "k",
                     "valueType": "int"
                 }
@@ -636,8 +638,9 @@
                         3,
                         7
                     ],
-                    "min": 0,
-                    "max": 20,
+                    "min": 1,
+                    "max": 21,
+                    "step": 2,
                     "pname": "k",
                     "valueType": "int"
                 },

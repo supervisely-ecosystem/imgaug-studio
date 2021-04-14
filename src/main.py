@@ -183,10 +183,10 @@ def main():
     ui.init_docs(data)
     ui.init_export(data, state, app.task_id)
 
-    # @TODO: for debug
-    state["addMode"] = True
-    state["category"] = "size"
-    state["aug"] = "PadToFixedSize"
+    # # @TODO: for debug
+    # state["addMode"] = True
+    # state["category"] = "size"
+    # state["aug"] = "PadToFixedSize"
 
     app.run(data=data, state=state)
 
