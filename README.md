@@ -45,4 +45,4 @@ Watch short video for more details:
 
 # Screenshot
 
-<img src="https://i.imgur.com/vAbSv02.jpg"/>
+<img src="https://i.imgur.com/vQ9hrCI.png"/>
