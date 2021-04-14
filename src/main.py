@@ -185,8 +185,8 @@ def main():
 
     # @TODO: for debug
     state["addMode"] = True
-    state["category"] = "convolutional"
-    state["aug"] = "DirectedEdgeDetect"
+    state["category"] = "flip"
+    state["aug"] = "Fliplr"
 
     app.run(data=data, state=state)
 

@@ -1391,7 +1391,8 @@
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p"
                 }
             ]
@@ -1404,7 +1405,8 @@
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p"
                 }
             ]
