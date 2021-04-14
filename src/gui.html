@@ -49,12 +49,26 @@
                         </sly-copy-to-clipboard>
                     </td>
                     <td style="min-width: 130px;">
-                        <el-button size="small" class="action-icon-btn ml10"><i class="zmdi zmdi-long-arrow-up"></i>
+                        <el-button size="small"
+                                   class="action-icon-btn ml10"
+                                   @click="state.augIndex = index; command('move_aug_up')">
+                            <i class="zmdi zmdi-long-arrow-up"></i>
                         </el-button>
-                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-long-arrow-down"></i>
+                        <el-button size="small"
+                                   class="action-icon-btn"
+                                   @click="state.augIndex = index; command('move_aug_down')">
+                            <i class="zmdi zmdi-long-arrow-down"></i>
                         </el-button>
-                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-edit"></i></el-button>
-                        <el-button size="small" class="action-icon-btn"><i class="zmdi zmdi-close"></i></el-button>
+                        <el-button size="small"
+                                   class="action-icon-btn"
+                                   @click="state.augIndex = index; command('edit_aug')">
+                            <i class="zmdi zmdi-edit"></i>
+                        </el-button>
+                        <el-button size="small"
+                                   class="action-icon-btn"
+                                   @click="state.augIndex = index; command('delete_aug')">
+                            <i class="zmdi zmdi-close"></i>
+                        </el-button>
                     </td>
                 </tr>
                 <tr v-show="data.pipeline.length > 1">

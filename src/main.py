@@ -175,6 +175,23 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
     api.task.set_fields(task_id, fields)
 
 
+@app.callback("delete_aug")
+@sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
+def delete_aug(api: sly.Api, task_id, context, state, app_logger):
+    index = state["augIndex"]
+    if index is None:
+        return
+    global pipeline
+    del pipeline[index]
+
+    fields = [
+        {"field": "data.pipeline", "payload": pipeline},
+        {"field": "data.augIndex", "payload": None},
+    ]
+    api.task.set_fields(task_id, fields)
+
+
 def main():
     data = {}
     state = {}
@@ -194,6 +211,7 @@ def main():
 
     app.run(data=data, state=state)
 
+# @TODO: pipeline buttons
 # @TODO: add resize
 # @TODO: check rotate affects bboxes
 if __name__ == "__main__":

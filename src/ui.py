@@ -45,6 +45,7 @@ def init_pipeline(data, state):
     ]
     state["addMode"] = False
     state["randomOrder"] = False
+    state["augIndex"] = None
 
 
 def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
@@ -136,20 +137,6 @@ def init_export(data, state, task_id):
     state["exporting"] = False
     state["savedUrl"] = None
     state["savedPath"] = None
-
-
-# def handle_exceptions(func, api: sly.Api):
-#     """Print the runtime of the decorated function"""
-#     @functools.wraps(func)
-#     def wrapper_timer(*args, **kwargs):
-#         try:
-#             value = func(*args, **kwargs)
-#         except Exception as e:
-#             sly.logger.error(f"please, contact support: {repr(e)}")
-#             pass
-#
-#         return value
-#     return wrapper_timer
 
 
 def handle_exceptions(task_id, api: sly.Api):
