@@ -2430,7 +2430,7 @@
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.FilterDetail",
             "py": "iaa.FilterDetail()",
             "params": []
-        },
+        }
     },
     "pooling": {
         "AveragePooling": {
@@ -2444,8 +2444,9 @@
                         5
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "kernel_size"
+                    "max": 20,
+                    "pname": "kernel_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -2465,8 +2466,9 @@
                         5
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "kernel_size"
+                    "max": 20,
+                    "pname": "kernel_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -2486,8 +2488,9 @@
                         5
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "kernel_size"
+                    "max": 20,
+                    "pname": "kernel_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -2507,8 +2510,9 @@
                         5
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "kernel_size"
+                    "max": 20,
+                    "pname": "kernel_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",

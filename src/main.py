@@ -185,8 +185,8 @@ def main():
 
     # @TODO: for debug
     state["addMode"] = True
-    state["category"] = "imgcorruptlike"
-    state["aug"] = "GaussianNoise"
+    state["category"] = "pillike"
+    state["aug"] = "Solarize"
 
     app.run(data=data, state=state)
 
