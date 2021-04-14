@@ -2258,23 +2258,6 @@
                     "valueType": "int"
                 }
             ]
-        },
-        "ElasticTransform": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_imgcorruptlike.html#imgaug.augmenters.imgcorruptlike.ElasticTransform",
-            "py": "iaa.ElasticTransform(severity=(1, 5))",
-            "params": [
-                {
-                    "type": "el-slider-range",
-                    "default": [
-                        1,
-                        5
-                    ],
-                    "min": 1,
-                    "max": 5,
-                    "pname": "severity",
-                    "valueType": "int"
-                }
-            ]
         }
     },
     "pillike": {

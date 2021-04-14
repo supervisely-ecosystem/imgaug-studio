@@ -151,7 +151,7 @@ augs_modules = {
         imgcorruptlike.Saturate,
         imgcorruptlike.JpegCompression,
         imgcorruptlike.Pixelate,
-        imgcorruptlike.ElasticTransform,
+        #imgcorruptlike.ElasticTransform,
     ],
     # "meta": [
     #     meta.Sequential,
