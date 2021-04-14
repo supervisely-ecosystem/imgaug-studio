@@ -100,7 +100,7 @@ def init_docs(data):
 
     for module_name, methods in augs_modules.items():
         for method in methods:
-            doc_path = f"../html_kit/{module_name}.{method.__name__}.html".lower()
+            doc_path = os.path.join(root_source_path, f"html_kit/{module_name}.{method.__name__}.html".lower())
             with open(doc_path, 'r') as file:
                 data["docs"][module_name][method.__name__] = file.read()
 
