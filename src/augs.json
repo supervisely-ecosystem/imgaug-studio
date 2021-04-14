@@ -1963,9 +1963,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -1979,9 +1980,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -1995,9 +1997,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2011,9 +2014,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2027,9 +2031,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2043,9 +2048,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2059,9 +2065,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2075,9 +2082,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2091,9 +2099,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2107,9 +2116,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2123,9 +2133,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2139,9 +2150,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2155,9 +2167,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2171,9 +2184,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2187,9 +2201,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2203,9 +2218,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2219,9 +2235,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2235,9 +2252,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2251,9 +2269,10 @@
                         1,
                         5
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "severity"
+                    "min": 1,
+                    "max": 5,
+                    "pname": "severity",
+                    "valueType": "int"
                 }
             ]
         }
