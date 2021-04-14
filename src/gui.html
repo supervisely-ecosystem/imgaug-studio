@@ -51,19 +51,21 @@
                     <td style="min-width: 130px;">
                         <el-button size="small"
                                    class="action-icon-btn ml10"
+                                   :disabled="index == 0"
                                    @click="state.augIndex = index; command('move_aug_up')">
                             <i class="zmdi zmdi-long-arrow-up"></i>
                         </el-button>
                         <el-button size="small"
                                    class="action-icon-btn"
+                                   :disabled="index == data.pipeline.length - 1"
                                    @click="state.augIndex = index; command('move_aug_down')">
                             <i class="zmdi zmdi-long-arrow-down"></i>
                         </el-button>
-                        <el-button size="small"
-                                   class="action-icon-btn"
-                                   @click="state.augIndex = index; command('edit_aug')">
-                            <i class="zmdi zmdi-edit"></i>
-                        </el-button>
+<!--                        <el-button size="small"-->
+<!--                                   class="action-icon-btn"-->
+<!--                                   @click="state.augIndex = index; command('edit_aug')">-->
+<!--                            <i class="zmdi zmdi-edit"></i>-->
+<!--                        </el-button>-->
                         <el-button size="small"
                                    class="action-icon-btn"
                                    @click="state.augIndex = index; command('delete_aug')">

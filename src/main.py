@@ -179,12 +179,44 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
 @sly.timeit
 @ui.handle_exceptions(app.task_id, app.public_api)
 def delete_aug(api: sly.Api, task_id, context, state, app_logger):
-    index = state["augIndex"]
-    if index is None:
-        return
     global pipeline
-    del pipeline[index]
+    index = state["augIndex"]
+    if index is not None:
+        del pipeline[index]
+    fields = [
+        {"field": "data.pipeline", "payload": pipeline},
+        {"field": "data.augIndex", "payload": None},
+    ]
+    api.task.set_fields(task_id, fields)
 
+
+@app.callback("move_aug_up")
+@sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
+def move_aug_up(api: sly.Api, task_id, context, state, app_logger):
+    global pipeline
+    index = state["augIndex"]
+    if index is not None and index > 0:
+        a = pipeline[index - 1]
+        pipeline[index - 1] = pipeline[index]
+        pipeline[index] = a
+    fields = [
+        {"field": "data.pipeline", "payload": pipeline},
+        {"field": "data.augIndex", "payload": None},
+    ]
+    api.task.set_fields(task_id, fields)
+
+
+@app.callback("move_aug_down")
+@sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
+def move_aug_down(api: sly.Api, task_id, context, state, app_logger):
+    global pipeline
+    index = state["augIndex"]
+    if index is not None and index < len(pipeline) - 1:
+        a = pipeline[index + 1]
+        pipeline[index + 1] = pipeline[index]
+        pipeline[index] = a
     fields = [
         {"field": "data.pipeline", "payload": pipeline},
         {"field": "data.augIndex", "payload": None},
@@ -211,7 +243,6 @@ def main():
 
     app.run(data=data, state=state)
 
-# @TODO: pipeline buttons
 # @TODO: add resize
 # @TODO: check rotate affects bboxes
 if __name__ == "__main__":
