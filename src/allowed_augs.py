@@ -201,7 +201,7 @@ augs_modules = {
         segmentation.RelativeRegularGridVoronoi,
     ],
     "size": [
-        size.Resize,
+        #size.Resize,
         size.CropAndPad,
         size.Crop,
         size.Pad,
@@ -225,7 +225,7 @@ augs_modules = {
         size.CenterCropToSquare,
         size.PadToSquare,
         size.CenterPadToSquare,
-        size.KeepSizeByResize,
+        #size.KeepSizeByResize,
     ],
     "weather": [
         weather.FastSnowyLandscape,

@@ -185,11 +185,12 @@ def main():
 
     # @TODO: for debug
     state["addMode"] = True
-    state["category"] = "pooling"
-    state["aug"] = "AveragePooling"
+    state["category"] = "size"
+    state["aug"] = "CropAndPad"
 
     app.run(data=data, state=state)
 
+# @TODO: add resize
 # @TODO: add explanation to export
 # @TODO: check rotate affects bboxes
 # @TODO: warning with message - contact support - if error

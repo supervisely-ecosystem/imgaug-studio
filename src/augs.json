@@ -2667,43 +2667,34 @@
         }
     },
     "size": {
-        "Resize": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.Resize",
-            "py": "iaa.Resize(size, interpolation='cubic')",
-            "params": [
-                {
-                    "type": "el-select",
-                    "default": "cubic",
-                    "options": [
-                        "cubic"
-                    ],
-                    "pname": "interpolation"
-                }
-            ]
-        },
         "CropAndPad": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropAndPad",
             "py": "iaa.CropAndPad(px=None, percent=None, pad_mode='constant', pad_cval=0, keep_size=True, sample_independently=True)",
             "params": [
                 {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "px"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
+                    "type": "el-slider-range",
+                    "default": [
+                        -0.10,
+                        0.10
+                    ],
+                    "min": -1,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "percent"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -2711,8 +2702,9 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -2732,16 +2724,10 @@
             "params": [
                 {
                     "type": "el-input-number",
-                    "default": 0,
+                    "default": 0.3,
                     "min": 0,
-                    "max": 100,
-                    "pname": "px"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "percent"
                 },
                 {
@@ -2762,23 +2748,25 @@
             "params": [
                 {
                     "type": "el-input-number",
-                    "default": 0,
+                    "default": 0.1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "px"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "percent"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -2786,8 +2774,9 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -2806,10 +2795,34 @@
             "py": "iaa.PadToFixedSize(width, height, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "width",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "height",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -2817,14 +2830,26 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -2835,10 +2860,34 @@
             "py": "iaa.CenterPadToFixedSize(width, height, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "width",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "height",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -2846,8 +2895,9 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2856,10 +2906,37 @@
             "py": "iaa.CropToFixedSize(width, height, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "width",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "height",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -2868,17 +2945,61 @@
         "CenterCropToFixedSize": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToFixedSize",
             "py": "iaa.CenterCropToFixedSize(width, height)",
-            "params": []
+            "params": [
+                {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "width",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 512,
+                    "min": 32,
+                    "max": 2000,
+                    "pname": "height",
+                    "valueType": "int"
+                }
+            ]
         },
         "CropToMultiplesOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CropToMultiplesOf",
             "py": "iaa.CropToMultiplesOf(width_multiple, height_multiple, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "width_multiple",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "height_multiple",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -2887,17 +3008,58 @@
         "CenterCropToMultiplesOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToMultiplesOf",
             "py": "iaa.CenterCropToMultiplesOf(width_multiple, height_multiple)",
-            "params": []
+            "params": [
+                {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "width_multiple",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "height_multiple",
+                    "valueType": "int"
+                }
+            ]
         },
         "PadToMultiplesOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToMultiplesOf",
             "py": "iaa.PadToMultiplesOf(width_multiple, height_multiple, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "width_multiple",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "height_multiple",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -2905,14 +3067,26 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -2923,10 +3097,34 @@
             "py": "iaa.CenterPadToMultiplesOf(width_multiple, height_multiple, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "width_multiple",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 8,
+                    "min": 2,
+                    "max": 1000,
+                    "pname": "height_multiple",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -2934,8 +3132,9 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2944,10 +3143,37 @@
             "py": "iaa.CropToPowersOf(width_base, height_base, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "width_base",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "height_base",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -2956,17 +3182,58 @@
         "CenterCropToPowersOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToPowersOf",
             "py": "iaa.CenterCropToPowersOf(width_base, height_base)",
-            "params": []
+            "params": [
+                {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "width_base",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "height_base",
+                    "valueType": "int"
+                }
+            ]
         },
         "PadToPowersOf": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToPowersOf",
             "py": "iaa.PadToPowersOf(width_base, height_base, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "width_base",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "height_base",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -2974,14 +3241,26 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -2992,10 +3271,34 @@
             "py": "iaa.CenterPadToPowersOf(width_base, height_base, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "width_base",
+                    "valueType": "int"
+                },
+                {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 2,
+                    "max": 10,
+                    "pname": "height_base",
+                    "valueType": "int"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -3003,8 +3306,9 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 }
             ]
         },
@@ -3013,10 +3317,29 @@
             "py": "iaa.CropToAspectRatio(aspect_ratio, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 0.1,
+                    "max": 4,
+                    "step": 0.1,
+                    "pname": "aspect_ratio"
+                },
+                {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -3025,17 +3348,42 @@
         "CenterCropToAspectRatio": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.CenterCropToAspectRatio",
             "py": "iaa.CenterCropToAspectRatio(aspect_ratio)",
-            "params": []
+            "params": [
+                {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 0.1,
+                    "max": 4,
+                    "step": 0.1,
+                    "pname": "aspect_ratio"
+                }
+            ]
         },
         "PadToAspectRatio": {
             "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.PadToAspectRatio",
             "py": "iaa.PadToAspectRatio(aspect_ratio, pad_mode='constant', pad_cval=0, position='uniform')",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 0.1,
+                    "max": 4,
+                    "step": 0.1,
+                    "pname": "aspect_ratio"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -3043,14 +3391,26 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -3061,10 +3421,26 @@
             "py": "iaa.CenterPadToAspectRatio(aspect_ratio, pad_mode='constant', pad_cval=0)",
             "params": [
                 {
+                    "type": "el-input-number",
+                    "default": 2,
+                    "min": 0.1,
+                    "max": 4,
+                    "step": 0.1,
+                    "pname": "aspect_ratio"
+                },
+                {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -3072,8 +3448,9 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 }
             ]
         },
@@ -3085,7 +3462,18 @@
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -3104,7 +3492,15 @@
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -3112,14 +3508,26 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "uniform",
                     "options": [
-                        "uniform"
+                        "uniform",
+                        "normal",
+                        "center",
+                        "left-top",
+                        "left-center",
+                        "left-bottom",
+                        "center-top",
+                        "center-center",
+                        "center-bottom",
+                        "right-top",
+                        "right-center",
+                        "right-bottom"
                     ],
                     "pname": "position"
                 }
@@ -3133,7 +3541,15 @@
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "linear_ramp",
+                        "maximum",
+                        "median",
+                        "minimum",
+                        "reflect",
+                        "symmetric",
+                        "wrap"
                     ],
                     "pname": "pad_mode"
                 },
@@ -3141,38 +3557,9 @@
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "pad_cval"
-                }
-            ]
-        },
-        "KeepSizeByResize": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.KeepSizeByResize",
-            "py": "iaa.KeepSizeByResize(children, interpolation='cubic', interpolation_heatmaps='SAME_AS_IMAGES', interpolation_segmaps='nearest')",
-            "params": [
-                {
-                    "type": "el-select",
-                    "default": "cubic",
-                    "options": [
-                        "cubic"
-                    ],
-                    "pname": "interpolation"
-                },
-                {
-                    "type": "el-select",
-                    "default": "SAME_AS_IMAGES",
-                    "options": [
-                        "SAME_AS_IMAGES"
-                    ],
-                    "pname": "interpolation_heatmaps"
-                },
-                {
-                    "type": "el-select",
-                    "default": "nearest",
-                    "options": [
-                        "nearest"
-                    ],
-                    "pname": "interpolation_segmaps"
+                    "max": 255,
+                    "pname": "pad_cval",
+                    "valueType": "int"
                 }
             ]
         }

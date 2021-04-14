@@ -90,3 +90,22 @@
     }
   }
 }
+
+
+"Resize": {
+            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_size.html#imgaug.augmenters.size.Resize",
+            "py": "iaa.Resize(size, interpolation='cubic')",
+            "params": [
+                {
+                    "type": "el-select",
+                    "default": "cubic",
+                    "options": [
+                        "cubic"
+                    ],
+                    "pname": "interpolation"
+                }
+            ]
+        },
+
+
+
