@@ -1,6 +1,7 @@
 import os
 from collections import defaultdict
 import supervisely_lib as sly
+import functools
 
 augs_configs = sly.json.load_json_file("augs.json")
 
@@ -86,6 +87,7 @@ def init_preview(data, state):
         "showOpacityInHeader": True,
         # "viewHeight": 450
     }
+    data["error"] = None
 
 
 def init_docs(data):
@@ -134,3 +136,31 @@ def init_export(data, state, task_id):
     state["exporting"] = False
     state["savedUrl"] = None
     state["savedPath"] = None
+
+
+# def handle_exceptions(func, api: sly.Api):
+#     """Print the runtime of the decorated function"""
+#     @functools.wraps(func)
+#     def wrapper_timer(*args, **kwargs):
+#         try:
+#             value = func(*args, **kwargs)
+#         except Exception as e:
+#             sly.logger.error(f"please, contact support: {repr(e)}")
+#             pass
+#
+#         return value
+#     return wrapper_timer
+
+
+def handle_exceptions(task_id, api: sly.Api):
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(*args, **kwargs):
+            try:
+                api.task.set_field(task_id, "data.error", None)
+                f(*args, **kwargs)
+            except Exception as e:
+                sly.logger.error(f"please, contact support: task_id={task_id}, {repr(e)}")
+                api.task.set_field(task_id, "data.error", repr(e))
+        return wrapper
+    return decorator

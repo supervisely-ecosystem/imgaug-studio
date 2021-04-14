@@ -100,6 +100,7 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
 
 @app.callback("preview")
 @sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
 def preview(api: sly.Api, task_id, context, state, app_logger):
     aug_info = ui_augs.get_aug_info(state)
     aug = imgaug_utils.build(aug_info)
@@ -108,6 +109,7 @@ def preview(api: sly.Api, task_id, context, state, app_logger):
 
 @app.callback("add_to_pipeline")
 @sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
 def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
     aug_info = ui_augs.get_aug_info(state)
     pipeline.append(aug_info)
@@ -122,6 +124,7 @@ def add_to_pipeline(api: sly.Api, task_id, context, state, app_logger):
 
 @app.callback("preview_pipeline")
 @sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
 def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
     random_order = False
     if len(pipeline) > 1:
@@ -133,6 +136,7 @@ def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
 
 @app.callback("export_pipeline")
 @sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
 def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
     api.task.set_field(task_id, "state.exporting", True)
 
@@ -192,6 +196,5 @@ def main():
 
 # @TODO: add resize
 # @TODO: check rotate affects bboxes
-# @TODO: warning with message - contact support - if error
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
