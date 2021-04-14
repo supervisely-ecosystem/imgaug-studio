@@ -168,7 +168,7 @@ augs_modules = {
     # ],
     "pillike": [
         pillike.Solarize,
-        pillike.Posterize,
+        #pillike.Posterize,
         pillike.Equalize,
         pillike.Autocontrast,
         pillike.EnhanceColor,
@@ -185,7 +185,7 @@ augs_modules = {
         pillike.FilterEmboss,
         pillike.FilterSharpen,
         pillike.FilterDetail,
-        pillike.Affine,
+        #pillike.Affine,
     ],
     "pooling": [
         pooling.AveragePooling,

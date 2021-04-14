@@ -2269,61 +2269,20 @@
                     "type": "el-input-number",
                     "default": 1.0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "p"
+                    "max": 1,
+                    "pname": "p",
+                    "step": 0.1
                 },
-                {
-                    "type": "el-input-number",
-                    "default": 128,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "threshold"
-                }
-            ]
-        },
-        "Posterize": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.Posterize",
-            "py": "iaa.Posterize(nb_bits=(1, 8), from_colorspace='RGB', to_colorspace=None, max_size=None, interpolation='linear')",
-            "params": [
                 {
                     "type": "el-slider-range",
                     "default": [
-                        1,
-                        8
+                        32,
+                        128
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "nb_bits"
-                },
-                {
-                    "type": "el-select",
-                    "default": "RGB",
-                    "options": [
-                        "RGB"
-                    ],
-                    "pname": "from_colorspace"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "to_colorspace"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "max_size"
-                },
-                {
-                    "type": "el-select",
-                    "default": "linear",
-                    "options": [
-                        "linear"
-                    ],
-                    "pname": "interpolation"
+                    "max": 255,
+                    "pname": "threshold",
+                    "valueType": "int"
                 }
             ]
         },
@@ -2344,7 +2303,8 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "pname": "cutoff"
+                    "pname": "cutoff",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
@@ -2364,7 +2324,8 @@
                         3.0
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 4,
+                    "step": 0.1,
                     "pname": "factor"
                 }
             ]
@@ -2380,7 +2341,8 @@
                         1.5
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 2.5,
+                    "step": 0.1,
                     "pname": "factor"
                 }
             ]
@@ -2396,7 +2358,8 @@
                         1.5
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 2.5,
+                    "step": 0.1,
                     "pname": "factor"
                 }
             ]
@@ -2412,7 +2375,8 @@
                         2.0
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 2,
+                    "step": 0.1,
                     "pname": "factor"
                 }
             ]
@@ -2467,64 +2431,6 @@
             "py": "iaa.FilterDetail()",
             "params": []
         },
-        "Affine": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pillike.html#imgaug.augmenters.pillike.Affine",
-            "py": "iaa.Affine(scale=1.0, translate_percent=None, translate_px=None, rotate=0.0, shear=0.0, fillcolor=0, center=(0.5, 0.5))",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 1.0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "scale"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "translate_percent"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "translate_px"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0.0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "rotate"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0.0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "shear"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "fillcolor"
-                },
-                {
-                    "type": "el-slider-range",
-                    "default": [
-                        0.5,
-                        0.5
-                    ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "center"
-                }
-            ]
-        }
     },
     "pooling": {
         "AveragePooling": {
