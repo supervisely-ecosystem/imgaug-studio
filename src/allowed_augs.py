@@ -195,7 +195,7 @@ augs_modules = {
     # ],
     "segmentation": [
         segmentation.Superpixels,
-        segmentation.Voronoi,
+        #segmentation.Voronoi,
         segmentation.UniformVoronoi,
         segmentation.RegularGridVoronoi,
         segmentation.RelativeRegularGridVoronoi,

@@ -2444,7 +2444,8 @@
                         1.0
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p_replace"
                 },
                 {
@@ -2454,49 +2455,26 @@
                         120
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "n_segments"
+                    "max": 500,
+                    "pname": "n_segments",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
-                    "max": 100,
-                    "pname": "max_size"
+                    "max": 512,
+                    "pname": "max_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "linear",
                     "options": [
-                        "linear"
-                    ],
-                    "pname": "interpolation"
-                }
-            ]
-        },
-        "Voronoi": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_segmentation.html#imgaug.augmenters.segmentation.Voronoi",
-            "py": "iaa.Voronoi(points_sampler, p_replace=1.0, max_size=128, interpolation='linear')",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 1.0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "p_replace"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 128,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "max_size"
-                },
-                {
-                    "type": "el-select",
-                    "default": "linear",
-                    "options": [
-                        "linear"
+                        "linear",
+                        "nearest",
+                        "area",
+                        "cubic"
                     ],
                     "pname": "interpolation"
                 }
@@ -2512,9 +2490,10 @@
                         50,
                         500
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "n_points"
+                    "min": 5,
+                    "max": 1000,
+                    "pname": "n_points",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -2523,21 +2502,26 @@
                         1.0
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p_replace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
-                    "max": 100,
-                    "pname": "max_size"
+                    "max": 512,
+                    "pname": "max_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "linear",
                     "options": [
-                        "linear"
+                        "linear",
+                        "nearest",
+                        "area",
+                        "cubic"
                     ],
                     "pname": "interpolation"
                 }
@@ -2553,9 +2537,10 @@
                         10,
                         30
                     ],
-                    "min": 0,
+                    "min": 3,
                     "max": 100,
-                    "pname": "n_rows"
+                    "pname": "n_rows",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -2565,7 +2550,8 @@
                     ],
                     "min": 0,
                     "max": 100,
-                    "pname": "n_cols"
+                    "pname": "n_cols",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -2574,7 +2560,8 @@
                         0.5
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p_drop_points"
                 },
                 {
@@ -2584,21 +2571,26 @@
                         1.0
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p_replace"
                 },
                 {
                     "type": "el-input-number",
                     "default": 128,
                     "min": 0,
-                    "max": 100,
-                    "pname": "max_size"
+                    "max": 512,
+                    "pname": "max_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "linear",
                     "options": [
-                        "linear"
+                        "linear",
+                        "nearest",
+                        "area",
+                        "cubic"
                     ],
                     "pname": "interpolation"
                 }
@@ -2615,7 +2607,8 @@
                         0.15
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "n_rows_frac"
                 },
                 {
@@ -2625,7 +2618,8 @@
                         0.15
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "n_cols_frac"
                 },
                 {
@@ -2635,7 +2629,8 @@
                         0.5
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p_drop_points"
                 },
                 {
@@ -2645,21 +2640,26 @@
                         1.0
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 1,
+                    "step": 0.1,
                     "pname": "p_replace"
                 },
                 {
                     "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "max_size"
+                    "default": 128,
+                    "min": 16,
+                    "max": 512,
+                    "pname": "max_size",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "linear",
                     "options": [
-                        "linear"
+                        "linear",
+                        "nearest",
+                        "area",
+                        "cubic"
                     ],
                     "pname": "interpolation"
                 }
