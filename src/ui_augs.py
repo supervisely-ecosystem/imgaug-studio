@@ -20,6 +20,11 @@ def _normalize_params(default_params: dict, params: dict):
     for name, value in params.items():
         if ptypes[name]["type"] == 'el-slider-range':
             res[name] = tuple(value)
+        elif ptypes[name]["type"] == 'el-input-number' and ptypes[name].get('valueType') is not None:
+            try:
+                res[name] = int(value)
+            except ValueError as e:
+                res[name] = int(ptypes[name]["default"])
         elif ptypes[name]["type"] == 'el-input-number':
             try:
                 res[name] = float(value)
