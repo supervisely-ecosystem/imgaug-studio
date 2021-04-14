@@ -105,7 +105,7 @@ augs_modules = {
         contrast.CLAHE,
     ],
     "convolutional": [
-        convolutional.Convolve,
+        #convolutional.Convolve,
         convolutional.Sharpen,
         convolutional.Emboss,
         convolutional.EdgeDetect,

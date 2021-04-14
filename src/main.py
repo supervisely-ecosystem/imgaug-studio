@@ -185,8 +185,8 @@ def main():
 
     # @TODO: for debug
     state["addMode"] = True
-    state["category"] = "contrast"
-    state["aug"] = "GammaContrast"
+    state["category"] = "convolutional"
+    state["aug"] = "DirectedEdgeDetect"
 
     app.run(data=data, state=state)
 
