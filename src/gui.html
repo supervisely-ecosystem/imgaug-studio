@@ -98,16 +98,21 @@
     <el-dialog title="Export pipeline"
                :visible.sync="state.saveMode"
                size="tiny">
+        <sly-notification class="mb15"
+                          :options="{ name: 'Info', type: 'info'}"
+                          content="Augs pipeline will be saved to both python file and safer serialization format json. Json config
+                                   can be used for real-time augmentations during training for some Neural Networks from Ecosystem.">
+        </sly-notification>
         <sly-field title="Directory" description="Configurations will be saved to Team Files">
-            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">
-                <i class="zmdi zmdi-folder"></i>
-            </sly-icon>
+<!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
+<!--                <i class="zmdi zmdi-folder"></i>-->
+<!--            </sly-icon>-->
             <el-input placeholder="Please input destination directory" v-model="state.saveDir"></el-input>
         </sly-field>
         <sly-field title="Name" description="py and json configurations will be saved with this name">
-            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">
-                <i class="zmdi zmdi-star"></i>
-            </sly-icon>
+<!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
+<!--                <i class="zmdi zmdi-star"></i>-->
+<!--            </sly-icon>-->
             <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
         </sly-field>
         <sly-field v-if="state.savedUrl"
