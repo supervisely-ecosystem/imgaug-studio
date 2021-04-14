@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/tRAqbWE.png"/>
+<img src="https://i.imgur.com/biseFXX.png"/>
 
 # ImgAug Studio
 
@@ -23,7 +23,7 @@
 ImgAug Studio is a wrapper around great [ImgAug Library](https://github.com/aleju/imgaug). Interactive UI helps to 
 understand how image transformations work and illustrates how to use this library with Supervisely Format. 
 
-Once augmentations are combined to pipeline, they can be exported to both `python` file (for developers) and safer 
+Once augmentations are combined into pipeline, they can be exported to both `python` file (for developers) and safer 
 serialization format `json`. This `json` config can be used for real-time augmentations during training for some 
 Neural Networks from Supervisely Ecosystem.  
 
