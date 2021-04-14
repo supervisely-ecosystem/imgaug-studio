@@ -2,8 +2,11 @@ import os
 from collections import defaultdict
 import supervisely_lib as sly
 import functools
+from pathlib import Path
+import sys
 
-augs_configs = sly.json.load_json_file("augs.json")
+root_source_path = str(Path(sys.argv[0]).parents[1])
+augs_configs = sly.json.load_json_file(os.path.join(root_source_path, "src/augs.json"))
 
 
 def init_input_project(api: sly.Api, data: dict, project_info):
