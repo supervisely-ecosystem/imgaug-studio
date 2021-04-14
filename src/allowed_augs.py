@@ -227,14 +227,14 @@ augs_modules = {
         size.CenterPadToSquare,
         #size.KeepSizeByResize,
     ],
-    "weather": [
-        weather.FastSnowyLandscape,
-        weather.CloudLayer,
-        weather.Clouds,
-        weather.Fog,
-        weather.SnowflakesLayer,
-        weather.Snowflakes,
-        weather.RainLayer,
-        weather.Rain,
-    ]
+    # "weather": [
+    #     #weather.FastSnowyLandscape,
+    #     weather.CloudLayer,
+    #     weather.Clouds,
+    #     weather.Fog,
+    #     weather.SnowflakesLayer,
+    #     weather.Snowflakes,
+    #     weather.RainLayer,
+    #     weather.Rain,
+    # ]
 }
