@@ -6,7 +6,7 @@
     "images"
   ],
   "description": "Visualize and build augmentation pipeline with ImgAug",
-  "docker_image": "supervisely/base-py-sdk:6",
+  "docker_image": "supervisely/base-py-sdk:6.1.64",
   "main_script": "src/main.py",
   "gui_template": "src/gui.html",
   "task_location": "workspace_tasks",
@@ -16,5 +16,5 @@
   "context_menu": {
     "target": ["images_project"]
   },
-  "instance_version": "6.4.9"
+  "instance_version": "6.4.10"
 }
