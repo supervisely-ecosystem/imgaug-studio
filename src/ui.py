@@ -4,6 +4,7 @@ import supervisely_lib as sly
 import functools
 from pathlib import Path
 import sys
+from allowed_augs import augs_modules
 
 root_source_path = str(Path(sys.argv[0]).parents[1])
 augs_configs = sly.json.load_json_file(os.path.join(root_source_path, "src/augs.json"))
@@ -97,7 +98,6 @@ def init_preview(data, state):
 def init_docs(data):
     data["docs"] = defaultdict(dict)
 
-    from src.allowed_augs import augs_modules
     for module_name, methods in augs_modules.items():
         for method in methods:
             doc_path = f"../html_kit/{module_name}.{method.__name__}.html".lower()
