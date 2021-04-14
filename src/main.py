@@ -185,8 +185,8 @@ def main():
 
     # @TODO: for debug
     state["addMode"] = True
-    state["category"] = "pillike"
-    state["aug"] = "Solarize"
+    state["category"] = "pooling"
+    state["aug"] = "AveragePooling"
 
     app.run(data=data, state=state)
 

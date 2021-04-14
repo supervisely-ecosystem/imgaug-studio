@@ -187,12 +187,12 @@ augs_modules = {
         pillike.FilterDetail,
         #pillike.Affine,
     ],
-    "pooling": [
-        pooling.AveragePooling,
-        pooling.MaxPooling,
-        pooling.MinPooling,
-        pooling.MedianPooling,
-    ],
+    # "pooling": [
+    #     pooling.AveragePooling,
+    #     pooling.MaxPooling,
+    #     pooling.MinPooling,
+    #     pooling.MedianPooling,
+    # ],
     "segmentation": [
         segmentation.Superpixels,
         segmentation.Voronoi,

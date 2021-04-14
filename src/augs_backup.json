@@ -1,0 +1,92 @@
+{
+  "pooling": {
+    "AveragePooling": {
+      "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.AveragePooling",
+      "py": "iaa.AveragePooling(kernel_size=(1, 5), keep_size=True)",
+      "params": [
+        {
+          "type": "el-slider-range",
+          "default": [
+            1,
+            5
+          ],
+          "min": 0,
+          "max": 20,
+          "pname": "kernel_size",
+          "valueType": "int"
+        },
+        {
+          "type": "el-checkbox",
+          "default": true,
+          "pname": "keep_size"
+        }
+      ]
+    },
+    "MaxPooling": {
+      "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.MaxPooling",
+      "py": "iaa.MaxPooling(kernel_size=(1, 5), keep_size=True)",
+      "params": [
+        {
+          "type": "el-slider-range",
+          "default": [
+            1,
+            5
+          ],
+          "min": 0,
+          "max": 20,
+          "pname": "kernel_size",
+          "valueType": "int"
+        },
+        {
+          "type": "el-checkbox",
+          "default": true,
+          "pname": "keep_size"
+        }
+      ]
+    },
+    "MinPooling": {
+      "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.MinPooling",
+      "py": "iaa.MinPooling(kernel_size=(1, 5), keep_size=True)",
+      "params": [
+        {
+          "type": "el-slider-range",
+          "default": [
+            1,
+            5
+          ],
+          "min": 0,
+          "max": 20,
+          "pname": "kernel_size",
+          "valueType": "int"
+        },
+        {
+          "type": "el-checkbox",
+          "default": true,
+          "pname": "keep_size"
+        }
+      ]
+    },
+    "MedianPooling": {
+      "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_pooling.html#imgaug.augmenters.pooling.MedianPooling",
+      "py": "iaa.MedianPooling(kernel_size=(1, 5), keep_size=True)",
+      "params": [
+        {
+          "type": "el-slider-range",
+          "default": [
+            1,
+            5
+          ],
+          "min": 0,
+          "max": 20,
+          "pname": "kernel_size",
+          "valueType": "int"
+        },
+        {
+          "type": "el-checkbox",
+          "default": true,
+          "pname": "keep_size"
+        }
+      ]
+    }
+  }
+}
