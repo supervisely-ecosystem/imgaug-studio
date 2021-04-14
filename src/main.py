@@ -191,5 +191,7 @@ def main():
     app.run(data=data, state=state)
 
 # @TODO: add explanation to export
+# @TODO: check rotate affects bboxes
+# @TODO: warning with message - contact support - if error
 if __name__ == "__main__":
     sly.main_wrapper("main", main)

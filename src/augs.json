@@ -1482,7 +1482,7 @@
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 1,
+                    "max": 5,
                     "pname": "order",
                     "valueType": "int"
                 },
@@ -1520,36 +1520,36 @@
                 {
                     "type": "el-input-number",
                     "default": 0,
-                    "min": 0,
-                    "max": 100,
+                    "min": -1,
+                    "max": 1,
+                    "step": 0.05,
                     "pname": "percent"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 5,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1557,14 +1557,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
                 }
             ]
         },
@@ -1575,36 +1567,36 @@
                 {
                     "type": "el-input-number",
                     "default": 0,
-                    "min": 0,
-                    "max": 100,
+                    "min": -1,
+                    "max": 1,
+                    "step": 0.05,
                     "pname": "percent"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "px"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 5,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1612,14 +1604,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
                 }
             ]
         },
@@ -1633,29 +1617,36 @@
                         -30,
                         30
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "rotate"
+                    "min": -360,
+                    "max": 360,
+                    "pname": "rotate",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 5,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1663,14 +1654,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
                 }
             ]
         },
@@ -1684,29 +1667,36 @@
                         -30,
                         30
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "shear"
+                    "min": -360,
+                    "max": 360,
+                    "pname": "shear",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 5,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1714,14 +1704,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
                 }
             ]
         },
@@ -1735,29 +1717,36 @@
                         -30,
                         30
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "shear"
+                    "min": -360,
+                    "max": 360,
+                    "pname": "shear",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 5,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1765,76 +1754,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "backend"
-                }
-            ]
-        },
-        "AffineCv2": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.AffineCv2",
-            "py": "iaa.AffineCv2(scale=1.0, translate_percent=None, translate_px=None, rotate=0.0, shear=0.0, order=1, cval=0, mode=0)",
-            "params": [
-                {
-                    "type": "el-input-number",
-                    "default": 1.0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "scale"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "translate_percent"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "translate_px"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0.0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "rotate"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0.0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "shear"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 1,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "order"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "cval"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "mode"
                 }
             ]
         },
@@ -1849,7 +1768,8 @@
                         0.04
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 0.1,
+                    "step": 0.01,
                     "pname": "scale"
                 },
                 {
@@ -1858,9 +1778,10 @@
                         2,
                         4
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "nb_rows"
+                    "min": 2,
+                    "max": 10,
+                    "pname": "nb_rows",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -1868,29 +1789,36 @@
                         2,
                         4
                     ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "nb_cols"
+                    "min": 2,
+                    "max": 10,
+                    "pname": "nb_cols",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 5,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1898,13 +1826,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "absolute_scale"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 0,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "polygon_recoverer"
                 }
             ]
         },
@@ -1919,21 +1840,27 @@
                         0.06
                     ],
                     "min": 0,
-                    "max": 100,
+                    "max": 0.15,
+                    "step": 0.01,
                     "pname": "scale"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
                 },
@@ -1946,14 +1873,6 @@
                     "type": "el-checkbox",
                     "default": false,
                     "pname": "fit_output"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "polygon_recoverer"
                 }
             ]
         },
@@ -1968,8 +1887,9 @@
                         40.0
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "alpha"
+                    "max": 200,
+                    "pname": "alpha",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-slider-range",
@@ -1978,38 +1898,37 @@
                         8.0
                     ],
                     "min": 0,
-                    "max": 100,
-                    "pname": "sigma"
+                    "max": 50,
+                    "pname": "sigma",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 3,
                     "min": 0,
-                    "max": 100,
-                    "pname": "order"
+                    "max": 5,
+                    "pname": "order",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-input-number",
                     "default": 0,
                     "min": 0,
-                    "max": 100,
-                    "pname": "cval"
+                    "max": 255,
+                    "pname": "cval",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-select",
                     "default": "constant",
                     "options": [
-                        "constant"
+                        "constant",
+                        "edge",
+                        "symmetric",
+                        "reflect",
+                        "wrap"
                     ],
                     "pname": "mode"
-                },
-                {
-                    "type": "el-select",
-                    "default": "auto",
-                    "options": [
-                        "auto"
-                    ],
-                    "pname": "polygon_recoverer"
                 }
             ]
         },
@@ -2021,56 +1940,14 @@
                     "type": "el-input-number",
                     "default": 1,
                     "min": 0,
-                    "max": 100,
-                    "pname": "k"
+                    "max": 3,
+                    "pname": "k",
+                    "valueType": "int"
                 },
                 {
                     "type": "el-checkbox",
                     "default": true,
                     "pname": "keep_size"
-                }
-            ]
-        },
-        "WithPolarWarping": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.WithPolarWarping",
-            "py": "iaa.WithPolarWarping(children)",
-            "params": []
-        },
-        "Jigsaw": {
-            "durl": "https://imgaug.readthedocs.io/en/latest/source/api_augmenters_geometric.html#imgaug.augmenters.geometric.Jigsaw",
-            "py": "iaa.Jigsaw(nb_rows=(3, 10), nb_cols=(3, 10), max_steps=1, allow_pad=True)",
-            "params": [
-                {
-                    "type": "el-slider-range",
-                    "default": [
-                        3,
-                        10
-                    ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "nb_rows"
-                },
-                {
-                    "type": "el-slider-range",
-                    "default": [
-                        3,
-                        10
-                    ],
-                    "min": 0,
-                    "max": 100,
-                    "pname": "nb_cols"
-                },
-                {
-                    "type": "el-input-number",
-                    "default": 1,
-                    "min": 0,
-                    "max": 100,
-                    "pname": "max_steps"
-                },
-                {
-                    "type": "el-checkbox",
-                    "default": true,
-                    "pname": "allow_pad"
                 }
             ]
         }
