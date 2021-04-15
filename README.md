@@ -27,6 +27,139 @@ Once augmentations are combined into pipeline, they can be exported to both `pyt
 serialization format `json`. This `json` config can be used for real-time augmentations during training for some 
 Neural Networks from Supervisely Ecosystem.  
 
+# List of supported augmentations
+
+```python
+{
+    "arithmetic": [
+        arithmetic.Add,
+        arithmetic.AddElementwise,
+        arithmetic.AdditiveGaussianNoise,
+        arithmetic.AdditiveLaplaceNoise,
+        arithmetic.AdditivePoissonNoise,
+        arithmetic.Multiply,
+        arithmetic.MultiplyElementwise,
+        arithmetic.Cutout,
+        arithmetic.Dropout,
+        arithmetic.CoarseDropout,
+        arithmetic.Dropout2d,
+        arithmetic.ImpulseNoise,
+        arithmetic.SaltAndPepper,
+        arithmetic.CoarseSaltAndPepper,
+        arithmetic.Salt,
+        arithmetic.CoarseSalt,
+        arithmetic.Pepper,
+        arithmetic.CoarsePepper,
+        arithmetic.Invert,
+        arithmetic.Solarize,
+        arithmetic.ContrastNormalization,
+        arithmetic.JpegCompression,
+    ],
+    "blur": [
+        blur.GaussianBlur,
+        blur.AverageBlur,
+        blur.MedianBlur,
+        blur.BilateralBlur,
+        blur.MotionBlur,
+        blur.MeanShiftBlur,
+    ],
+    "color": [
+        color.MultiplyAndAddToBrightness,
+        color.MultiplyBrightness,
+        color.AddToBrightness,
+        color.MultiplyHueAndSaturation,
+        color.MultiplyHue,
+        color.MultiplySaturation,
+        color.RemoveSaturation,
+        color.AddToHueAndSaturation,
+        color.AddToHue,
+        color.AddToSaturation,
+        color.Grayscale,
+        color.ChangeColorTemperature,
+        color.KMeansColorQuantization,
+        color.UniformColorQuantization,
+        color.Posterize,
+    ],
+    "contrast": [
+        contrast.GammaContrast,
+        contrast.SigmoidContrast,
+        contrast.LogContrast,
+        contrast.LinearContrast,
+        contrast.AllChannelsHistogramEqualization,
+        contrast.HistogramEqualization,
+        contrast.AllChannelsCLAHE,
+        contrast.CLAHE,
+    ],
+    "convolutional": [
+        convolutional.Sharpen,
+        convolutional.Emboss,
+        convolutional.EdgeDetect,
+        convolutional.DirectedEdgeDetect,
+    ],
+    "flip": [
+        flip.Fliplr,
+        flip.Flipud,
+    ],
+    "geometric": [
+        geometric.ScaleX,
+        geometric.ScaleY,
+        geometric.TranslateX,
+        geometric.TranslateY,
+        geometric.Rotate,
+        geometric.ShearX,
+        geometric.ShearY,
+        geometric.PiecewiseAffine,
+        geometric.PerspectiveTransform,
+        geometric.ElasticTransformation,
+        geometric.Rot90,
+    ],
+    "imgcorruptlike": [
+        imgcorruptlike.GaussianNoise,
+        imgcorruptlike.ShotNoise,
+        imgcorruptlike.ImpulseNoise,
+        imgcorruptlike.SpeckleNoise,
+        imgcorruptlike.GaussianBlur,
+        imgcorruptlike.GlassBlur,
+        imgcorruptlike.DefocusBlur,
+        imgcorruptlike.MotionBlur,
+        imgcorruptlike.ZoomBlur,
+        imgcorruptlike.Fog,
+        imgcorruptlike.Frost,
+        imgcorruptlike.Snow,
+        imgcorruptlike.Spatter,
+        imgcorruptlike.Contrast,
+        imgcorruptlike.Brightness,
+        imgcorruptlike.Saturate,
+        imgcorruptlike.JpegCompression,
+        imgcorruptlike.Pixelate,
+    ],
+    "pillike": [
+        pillike.Solarize,
+        pillike.Equalize,
+        pillike.Autocontrast,
+        pillike.EnhanceColor,
+        pillike.EnhanceContrast,
+        pillike.EnhanceBrightness,
+        pillike.EnhanceSharpness,
+        pillike.FilterBlur,
+        pillike.FilterSmooth,
+        pillike.FilterSmoothMore,
+        pillike.FilterEdgeEnhance,
+        pillike.FilterEdgeEnhanceMore,
+        pillike.FilterFindEdges,
+        pillike.FilterContour,
+        pillike.FilterEmboss,
+        pillike.FilterSharpen,
+        pillike.FilterDetail,
+    ],
+    "segmentation": [
+        segmentation.Superpixels,
+        segmentation.UniformVoronoi,
+        segmentation.RegularGridVoronoi,
+        segmentation.RelativeRegularGridVoronoi,
+    ],
+}
+```
 
 # How To Use
 
@@ -42,6 +175,9 @@ Watch short video for more details:
     <img src="https://i.imgur.com/ZQPmtfk.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
 </a>
 
+# For developers
+
+TODO: how to use ImgAug with Supervisely format
 
 # Screenshot
 
