@@ -244,7 +244,8 @@ def main():
     app.run(data=data, state=state)
 
 # @TODO: load existing pipeline or start from scratch
-# save: if name already exists
+# @TODO: save: if name already exists
+# @TODO: error messages without in modal
 # @TODO: add resize
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
