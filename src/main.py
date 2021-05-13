@@ -29,7 +29,7 @@ sly.fs.clean_dir(vis_dir)  # convenient for debug
 
 def save_preview_image(api: sly.Api, task_id, img):
     local_path = os.path.join(vis_dir, f"last_preview.png")
-    remote_path = os.path.join(f"/imgaug-studio/{task_id}", f"last_preview.png")
+    remote_path = os.path.join(f"/imgaug_studio/{task_id}", f"last_preview.png")
     sly.image.write(local_path, img)
     if api.file.exists(team_id, remote_path):
         api.file.remove(team_id, remote_path)
@@ -243,7 +243,8 @@ def main():
 
     app.run(data=data, state=state)
 
+# @TODO: load existing pipeline or start from scratch
+# save: if name already exists
 # @TODO: add resize
-# @TODO: check rotate affects bboxes
 if __name__ == "__main__":
     sly.main_wrapper("main", main)

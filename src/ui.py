@@ -90,7 +90,7 @@ def init_preview(data, state):
         "selectable": False,
         "opacity": 0.5,
         "showOpacityInHeader": True,
-        # "viewHeight": 450
+        # "viewHeight": 450,
     }
     data["error"] = None
 
