@@ -118,7 +118,8 @@
                     style="margin-left: 5px;"
                     :disabled="state.addMode === true || data.pipeline.length === 0"
                     type="primary" class="regular" size="small"
-                    @click="command('preview_pipeline')">
+                    :loading="state.previewPipelineLoading"
+                    @click="state.previewPipelineLoading = true; command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview
             </el-button>
             <el-button
@@ -288,7 +289,11 @@
                 </sly-field>
                 <div v-if="state.aug">
                     <div class="fflex mt10" style="justify-content: space-between;">
-                        <el-button type="primary" class="regular" size="small" @click="command('preview')">
+                        <el-button type="primary"
+                                   class="regular"
+                                   size="small"
+                                   :loading="state.previewAugLoading"
+                                   @click="state.previewAugLoading = true; command('preview')">
                             <i class="zmdi zmdi-slideshow" style="margin-right: 5px"></i>Preview
                         </el-button>
                         <el-button type="success" class="regular" size="small" @click="command('add_to_pipeline')">

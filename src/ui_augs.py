@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from ui import augs_configs
-from imgaug_utils import create_aug_info
+import supervisely_lib as sly
 
 
 def get_aug_info(state):
@@ -10,7 +10,7 @@ def get_aug_info(state):
     ui_vmodels = state["augVModels"][category_name][aug_name]
     sometimes = state["sometimesP"] if state["sometimes"] else None
     params = _normalize_params(ui_defaults, ui_vmodels)
-    aug_info = create_aug_info(category_name, aug_name, params, sometimes)
+    aug_info = sly.imgaug_utils.create_aug_info(category_name, aug_name, params, sometimes)
     return aug_info
 
 

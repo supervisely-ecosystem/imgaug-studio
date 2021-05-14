@@ -7,7 +7,7 @@ import supervisely_lib as sly
 import ui
 from cache import get_random_image, cache_images
 import ui_augs
-import imgaug_utils
+
 
 app: sly.AppService = sly.AppService()
 
@@ -61,39 +61,41 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     ann_json = api.annotation.download(img_info.id).annotation
     ann = sly.Annotation.from_json(ann_json, meta)
 
-    det_meta, det_mapping = meta.to_detection_task(convert_classes=False)
-    det_ann = ann.to_detection_task(det_mapping)
-    ia_boxes = det_ann.bboxes_to_imgaug()
-
-    seg_meta, seg_mapping = meta.to_segmentation_task()
-    seg_ann = ann.to_nonoverlapping_masks(seg_mapping)
-    seg_ann = seg_ann.to_segmentation_task()
-    class_to_index = {obj_class.name: idx for idx, obj_class in enumerate(seg_meta.obj_classes, start=1)}
-    index_to_class = {v: k for k, v in class_to_index.items()}
-    ia_masks = seg_ann.masks_to_imgaug(class_to_index)
-
-    res_meta = det_meta.merge(seg_meta)
-    res_img, res_ia_boxes, res_ia_masks = imgaug_utils.apply(augs, img, ia_boxes, ia_masks)
-    res_ann = sly.Annotation.from_imgaug(res_img,
-                                         ia_boxes=res_ia_boxes, ia_masks=res_ia_masks,
-                                         index_to_class=index_to_class, meta=res_meta)
-
+    res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
     file_info = save_preview_image(api, task_id, res_img)
-    gallery, sync_keys = ui.get_gallery(project_meta=res_meta,
+
+    # rename polygonal labels in existing annotation to keep them in gallery in before section
+    # cheat code ############################################
+    _labels_new_classes = []
+    _new_classes = {}
+    for label in ann.labels:
+        label: sly.Label
+        if type(label.obj_class.geometry_type) is sly.Rectangle:
+            new_name = f"{label.obj_class.name}_polygon_for_gallery"
+            if new_name not in _new_classes:
+                _new_classes[new_name] = label.obj_class.clone(name=new_name)
+            _labels_new_classes.append(label.clone(obj_class=_new_classes[new_name]))
+        else:
+            _labels_new_classes.append(label.clone())
+    _meta_renamed_polygons = sly.ProjectMeta(obj_classes=sly.ObjClassCollection(list(_new_classes.values())))
+    gallery_meta = res_meta.merge(_meta_renamed_polygons)
+    # cheat code ############################################
+
+    gallery, sync_keys = ui.get_gallery(project_meta=gallery_meta,
                                         urls=[img_info.full_storage_url, file_info.full_storage_url],
                                         card_names=["original", "augmented"],
-                                        img_labels=[ann.labels, res_ann.labels],
-                                        )
+                                        img_labels=[_labels_new_classes, res_ann.labels])
     fields = [
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.galleryOptions.syncViewsBindings", "payload": sync_keys},
-        {"field": "state.previewLoading", "payload": False},
+        {"field": "state.previewPipelineLoading", "payload": False},
+        {"field": "state.previewAugLoading", "payload": False},
     ]
     if len(infos) == 1 and py_code is None:
         fields.append({"field": "state.previewPy", "payload": infos[0]["python"]})
     else:
         if py_code is None:
-            py_code = imgaug_utils.pipeline_to_python(infos, random_order=False)
+            py_code = sly.imgaug_utils.pipeline_to_python(infos, random_order=False)
         fields.append({"field": "state.previewPy", "payload": py_code})
     api.task.set_fields(task_id, fields)
 
@@ -107,6 +109,8 @@ def clear_pipeline(api: sly.Api, task_id, context, state, app_logger):
         {"field": "state.addMode", "payload": False},
         {"field": "state.previewPy", "payload": None},
         {"field": "state.randomOrder", "payload": False},
+        {"field": "state.previewPipelineLoading", "payload": False},
+        {"field": "state.previewAugLoading", "payload": False},
     ]
     api.task.set_fields(task_id, fields)
 
@@ -119,7 +123,7 @@ def load_existing_pipeline(api: sly.Api, task_id, context, state, app_logger):
     local_path = os.path.join(app.data_dir, sly.fs.get_file_name_with_ext(remote_path))
     api.file.download(team_id, remote_path, local_path)
     config = sly.json.load_json_file(local_path)
-    _ = imgaug_utils.build_pipeline(config["pipeline"], config["random_order"]) # validate
+    _ = sly.imgaug_utils.build_pipeline(config["pipeline"], config["random_order"]) # validate
     global pipeline
     pipeline = config["pipeline"]
 
@@ -128,7 +132,6 @@ def load_existing_pipeline(api: sly.Api, task_id, context, state, app_logger):
         {"field": "state.addMode", "payload": False},
         {"field": "state.previewPy", "payload": None},
         {"field": "state.randomOrder", "payload": config["random_order"]},
-
     ]
     api.task.set_fields(task_id, fields)
 
@@ -138,7 +141,7 @@ def load_existing_pipeline(api: sly.Api, task_id, context, state, app_logger):
 @ui.handle_exceptions(app.task_id, app.public_api)
 def preview(api: sly.Api, task_id, context, state, app_logger):
     aug_info = ui_augs.get_aug_info(state)
-    aug = imgaug_utils.build(aug_info)
+    aug = sly.imgaug_utils.build(aug_info)
     preview_augs(api, task_id, aug, [aug_info])
 
 
@@ -164,8 +167,8 @@ def preview_pipeline(api: sly.Api, task_id, context, state, app_logger):
     random_order = False
     if len(pipeline) > 1:
         random_order = state["randomOrder"]
-    augs = imgaug_utils.build_pipeline(pipeline, random_order)
-    py_code = imgaug_utils.pipeline_to_python(pipeline, random_order)
+    augs = sly.imgaug_utils.build_pipeline(pipeline, random_order)
+    py_code = sly.imgaug_utils.pipeline_to_python(pipeline, random_order)
     preview_augs(api, task_id, augs, pipeline, py_code)
 
 
@@ -180,7 +183,7 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
         random_order = state["randomOrder"]
 
     name = state["saveName"]
-    py_code = imgaug_utils.pipeline_to_python(pipeline, random_order)
+    py_code = sly.imgaug_utils.pipeline_to_python(pipeline, random_order)
     py_path = os.path.join(app.data_dir, f"{name}.py")
     with open(py_path, "w") as text_file:
         text_file.writelines(py_code)
@@ -203,7 +206,6 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
     infos = api.file.upload_bulk(team_id, [py_path, json_path], [remote_py_path, remote_json_path])
     fields = [
         {"field": "state.exporting", "payload": False},
-        # {"field": "state.saveMode", "payload": False},
         {"field": "state.savedUrl", "payload": api.file.get_url(infos[1].id)},
         {"field": "state.savedPath", "payload": infos[1].path}
     ]
