@@ -98,6 +98,19 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     api.task.set_fields(task_id, fields)
 
 
+@app.callback("clear_pipeline")
+@sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
+def clear_pipeline(api: sly.Api, task_id, context, state, app_logger):
+    fields = [
+        {"field": "data.pipeline", "payload": []},
+        {"field": "state.addMode", "payload": False},
+        {"field": "state.previewPy", "payload": None},
+        {"field": "state.randomOrder", "payload": False},
+    ]
+    api.task.set_fields(task_id, fields)
+
+
 @app.callback("load_existing_pipeline")
 @sly.timeit
 @ui.handle_exceptions(app.task_id, app.public_api)
@@ -265,7 +278,6 @@ def main():
 
     app.run(data=data, state=state)
 
-# @TODO: load existing pipeline or start from scratch
 # @TODO: save: if name already exists
 # @TODO: error messages without in modal (change decorator handle_exceptions)
 # @TODO: add resize

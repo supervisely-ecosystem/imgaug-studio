@@ -37,6 +37,11 @@
                 <el-option label="start from scratch" value="new"></el-option>
                 <el-option label="load augs from existing pipeline" value="load"></el-option>
             </el-select>
+            <el-button v-if="state.initMode === 'new'"
+                       type="primary" class="regular" size="small"
+                       @click="command('clear_pipeline')">
+                New
+            </el-button>
             <div class="fflex mt10" v-if="state.initMode === 'load'">
                 <el-input placeholder="Please input path to json configuration in Team Files"
                           v-model="state.pipelinePath">
