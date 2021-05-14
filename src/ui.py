@@ -50,6 +50,8 @@ def init_pipeline(data, state):
     state["randomOrder"] = False
     state["augIndex"] = None
 
+    state["previewPipelineLoading"] = False
+
 
 def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
     CNT_GRID_COLUMNS = 2
@@ -65,7 +67,6 @@ def get_empty_gallery(meta: sly.ProjectMeta = sly.ProjectMeta()):
 
 def init_preview(data, state):
     _, data["gallery"] = get_empty_gallery()
-    state["previewLoading"] = False
     state["previewPy"] = None
     data["pyViewOptions"] = {
         "mode": 'ace/mode/python',
@@ -93,6 +94,7 @@ def init_preview(data, state):
     }
     state["showError"] = False
     data["error"] = None
+    state["previewAugLoading"] = False
 
 
 def init_docs(data):
@@ -150,6 +152,8 @@ def handle_exceptions(task_id, api: sly.Api):
                 fields = [
                     {"field": "data.error", "payload": None},
                     {"field": "state.showError", "payload": False},
+                    {"field": "state.previewPipelineLoading", "payload": False},
+                    {"field": "state.previewAugLoading", "payload": False},
                 ]
                 api.task.set_fields(task_id, fields)
 
@@ -159,6 +163,8 @@ def handle_exceptions(task_id, api: sly.Api):
                 fields = [
                     {"field": "data.error", "payload": repr(e)},
                     {"field": "state.showError", "payload": True},
+                    {"field": "state.previewPipelineLoading", "payload": False},
+                    {"field": "state.previewAugLoading", "payload": False},
                 ]
                 api.task.set_fields(task_id, fields)
         return wrapper
