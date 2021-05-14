@@ -43,7 +43,8 @@ def init_augs_configs(data: dict, state: dict):
 
 def init_pipeline(data, state):
     state["initMode"] = "new"
-    state["pipelinePath"] = "" #"/imgaug-studio/complex-07-fliplr.json" #@TODO: for debug
+    # @TODO: for debug
+    state["pipelinePath"] = "/complex-07-fliplr.json"
 
     data["pipeline"] = []
     state["addMode"] = False
@@ -159,7 +160,9 @@ def handle_exceptions(task_id, api: sly.Api):
 
                 f(*args, **kwargs)
             except Exception as e:
-                sly.logger.error(f"please, contact support: task_id={task_id}, {repr(e)}")
+                sly.logger.error(f"please, contact support: task_id={task_id}, {repr(e)}", exc_info=True, extra={
+                    'exc_str': str(e),
+                })
                 fields = [
                     {"field": "data.error", "payload": repr(e)},
                     {"field": "state.showError", "payload": True},

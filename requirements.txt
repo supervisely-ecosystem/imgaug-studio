@@ -1,6 +1,7 @@
-supervisely==6.1.64
-imgaug==0.4.0
-imagecorruptions==1.1.2
+supervisely==6.1.80
+# already in sly
+#imgaug==0.4.0
+#imagecorruptions==1.1.2
 
 # for docstring-to-html
 # Sphinx==3.4.3
