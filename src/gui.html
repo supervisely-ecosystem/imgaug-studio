@@ -87,11 +87,6 @@
                                    @click="state.augIndex = index; command('move_aug_down')">
                             <i class="zmdi zmdi-long-arrow-down"></i>
                         </el-button>
-                        <!--                        <el-button size="small"-->
-                        <!--                                   class="action-icon-btn"-->
-                        <!--                                   @click="state.augIndex = index; command('edit_aug')">-->
-                        <!--                            <i class="zmdi zmdi-edit"></i>-->
-                        <!--                        </el-button>-->
                         <el-button size="small"
                                    class="action-icon-btn"
                                    @click="state.augIndex = index; command('delete_aug')">
@@ -126,7 +121,6 @@
                     @click="command('preview_pipeline')">
                 <i class="zmdi zmdi-slideshow mr5"></i>Preview
             </el-button>
-            <!--            :plain="true"-->
             <el-button
                     style="margin-left: 5px;"
                     type="primary" class="regular" size="small"
@@ -157,16 +151,10 @@
                                    can be used for real-time augmentations during training for some Neural Networks from Ecosystem.">
         </sly-notification>
         <sly-field title="Directory" description="Configurations will be saved to Team Files">
-            <!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
-            <!--                <i class="zmdi zmdi-folder"></i>-->
-            <!--            </sly-icon>-->
             <el-input placeholder="Please input destination directory" v-model="state.saveDir"></el-input>
         </sly-field>
         <sly-field title="Name" description="py and json configurations will be saved with this name. If name already
                                              exists, a new one will be generated automatically">
-            <!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
-            <!--                <i class="zmdi zmdi-star"></i>-->
-            <!--            </sly-icon>-->
             <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
         </sly-field>
         <sly-field v-if="state.savedUrl"
@@ -206,7 +194,6 @@
             </div>
 
             <sly-field title="Augmenter Category" description="Choose augmentation category">
-                <!--                v-model="state.category"-->
                 <el-select :value="state.category" @input="
                     (val) => {
                         state.category = val;
@@ -223,7 +210,6 @@
                         state.aug = val;
                     }
                     ">
-                    <!--                    command('refresh_aug');-->
                     <el-option v-for="item in data.augs[state.category]" :key="item" :label="item"
                                :value="item"></el-option>
                 </el-select>
@@ -350,8 +336,6 @@
                         link to original docs <i class="zmdi zmdi-open-in-new"></i>
                     </a>
                 </div>
-
-                <!--                style="padding: 10px 10px 10px 10px;"-->
                 <sly-docstring class="mt10"
                                v-if="data.docs[state.category][state.aug]"
                                :data="data.docs[state.category][state.aug]">
