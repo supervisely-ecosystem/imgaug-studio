@@ -62,14 +62,29 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     ann = sly.Annotation.from_json(ann_json, meta)
 
     res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
-
     file_info = save_preview_image(api, task_id, res_img)
-    #@TODO: problem here with polygons
-    gallery, sync_keys = ui.get_gallery(project_meta=res_meta,
+
+    # rename polygonal labels in existing annotation to keep them in gallery in before section
+    # cheat code ############################################
+    _labels_new_classes = []
+    _new_classes = {}
+    for label in ann.labels:
+        label: sly.Label
+        if type(label.obj_class.geometry_type) is sly.Rectangle:
+            new_name = f"{label.obj_class.name}_polygon_for_gallery"
+            if new_name not in _new_classes:
+                _new_classes[new_name] = label.obj_class.clone(name=new_name)
+            _labels_new_classes.append(label.clone(obj_class=_new_classes[new_name]))
+        else:
+            _labels_new_classes.append(label.clone())
+    _meta_renamed_polygons = sly.ProjectMeta(obj_classes=sly.ObjClassCollection(list(_new_classes.values())))
+    gallery_meta = res_meta.merge(_meta_renamed_polygons)
+    # cheat code ############################################
+
+    gallery, sync_keys = ui.get_gallery(project_meta=gallery_meta,
                                         urls=[img_info.full_storage_url, file_info.full_storage_url],
                                         card_names=["original", "augmented"],
-                                        img_labels=[ann.labels, res_ann.labels],
-                                        )
+                                        img_labels=[_labels_new_classes, res_ann.labels])
     fields = [
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.galleryOptions.syncViewsBindings", "payload": sync_keys},
