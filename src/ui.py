@@ -43,8 +43,7 @@ def init_augs_configs(data: dict, state: dict):
 
 def init_pipeline(data, state):
     state["initMode"] = "new"
-    # @TODO: for debug
-    state["pipelinePath"] = "/complex-07-fliplr.json"
+    state["pipelinePath"] = ""  # @TODO: for debug "/complex-07-fliplr.json"
 
     data["pipeline"] = []
     state["addMode"] = False
