@@ -278,7 +278,7 @@ def main():
 
     app.run(data=data, state=state)
 
-# @TODO: error messages without in modal (change decorator handle_exceptions)
+
 # @TODO: add resize
 if __name__ == "__main__":
     sly.main_wrapper("main", main)

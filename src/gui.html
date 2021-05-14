@@ -137,6 +137,17 @@
         </div>
     </sly-card>
 
+    <el-dialog title="Oops! Something went wrong"
+               :visible.sync="state.showError"
+               size="tiny">
+        <sly-notification
+                class="mt10"
+                v-if="data.error"
+                :options="{'name': 'Please try again or contact support', 'type': 'error'}"
+                :content="data.error">
+        </sly-notification>
+    </el-dialog>
+
     <el-dialog title="Export pipeline"
                :visible.sync="state.saveMode"
                size="tiny">
@@ -304,14 +315,6 @@
         <sly-card title="Preview"
                   subtitle="Preview python code and aug result on a random image"
                   style="width: 100%">
-
-            <sly-notification
-                    class="mb15"
-                    v-if="data.error"
-                    :options="{'name': 'Selected aug is broken. Please, contact support', 'type': 'error'}"
-                    :content="data.error">
-            </sly-notification>
-
             <div v-if="!state.previewPy">
                 <el-tag type="primary"><i class="zmdi zmdi-help-outline mr5"></i> Press Preview button to show python
                     code and visualize image examples

@@ -91,6 +91,7 @@ def init_preview(data, state):
         "showOpacityInHeader": True,
         # "viewHeight": 450,
     }
+    state["showError"] = False
     data["error"] = None
 
 
@@ -146,10 +147,19 @@ def handle_exceptions(task_id, api: sly.Api):
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
             try:
-                api.task.set_field(task_id, "data.error", None)
+                fields = [
+                    {"field": "data.error", "payload": None},
+                    {"field": "state.showError", "payload": False},
+                ]
+                api.task.set_fields(task_id, fields)
+
                 f(*args, **kwargs)
             except Exception as e:
                 sly.logger.error(f"please, contact support: task_id={task_id}, {repr(e)}")
-                api.task.set_field(task_id, "data.error", repr(e))
+                fields = [
+                    {"field": "data.error", "payload": repr(e)},
+                    {"field": "state.showError", "payload": True},
+                ]
+                api.task.set_fields(task_id, fields)
         return wrapper
     return decorator
