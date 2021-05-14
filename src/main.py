@@ -98,6 +98,28 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     api.task.set_fields(task_id, fields)
 
 
+@app.callback("load_existing_pipeline")
+@sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
+def load_existing_pipeline(api: sly.Api, task_id, context, state, app_logger):
+    remote_path = state["pipelinePath"]
+    local_path = os.path.join(app.data_dir, sly.fs.get_file_name_with_ext(remote_path))
+    api.file.download(team_id, remote_path, local_path)
+    config = sly.json.load_json_file(local_path)
+    _ = imgaug_utils.build_pipeline(config["pipeline"], config["random_order"]) # validate
+    global pipeline
+    pipeline = config["pipeline"]
+
+    fields = [
+        {"field": "data.pipeline", "payload": config["pipeline"]},
+        {"field": "state.addMode", "payload": False},
+        {"field": "state.previewPy", "payload": None},
+        {"field": "state.randomOrder", "payload": config["random_order"]},
+
+    ]
+    api.task.set_fields(task_id, fields)
+
+
 @app.callback("preview")
 @sly.timeit
 @ui.handle_exceptions(app.task_id, app.public_api)
@@ -245,7 +267,7 @@ def main():
 
 # @TODO: load existing pipeline or start from scratch
 # @TODO: save: if name already exists
-# @TODO: error messages without in modal
+# @TODO: error messages without in modal (change decorator handle_exceptions)
 # @TODO: add resize
 if __name__ == "__main__":
     sly.main_wrapper("main", main)

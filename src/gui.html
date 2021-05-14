@@ -24,15 +24,36 @@
         }
     </sly-style>
 
-    <sly-card title="Your custom augmentation pipeline"
-              subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
+    <sly-card title="Input">
         <sly-field title="" description="Input project">
             <a slot="title" target="_blank"
                :href="`/projects/${data.projectId}/datasets`">{{data.projectName}} ({{data.projectItemsCount}}
                 images)</a>
             <sly-icon slot="icon" :options="{ imageUrl: `${data.projectPreviewUrl}` }"/>
         </sly-field>
+        <sly-field title="Initialization" description="Build augs pipeline from scratch or load augs from
+                          existing pipeline (safe .json format)">
+            <el-select v-model="state.initMode" style="width: 250px;">
+                <el-option label="start from scratch" value="new"></el-option>
+                <el-option label="load augs from existing pipeline" value="load"></el-option>
+            </el-select>
+            <div class="fflex mt10" v-if="state.initMode === 'load'">
+                <el-input placeholder="Please input path to json configuration in Team Files"
+                          v-model="state.pipelinePath">
+                </el-input>
+                <el-button
+                        style="margin-left: 5px;"
+                        type="primary" class="regular" size="small"
+                        :disabled="state.pipelinePath.length === 0"
+                        @click="command('load_existing_pipeline')">
+                    Load
+                </el-button>
+            </div>
+        </sly-field>
+    </sly-card>
 
+    <sly-card class="mt15" title="Your custom augmentation pipeline"
+              subtitle="Add transformations in a sequence, preview the results of individual aug or a whole pipeline">
         <div v-if="data.pipeline.length === 0">
             No augmentations in pipeline
         </div>
@@ -61,11 +82,11 @@
                                    @click="state.augIndex = index; command('move_aug_down')">
                             <i class="zmdi zmdi-long-arrow-down"></i>
                         </el-button>
-<!--                        <el-button size="small"-->
-<!--                                   class="action-icon-btn"-->
-<!--                                   @click="state.augIndex = index; command('edit_aug')">-->
-<!--                            <i class="zmdi zmdi-edit"></i>-->
-<!--                        </el-button>-->
+                        <!--                        <el-button size="small"-->
+                        <!--                                   class="action-icon-btn"-->
+                        <!--                                   @click="state.augIndex = index; command('edit_aug')">-->
+                        <!--                            <i class="zmdi zmdi-edit"></i>-->
+                        <!--                        </el-button>-->
                         <el-button size="small"
                                    class="action-icon-btn"
                                    @click="state.augIndex = index; command('delete_aug')">
@@ -120,15 +141,15 @@
                                    can be used for real-time augmentations during training for some Neural Networks from Ecosystem.">
         </sly-notification>
         <sly-field title="Directory" description="Configurations will be saved to Team Files">
-<!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
-<!--                <i class="zmdi zmdi-folder"></i>-->
-<!--            </sly-icon>-->
+            <!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
+            <!--                <i class="zmdi zmdi-folder"></i>-->
+            <!--            </sly-icon>-->
             <el-input placeholder="Please input destination directory" v-model="state.saveDir"></el-input>
         </sly-field>
         <sly-field title="Name" description="py and json configurations will be saved with this name">
-<!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
-<!--                <i class="zmdi zmdi-star"></i>-->
-<!--            </sly-icon>-->
+            <!--            <sly-icon slot="icon" :options="{ color: '#33c94c', bgColor: '#d9f7e4', rounded: false }">-->
+            <!--                <i class="zmdi zmdi-star"></i>-->
+            <!--            </sly-icon>-->
             <el-input placeholder="Please input pipeline name" v-model="state.saveName"></el-input>
         </sly-field>
         <sly-field v-if="state.savedUrl"

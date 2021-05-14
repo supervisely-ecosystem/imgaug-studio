@@ -42,6 +42,9 @@ def init_augs_configs(data: dict, state: dict):
 
 
 def init_pipeline(data, state):
+    state["initMode"] = "new"
+    state["pipelinePath"] = "" #"/imgaug-studio/complex-07-fliplr.json" #@TODO: for debug
+
     data["pipeline"] = [
         # "iaa.imgcorruptlike.GaussianBlur(severity=(1, 1))",
         # "iaa.imgcorruptlike.GaussianBlur(severity=(2, 2))",
