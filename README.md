@@ -27,6 +27,9 @@ Once augmentations are combined into pipeline, they can be exported to both `pyt
 serialization format `json`. This `json` config can be used for real-time augmentations during training for some 
 Neural Networks from Supervisely Ecosystem.  
 
+Only labels of types `Polygon`, `Rectangle` and `Bitmap` in supervisely format can be converted automatically to imgaug 
+format (and vice versa). 
+
 # List of supported augmentations
 
 ```python
@@ -176,8 +179,38 @@ Watch short video for more details:
 </a>
 
 # For developers
+Feature is available in `supervisely>=6.1.80`
 
-TODO: how to use ImgAug with Supervisely format
+```python
+import supervisely_lib as sly
+import json
+
+# load json configuration of pipeline
+filename = "/a/b/c/my_augs_pipeline.json"
+# load augs pipeline from json
+with open(filename, encoding='utf-8') as fin:
+    config = json.load(fin)
+# or
+# config = sly.json.load_json_file(filename)
+
+# ot imgaug ia.Sequential
+augs = sly.imgaug_utils.build_pipeline(config["pipeline"], config["random_order"])
+
+
+# prepare project meta (classes and tags), image and annotation
+api = sly.Api.from_env()
+project_id = 777
+image_id = 123
+meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
+img = api.image.download_np(image_id)
+ann_json = api.annotation.download(image_id).annotation
+ann = sly.Annotation.from_json(ann_json, meta)
+
+# get augmentations in supervisely format 
+# polygons will be converted to bitmaps, thus new classes will be created and stored in res_meta
+res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
+```
+
 
 # Screenshot
 
