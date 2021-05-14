@@ -42,11 +42,10 @@ def init_augs_configs(data: dict, state: dict):
 
 
 def init_pipeline(data, state):
-    data["pipeline"] = [
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(1, 1))",
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(2, 2))",
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(3, 3))",
-    ]
+    state["initMode"] = "new"
+    state["pipelinePath"] = "" #"/imgaug-studio/complex-07-fliplr.json" #@TODO: for debug
+
+    data["pipeline"] = []
     state["addMode"] = False
     state["randomOrder"] = False
     state["augIndex"] = None
@@ -90,8 +89,9 @@ def init_preview(data, state):
         "selectable": False,
         "opacity": 0.5,
         "showOpacityInHeader": True,
-        # "viewHeight": 450
+        # "viewHeight": 450,
     }
+    state["showError"] = False
     data["error"] = None
 
 
@@ -147,10 +147,19 @@ def handle_exceptions(task_id, api: sly.Api):
         @functools.wraps(f)
         def wrapper(*args, **kwargs):
             try:
-                api.task.set_field(task_id, "data.error", None)
+                fields = [
+                    {"field": "data.error", "payload": None},
+                    {"field": "state.showError", "payload": False},
+                ]
+                api.task.set_fields(task_id, fields)
+
                 f(*args, **kwargs)
             except Exception as e:
                 sly.logger.error(f"please, contact support: task_id={task_id}, {repr(e)}")
-                api.task.set_field(task_id, "data.error", repr(e))
+                fields = [
+                    {"field": "data.error", "payload": repr(e)},
+                    {"field": "state.showError", "payload": True},
+                ]
+                api.task.set_fields(task_id, fields)
         return wrapper
     return decorator

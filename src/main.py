@@ -29,7 +29,7 @@ sly.fs.clean_dir(vis_dir)  # convenient for debug
 
 def save_preview_image(api: sly.Api, task_id, img):
     local_path = os.path.join(vis_dir, f"last_preview.png")
-    remote_path = os.path.join(f"/imgaug-studio/{task_id}", f"last_preview.png")
+    remote_path = os.path.join(f"/imgaug_studio/{task_id}", f"last_preview.png")
     sly.image.write(local_path, img)
     if api.file.exists(team_id, remote_path):
         api.file.remove(team_id, remote_path)
@@ -95,6 +95,41 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
         if py_code is None:
             py_code = imgaug_utils.pipeline_to_python(infos, random_order=False)
         fields.append({"field": "state.previewPy", "payload": py_code})
+    api.task.set_fields(task_id, fields)
+
+
+@app.callback("clear_pipeline")
+@sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
+def clear_pipeline(api: sly.Api, task_id, context, state, app_logger):
+    fields = [
+        {"field": "data.pipeline", "payload": []},
+        {"field": "state.addMode", "payload": False},
+        {"field": "state.previewPy", "payload": None},
+        {"field": "state.randomOrder", "payload": False},
+    ]
+    api.task.set_fields(task_id, fields)
+
+
+@app.callback("load_existing_pipeline")
+@sly.timeit
+@ui.handle_exceptions(app.task_id, app.public_api)
+def load_existing_pipeline(api: sly.Api, task_id, context, state, app_logger):
+    remote_path = state["pipelinePath"]
+    local_path = os.path.join(app.data_dir, sly.fs.get_file_name_with_ext(remote_path))
+    api.file.download(team_id, remote_path, local_path)
+    config = sly.json.load_json_file(local_path)
+    _ = imgaug_utils.build_pipeline(config["pipeline"], config["random_order"]) # validate
+    global pipeline
+    pipeline = config["pipeline"]
+
+    fields = [
+        {"field": "data.pipeline", "payload": config["pipeline"]},
+        {"field": "state.addMode", "payload": False},
+        {"field": "state.previewPy", "payload": None},
+        {"field": "state.randomOrder", "payload": config["random_order"]},
+
+    ]
     api.task.set_fields(task_id, fields)
 
 
@@ -243,7 +278,7 @@ def main():
 
     app.run(data=data, state=state)
 
+
 # @TODO: add resize
-# @TODO: check rotate affects bboxes
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
