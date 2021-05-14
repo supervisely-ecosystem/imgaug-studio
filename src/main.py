@@ -278,7 +278,6 @@ def main():
 
     app.run(data=data, state=state)
 
-# @TODO: save: if name already exists
 # @TODO: error messages without in modal (change decorator handle_exceptions)
 # @TODO: add resize
 if __name__ == "__main__":

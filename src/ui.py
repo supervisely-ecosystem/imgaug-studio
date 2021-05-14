@@ -45,11 +45,7 @@ def init_pipeline(data, state):
     state["initMode"] = "new"
     state["pipelinePath"] = "" #"/imgaug-studio/complex-07-fliplr.json" #@TODO: for debug
 
-    data["pipeline"] = [
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(1, 1))",
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(2, 2))",
-        # "iaa.imgcorruptlike.GaussianBlur(severity=(3, 3))",
-    ]
+    data["pipeline"] = []
     state["addMode"] = False
     state["randomOrder"] = False
     state["augIndex"] = None
