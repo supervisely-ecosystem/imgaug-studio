@@ -14,7 +14,10 @@
   "icon_background": "#FFFFFF",
   "disable_stop": true,
   "context_menu": {
-    "target": ["images_project"]
+    "target": [
+      "images_project"
+    ]
   },
-  "instance_version": "6.4.10"
+  "instance_version": "6.4.10",
+  "poster": "https://i.imgur.com/biseFXX.png"
 }
