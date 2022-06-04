@@ -2,8 +2,13 @@
   "name": "ImgAug Studio",
   "type": "app",
   "categories": [
-    "augmentations",
-    "images"
+    "neural network",
+    "images",
+    "object detection",
+    "semantic segmentation",
+    "instance segmentation",
+    "classification",
+    "nn tools"
   ],
   "description": "Visualize and build augmentation pipeline with ImgAug",
   "docker_image": "supervisely/base-py-sdk:6.1.80",
