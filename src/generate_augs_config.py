@@ -1,5 +1,5 @@
 import inspect
-import supervisely_lib as sly
+import supervisely as sly
 from allowed_augs import augs_modules
 
 

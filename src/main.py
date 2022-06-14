@@ -2,14 +2,15 @@ import os
 import json
 import time
 
-import supervisely_lib as sly
+import supervisely as sly
+from supervisely.app.v1.app_service import AppService
 
 import ui
 from cache import get_random_image, cache_images
 import ui_augs
 
 
-app: sly.AppService = sly.AppService()
+app: AppService = AppService()
 
 team_id = int(os.environ['context.teamId'])
 workspace_id = int(os.environ['context.workspaceId'])
@@ -82,7 +83,7 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     # cheat code ############################################
 
     gallery, sync_keys = ui.get_gallery(project_meta=gallery_meta,
-                                        urls=[img_info.full_storage_url, file_info.full_storage_url],
+                                        urls=[img_info.path_original, file_info.storage_path],
                                         card_names=["original", "augmented"],
                                         img_labels=[_labels_new_classes, res_ann.labels])
     fields = [

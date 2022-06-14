@@ -1,7 +1,7 @@
 # https://www.youtube.com/watch?v=DnKxKFXB4NQ&list=LL&index=6&ab_channel=mCoding
 #from functools import cache, lru_cache
 import random
-import supervisely_lib as sly
+import supervisely as sly
 
 
 images_info = {}
