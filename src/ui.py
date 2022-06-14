@@ -1,6 +1,6 @@
 import os
 from collections import defaultdict
-import supervisely_lib as sly
+import supervisely as sly
 import functools
 from pathlib import Path
 import sys

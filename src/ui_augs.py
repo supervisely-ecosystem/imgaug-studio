@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from ui import augs_configs
-import supervisely_lib as sly
+import supervisely as sly
 
 
 def get_aug_info(state):
