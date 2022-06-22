@@ -10,7 +10,7 @@
     "classification",
     "nn tools",
     "augmentation",
-    "data-operations"
+    "data operations"
   ],
   "description": "Visualize and build augmentation pipeline with ImgAug",
   "docker_image": "supervisely/base-py-sdk:6.23.1",
