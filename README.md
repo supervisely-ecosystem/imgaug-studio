@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/biseFXX.png"/>
+<img src="https://user-images.githubusercontent.com/48245050/182815780-667460f6-b056-4e18-9d06-da5b7de01175.png"/>
 
 # ImgAug Studio
 
