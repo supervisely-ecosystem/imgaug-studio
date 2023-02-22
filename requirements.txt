@@ -1,10 +1,10 @@
-supervisely==6.35.0
-supervisely[apps]==6.35.0
-# already in sly
-#imgaug==0.4.0
-#imagecorruptions==1.1.2
+supervisely==6.69.58
 
-# for docstring-to-html
+# already in sly:
+# imgaug==0.4.0
+# imagecorruptions==1.1.2
+
+# for docstring-to-html:
 # Sphinx==3.4.3
 # sphinx-copybutton==0.3.1
 # sphinx-rtd-theme==0.5.1
