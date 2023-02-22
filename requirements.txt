@@ -1,5 +1,4 @@
-supervisely==6.69.58  # check version later
-supervisely[aug]==6.69.58
+supervisely==6.69.58
 
 # already in sly:
 # imgaug==0.4.0
