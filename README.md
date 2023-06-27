@@ -174,7 +174,7 @@ format (and vice versa).
 Watch short video for more details:
 
 <a data-key="sly-embeded-video-link" href="https://youtu.be/zdjRMb8BlPU" data-video-code="zdjRMb8BlPU">
-    <img src="https://i.imgur.com/ZQPmtfk.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
+    <img src="media/d.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
 </a>
 
 # For developers
@@ -213,4 +213,4 @@ res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
 
 # Screenshot
 
-<img src="https://i.imgur.com/vQ9hrCI.png"/>
+<img src="media/s.png"/>
