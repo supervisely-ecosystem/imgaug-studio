@@ -18,7 +18,7 @@
   "main_script": "src/main.py",
   "gui_template": "src/gui.html",
   "task_location": "workspace_tasks",
-  "icon": "https://img.icons8.com/fluent/100/000000/lab-items.png",
+  "icon": "media/icon.png",
   "icon_background": "#FFFFFF",
   "disable_stop": true,
   "context_menu": {
