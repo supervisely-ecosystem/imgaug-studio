@@ -1,30 +1,30 @@
 {
-  "name": "ImgAug Studio",
-  "type": "app",
-  "categories": [
-    "neural network",
-    "images",
-    "object detection",
-    "semantic segmentation",
-    "instance segmentation",
-    "classification",
-    "nn tools",
-    "augmentation",
-    "data operations"
-  ],
-  "description": "Visualize and build augmentation pipeline with ImgAug",
-  "docker_image":"supervisely/base-py-sdk:6.72.70",
-  "instance_version": "6.4.57",
-  "main_script": "src/main.py",
-  "gui_template": "src/gui.html",
-  "task_location": "workspace_tasks",
-  "icon": "https://img.icons8.com/fluent/100/000000/lab-items.png",
-  "icon_background": "#FFFFFF",
-  "disable_stop": true,
-  "context_menu": {
-    "target": [
-      "images_project"
-    ]
-  },
-  "poster": "https://user-images.githubusercontent.com/48245050/182815780-667460f6-b056-4e18-9d06-da5b7de01175.png"
+    "name": "ImgAug Studio",
+    "type": "app",
+    "categories": [
+        "neural network",
+        "images",
+        "object detection",
+        "semantic segmentation",
+        "instance segmentation",
+        "classification",
+        "nn tools",
+        "augmentation",
+        "data operations"
+    ],
+    "description": "Visualize and build augmentation pipeline with ImgAug",
+    "docker_image": "supervisely/data-operations:0.0.1",
+    "instance_version": "6.4.57",
+    "main_script": "src/main.py",
+    "gui_template": "src/gui.html",
+    "task_location": "workspace_tasks",
+    "icon": "https://img.icons8.com/fluent/100/000000/lab-items.png",
+    "icon_background": "#FFFFFF",
+    "disable_stop": true,
+    "context_menu": {
+        "target": [
+            "images_project"
+        ]
+    },
+    "poster": "https://user-images.githubusercontent.com/48245050/182815780-667460f6-b056-4e18-9d06-da5b7de01175.png"
 }
