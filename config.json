@@ -13,7 +13,7 @@
         "data operations"
     ],
     "description": "Visualize and build augmentation pipeline with ImgAug",
-    "docker_image": "supervisely/data-operations:0.0.1",
+    "docker_image": "supervisely/data-operations:0.0.3",
     "instance_version": "6.4.57",
     "main_script": "src/main.py",
     "gui_template": "src/gui.html",
