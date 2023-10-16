@@ -2458,7 +2458,7 @@
                         50,
                         120
                     ],
-                    "min": 0,
+                    "min": 1,
                     "max": 500,
                     "pname": "n_segments",
                     "valueType": "int"
@@ -2466,7 +2466,7 @@
                 {
                     "type": "el-input-number",
                     "default": 128,
-                    "min": 0,
+                    "min": 1,
                     "max": 512,
                     "pname": "max_size",
                     "valueType": "int"
