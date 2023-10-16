@@ -1,6 +1,7 @@
 secret_debug.env
 .idea
 venv
+.venv
 supervisely_lib
 images/*
 src/conf.py

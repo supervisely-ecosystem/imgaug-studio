@@ -62,7 +62,13 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     ann_json = api.annotation.download(img_info.id).annotation
     ann = sly.Annotation.from_json(ann_json, meta)
 
-    res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
+    try:
+        res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
+    except ValueError as e:
+        if str(e) == 'cannot convert float NaN to integer':
+            raise e('Please check the values of the augmentation parameters')
+        else:
+            raise e
     file_info = save_preview_image(api, task_id, res_img)
 
     # rename polygonal labels in existing annotation to keep them in gallery in before section
