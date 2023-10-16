@@ -66,7 +66,8 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
         res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
     except ValueError as e:
         if str(e) == 'cannot convert float NaN to integer':
-            raise e('Please check the values of the augmentation parameters')
+            e.args = ('Please check the values of the augmentation parameters',)
+            raise e
         else:
             raise e
     file_info = save_preview_image(api, task_id, res_img)
