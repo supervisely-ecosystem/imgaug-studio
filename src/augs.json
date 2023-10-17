@@ -2458,7 +2458,7 @@
                         50,
                         120
                     ],
-                    "min": 0,
+                    "min": 1,
                     "max": 500,
                     "pname": "n_segments",
                     "valueType": "int"
