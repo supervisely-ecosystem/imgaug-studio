@@ -8,7 +8,7 @@ def get_aug_info(state):
     aug_name = state["aug"]
     ui_defaults = augs_configs[category_name][aug_name]["params"]
     ui_vmodels = state["augVModels"][category_name][aug_name]
-    sometimes = state["sometimesP"] if state["sometimes"] else None
+    sometimes = float(state["sometimesP"]) if state["sometimes"] else None
     params = _normalize_params(ui_defaults, ui_vmodels)
     aug_info = sly.imgaug_utils.create_aug_info(category_name, aug_name, params, sometimes)
     return aug_info
