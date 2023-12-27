@@ -73,7 +73,7 @@ def init_preview(data, state):
         "showGutter": False,
         "readOnly": True,
         # "maxLines": 50,
-        "heaight": "20px",
+        "height": "20px",
         "highlightActiveLine": False
     }
     state["sometimes"] = False
