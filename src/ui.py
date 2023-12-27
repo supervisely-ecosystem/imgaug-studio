@@ -72,7 +72,8 @@ def init_preview(data, state):
         "mode": 'ace/mode/python',
         "showGutter": False,
         "readOnly": True,
-        "maxLines": 50,
+        # "maxLines": 50,
+        "heaight": "20px",
         "highlightActiveLine": False
     }
     state["sometimes"] = False
