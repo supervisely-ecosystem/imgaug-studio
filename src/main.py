@@ -12,9 +12,9 @@ import ui_augs
 
 app: AppService = AppService()
 
-team_id = int(os.environ['context.teamId'])
-workspace_id = int(os.environ['context.workspaceId'])
-project_id = int(os.environ['modal.state.slyProjectId'])
+team_id = int(os.environ["context.teamId"])
+workspace_id = int(os.environ["context.workspaceId"])
+project_id = int(os.environ["modal.state.slyProjectId"])
 
 project_info = app.public_api.project.get_info_by_id(project_id)
 if project_info is None:
@@ -38,7 +38,9 @@ def save_preview_image(api: sly.Api, task_id, img):
     return file_info
 
 
-def rename_meta_and_annotations(meta: sly.ProjectMeta, ann: sly.Annotation, suffix="original"):
+def rename_meta_and_annotations(
+    meta: sly.ProjectMeta, ann: sly.Annotation, suffix="original"
+):
     def _get_new_name(current_name):
         return f"{current_name}-{suffix}"
 
@@ -65,8 +67,8 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
     try:
         res_meta, res_img, res_ann = sly.imgaug_utils.apply(augs, meta, img, ann)
     except ValueError as e:
-        if str(e) == 'cannot convert float NaN to integer':
-            e.args = ('Please check the values of the augmentation parameters',)
+        if str(e) == "cannot convert float NaN to integer":
+            e.args = ("Please check the values of the augmentation parameters",)
             raise e
         else:
             raise e
@@ -85,14 +87,18 @@ def preview_augs(api: sly.Api, task_id, augs, infos, py_code=None):
             _labels_new_classes.append(label.clone(obj_class=_new_classes[new_name]))
         else:
             _labels_new_classes.append(label.clone())
-    _meta_renamed_polygons = sly.ProjectMeta(obj_classes=sly.ObjClassCollection(list(_new_classes.values())))
+    _meta_renamed_polygons = sly.ProjectMeta(
+        obj_classes=sly.ObjClassCollection(list(_new_classes.values()))
+    )
     gallery_meta = res_meta.merge(_meta_renamed_polygons)
     # cheat code ############################################
 
-    gallery, sync_keys = ui.get_gallery(project_meta=gallery_meta,
-                                        urls=[img_info.path_original, file_info.storage_path],
-                                        card_names=["original", "augmented"],
-                                        img_labels=[_labels_new_classes, res_ann.labels])
+    gallery, sync_keys = ui.get_gallery(
+        project_meta=gallery_meta,
+        urls=[img_info.path_original, file_info.storage_path],
+        card_names=["original", "augmented"],
+        img_labels=[_labels_new_classes, res_ann.labels],
+    )
     fields = [
         {"field": "data.gallery", "payload": gallery},
         {"field": "state.galleryOptions.syncViewsBindings", "payload": sync_keys},
@@ -131,7 +137,9 @@ def load_existing_pipeline(api: sly.Api, task_id, context, state, app_logger):
     local_path = os.path.join(app.data_dir, sly.fs.get_file_name_with_ext(remote_path))
     api.file.download(team_id, remote_path, local_path)
     config = sly.json.load_json_file(local_path)
-    _ = sly.imgaug_utils.build_pipeline(config["pipeline"], config["random_order"]) # validate
+    _ = sly.imgaug_utils.build_pipeline(
+        config["pipeline"], config["random_order"]
+    )  # validate
     global pipeline
     pipeline = config["pipeline"]
 
@@ -197,10 +205,7 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
         text_file.writelines(py_code)
 
     json_path = os.path.join(app.data_dir, f"{name}.json")
-    res_json = {
-        "pipeline": pipeline,
-        "random_order": random_order
-    }
+    res_json = {"pipeline": pipeline, "random_order": random_order}
     sly.json.dump_json_file(res_json, json_path)
 
     remote_py_path = os.path.join(state["saveDir"], f"{name}.py")
@@ -211,11 +216,13 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
     if api.file.exists(team_id, remote_json_path):
         remote_json_path = api.file.get_free_name(team_id, remote_json_path)
 
-    infos = api.file.upload_bulk(team_id, [py_path, json_path], [remote_py_path, remote_json_path])
+    infos = api.file.upload_bulk(
+        team_id, [py_path, json_path], [remote_py_path, remote_json_path]
+    )
     fields = [
         {"field": "state.exporting", "payload": False},
         {"field": "state.savedUrl", "payload": api.file.get_url(infos[1].id)},
-        {"field": "state.savedPath", "payload": infos[1].path}
+        {"field": "state.savedPath", "payload": infos[1].path},
     ]
     api.task.set_fields(task_id, fields)
 
