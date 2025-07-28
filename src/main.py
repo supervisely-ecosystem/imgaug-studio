@@ -280,9 +280,7 @@ def main():
     data = {}
     state = {}
 
-    sly.logger.debug("Preparing to cache images...")
     cache_images(app.public_api, project_id)
-    sly.logger.debug("Images cached successfully.")
     ui.init_input_project(app.public_api, data, project_info)
     ui.init_pipeline(data, state)
     ui.init_augs_configs(data, state)
