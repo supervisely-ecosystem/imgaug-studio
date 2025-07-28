@@ -10,7 +10,7 @@ all_images = []
 
 def cache_images(api: sly.Api, project_id):
     sly.logger.debug(f"Caching triggered for project {project_id}")
-    for dataset in api.dataset.get_list(project_id):
+    for dataset in api.dataset.get_list(project_id, recursive=True):
         sly.logger.debug(f"Caching images for dataset with ID: {dataset.id}")
         images_info[dataset.name] = api.image.get_list(dataset.id)
         all_images.extend(images_info[dataset.name])
