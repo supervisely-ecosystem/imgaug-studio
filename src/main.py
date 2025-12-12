@@ -236,7 +236,8 @@ def delete_aug(api: sly.Api, task_id, context, state, app_logger):
     if 0 <= index < len(pipeline):
         del pipeline[index]
     else:
-        raise ValueError("Item already deleted.")
+        sly.logger.info("Item already deleted.")
+        return
     fields = [
         {"field": "data.pipeline", "payload": pipeline},
         {"field": "data.augIndex", "payload": None},
