@@ -233,8 +233,11 @@ def export_pipeline(api: sly.Api, task_id, context, state, app_logger):
 def delete_aug(api: sly.Api, task_id, context, state, app_logger):
     global pipeline
     index = state["augIndex"]
-    if index is not None:
+    if 0 <= index < len(pipeline):
         del pipeline[index]
+    else:
+        sly.logger.info("Item already deleted.")
+        return
     fields = [
         {"field": "data.pipeline", "payload": pipeline},
         {"field": "data.augIndex", "payload": None},
