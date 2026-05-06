@@ -1,4 +1,4 @@
-supervisely==6.72.217
+supervisely==6.73.564
 
 # already in sly:
 # imgaug==0.4.0
