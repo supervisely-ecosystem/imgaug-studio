@@ -1,7 +1,7 @@
 import os
 import shutil
 from bs4 import BeautifulSoup
-import supervisely_lib as sly
+import supervisely as sly
 
 def pretty_py_html(text, output, html_name="index"):
     # Sphinx conf.py
